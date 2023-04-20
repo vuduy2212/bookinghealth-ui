@@ -1,0 +1,56 @@
+.wrapper {
+    background-image: url('../../../assets/images/sada.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    height: 768.375px;
+}
+
+.wrapper-top {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
+    padding: 45px 0;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+}
+.wrapper-bottom {
+    width: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+    padding-top: 30px;
+    padding-bottom: 20px;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-top {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.title1,
+.title2 {
+    font-size: 3.2rem;
+    color: #fff;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #333;
+}
+
+.title1 {
+    margin-top: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.title2 {
+    font-weight: 600;
+    margin-bottom: 40px;
+}

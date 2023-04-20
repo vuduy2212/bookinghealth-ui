@@ -1,0 +1,21 @@
+.wrapper {
+    width: 275px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    display: block;
+    height: 156px;
+    object-fit: cover;
+}
+
+.title {
+    color: #111;
+    padding: 10px 0;
+    font-size: 1.3rem;
+    font-weight: 400;
+}

@@ -1,0 +1,33 @@
+.container {
+    width: 456px;
+    height: 50px;
+    background: #f7d800;
+    color: #fff;
+    outline: none;
+    border-radius: 25px;
+    border: 1px solid transparent;
+    line-height: 50px;
+    padding-left: 50px;
+    padding-right: 25px;
+    position: relative;
+
+    input {
+        background-color: transparent;
+        border: none;
+        width: 100%;
+        outline: none;
+        font-size: 1.5rem;
+        line-height: 28px;
+        color: var(--text-color);
+        height: 100%px;
+    }
+    .search-icon {
+        position: absolute;
+        left: 0;
+        font-size: 2rem;
+        color: #333;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 15px;
+    }
+}

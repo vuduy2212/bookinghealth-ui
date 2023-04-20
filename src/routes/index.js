@@ -13,6 +13,11 @@ const publicRoutes = [
         component: Handbook,
         layout: DefaultLayout,
     },
+    {
+        path: '/hotro',
+        component: Handbook,
+        layout: DefaultLayout,
+    },
 ];
 
 // privateRoutes: phải đăng nhập, mới vào được

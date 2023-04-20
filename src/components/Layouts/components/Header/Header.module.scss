@@ -1,0 +1,45 @@
+.wrapper {
+    background-color: white;
+    height: 77.47px;
+    display: flex;
+    justify-content: center;
+}
+
+.inner {
+    width: 100%;
+    height: var((--inner-header-height));
+    display: flex;
+    align-items: center;
+}
+
+.menu-btn {
+    color: #7e7c7c;
+    font-size: 3rem;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.logo {
+    width: 160px;
+    height: 35px;
+}
+
+.menu-header {
+    display: flex;
+    margin-left: 80px;
+}
+
+.help-btn {
+    width: 62px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    color: var(--primary);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-left: auto;
+}
