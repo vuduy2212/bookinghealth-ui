@@ -4,18 +4,68 @@
     flex-direction: column;
     margin: 5px;
     cursor: pointer;
+
+    &:hover h3 {
+        color: var(--primary);
+    }
+}
+
+.wrapper.docterSlider {
+    padding: 10px 0 40px 0;
+    border: 1px solid #eee;
+    min-height: 250px;
+    align-items: center;
+    .title {
+        text-align: center;
+    }
+    .image {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+.wrapper.handbookSlider {
+    flex-direction: row;
+    width: 540px;
+    margin: 5px 15px;
+    .image {
+        width: 282px;
+        height: 150px;
+    }
+    .title {
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+        padding: 3px 0 0 10px;
+    }
 }
 
 .image {
     width: 100%;
     display: block;
-    height: 156px;
     object-fit: cover;
+    height: 150px;
+    border-radius: 4px;
 }
 
 .title {
     color: #111;
-    padding: 10px 0;
+    padding-top: 10px;
+    padding-bottom: 5px;
     font-size: 1.3rem;
     font-weight: 400;
+    white-space: pre-line;
+    line-height: 21px;
+}
+
+.decs {
+    color: #9f9696;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.paddingImg {
+    padding: 10px;
+    background-color: #fff;
 }

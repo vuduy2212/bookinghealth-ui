@@ -23,6 +23,7 @@ const images = {
     },
     basinoibat: {
         bacsytrung: require('./bacsy.jpg'),
+        basyhung: require('./114430-bshung.jpg'),
     },
     camnang: {
         mun: require('./145553-mun-viem-la-gi.png'),
