@@ -2,7 +2,9 @@ const images = {
     logo: require('./bookingcare-2020-logo.svg').default,
     noImage: require('./pngfind.com-placeholder-png-6104451.png'),
     banner: require('./bookingcare-cover-4.jpg'),
-
+    bocongthuong: require('./bo-cong-thuong.svg').default,
+    logoFacebook: require('./facebook-square.svg').default,
+    logoYoutube: require('./youtube-square.svg').default,
     // icon of banner
     khamchuyenkhoa: require('./133537-khamchuyenkhoa.png'),
     khamtuxa: require('./133657-khamtuxa.png'),
