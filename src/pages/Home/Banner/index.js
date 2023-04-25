@@ -19,7 +19,7 @@ function Banner() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('wrapper-top')}>
-                <div className={cx('indented')}>
+                <div className="container">
                     <div className={cx('banner-top')}>
                         <h1 className={cx('title1')}>NỀN TẢNG Y TẾ</h1>
                         <h1 className={cx('title2')}>CHĂM SÓC SỨC KHỎE TOÀN DIỆN</h1>
@@ -28,7 +28,7 @@ function Banner() {
                 </div>
             </div>
             <div className={cx('wrapper-bottom')}>
-                <div className={cx('indented')}>
+                <div className="container">
                     <MenuBanner data={MENU_LIST_DATA} />
                 </div>
             </div>

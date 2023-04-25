@@ -115,3 +115,8 @@ a[href] {
 :global(.slick-disabled) {
     display: none !important;
 }
+
+:global(.slick-slide.slick-active) {
+    display: flex;
+    justify-content: center;
+}

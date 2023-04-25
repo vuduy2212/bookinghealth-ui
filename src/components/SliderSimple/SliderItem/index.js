@@ -26,13 +26,12 @@ function SliderItem({
             })}
             {...props}
         >
-            <img
-                src={image}
-                className={cx('image', {
+            <div
+                className={cx('image-container', {
                     paddingImg,
                 })}
-                alt="anh"
-            ></img>
+                style={{ backgroundImage: `url(${image})` }}
+            ></div>
             <h3 className={cx('title')}>{textTitle}</h3>
             {title3 && <h4 className={cx('decs')}>{title3}</h4>}
         </Link>

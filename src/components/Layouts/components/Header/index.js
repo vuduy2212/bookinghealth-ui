@@ -5,21 +5,24 @@ import { Link } from 'react-router-dom';
 import style from './Header.module.scss';
 import images from '~/assets/images';
 import MenuHeaderItem from './MenuHeaderItem';
+import NavBar from '~/components/NavBar';
+import { useState } from 'react';
 const cx = classNames.bind(style);
 function Header() {
     return (
         <div className={cx('wrapper')}>
-            <div className="indented">
+            <div className="container d-flex align-items-center">
                 <div className={cx('inner')}>
-                    <div className={cx('menu-btn')}>
+                    {/* <div className={cx('menu-btn')}>
                         <FiMenu />
-                    </div>
+                    </div> */}
+                    <NavBar></NavBar>
                     <Link to={'/'}>
                         <div className={cx('logo')}>
                             <img src={images.logo} alt="BookingCare Logo"></img>
                         </div>
                     </Link>
-                    <div className={cx('menu-header')}>
+                    <div className={cx('menu-header', 'd-none', 'd-lg-flex')}>
                         <MenuHeaderItem title="Chuyên khoa" desc="Tìm bác sĩ theo chuyên khoa" to="/chuyenkhoa" />
                         <MenuHeaderItem title="Cơ sở y tế" desc="Chọn bệnh viện phòng khám" to="/co-so-y-te" />
                         <MenuHeaderItem title="Bác sĩ" desc="Chọn bác sĩ giỏi" to="/bacsi" />

@@ -1,12 +1,18 @@
+@import '../../../scss/minxin.scss';
 .wrapper {
     background-image: url('../../../assets/images/sada.jpg');
+
+    @include no-desktop {
+        background-image: url('../../../assets/images/bookingcare-cover-4.jpg');
+    }
+
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     width: 100vw;
     display: flex;
     flex-direction: column;
-    height: 45.25vw;
+    // height: 45.25vw;
 }
 
 .wrapper-top {
@@ -39,7 +45,7 @@
 
 .title1,
 .title2 {
-    font-size: 3.2rem;
+    //font-size: 3.2rem;
     color: #fff;
     color: #fff;
     text-transform: uppercase;

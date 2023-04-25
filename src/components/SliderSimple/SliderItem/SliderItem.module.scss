@@ -1,10 +1,21 @@
+@import '../../../scss/minxin.scss';
+
 .wrapper {
     width: 275px;
     display: flex;
     flex-direction: column;
-    margin: 5px;
+    margin: 5px 0;
     cursor: pointer;
+    @include lg {
+        width: 228px;
+    }
+    @include md {
+        width: 228px;
+    }
 
+    @include esm {
+        width: 228px;
+    }
     &:hover h3 {
         color: var(--primary);
     }
@@ -13,39 +24,50 @@
 .wrapper.docterSlider {
     padding: 10px 0 40px 0;
     border: 1px solid #eee;
-    min-height: 250px;
     align-items: center;
+
+    .image-container {
+        width: 45%;
+        padding-top: 45%;
+        border-radius: 50%;
+    }
+
     .title {
         text-align: center;
-    }
-    .image {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 50%;
     }
 }
 .wrapper.handbookSlider {
     flex-direction: row;
     width: 540px;
     margin: 5px 15px;
-    .image {
-        width: 282px;
-        height: 150px;
+    @include esm {
+        width: 430px;
     }
+    @include mobile() {
+        width: 350px;
+    }
+    .image-container {
+        width: 60%;
+        padding-top: 28.4%;
+    }
+
     .title {
+        width: 50%;
         font-weight: 600;
         font-size: 1.6rem;
-        margin-bottom: 15px;
-        padding: 3px 0 0 10px;
+        padding: 4px 0 0 12px;
     }
 }
 
+.image-container {
+    padding-top: 54.545%;
+    background-size: cover;
+}
 .image {
     width: 100%;
     display: block;
     object-fit: cover;
-    height: 150px;
+    height: 100%;
     border-radius: 4px;
 }
 
@@ -66,6 +88,6 @@
 }
 
 .paddingImg {
-    padding: 10px;
+    padding-top: 50%;
     background-color: #fff;
 }
