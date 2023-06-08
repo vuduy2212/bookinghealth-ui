@@ -46,7 +46,7 @@ function SliderSimple({
     const settings = {
         slidesToShow: handbookSlider ? 2 : 4,
         slidesToScroll: handbookSlider ? 2 : 4,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
         infinite: true,
@@ -76,15 +76,6 @@ function SliderSimple({
                 settings: {
                     slidesToShow: handbookSlider ? 1 : 2,
                     slidesToScroll: handbookSlider ? 1 : 2,
-                    infinite: true,
-                    dots: false,
-                },
-            },
-            {
-                breakpoint: 488,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
                     infinite: true,
                     dots: false,
                 },

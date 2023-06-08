@@ -35,12 +35,13 @@
 }
 
 .help-btn {
-    width: 62px;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    color: var(--primary);
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 1.3rem;
     margin-left: auto;
+    text-transform: capitalize;
+    border-radius: 5px;
+
+    &:hover {
+        opacity: 0.9;
+        background-color: var(--primary);
+    }
 }

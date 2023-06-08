@@ -16,6 +16,9 @@
     @include esm {
         width: 228px;
     }
+    @include mobile {
+        width: 180px;
+    }
     &:hover h3 {
         color: var(--primary);
     }

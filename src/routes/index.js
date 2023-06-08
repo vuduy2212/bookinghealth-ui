@@ -1,6 +1,8 @@
 import Home from '~/pages/Home';
 import Handbook from '~/pages/Handbook';
 import { DefaultLayout } from '~/components/Layouts';
+import Login from '~/pages/Login';
+import Register from '~/pages/Register';
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
     {
@@ -17,6 +19,16 @@ const publicRoutes = [
         path: '/hotro',
         component: Handbook,
         layout: DefaultLayout,
+    },
+    {
+        path: '/login',
+        component: Login,
+        layout: null,
+    },
+    {
+        path: '/register',
+        component: Register,
+        layout: null,
     },
 ];
 

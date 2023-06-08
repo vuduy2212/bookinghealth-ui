@@ -7,17 +7,17 @@ import DATA_NAVBAR from './DataNavBar';
 import images from '~/assets/images';
 import { useState } from 'react';
 const cx = classNames.bind(style);
-function Nav(Bar) {
+function NavBar() {
     const [show, setShow] = useState(false);
     return (
         <div>
             <div className={cx('menu-btn')} onClick={() => setShow(true)}>
                 <FiMenu />
             </div>
-            {show && (
+            {
                 <div>
-                    <div className={cx('overlay')} onClick={() => setShow(false)}></div>
-                    <div className={cx('navbar')}>
+                    {show && <div className={cx('overlay')} onClick={() => setShow(false)}></div>}
+                    <div className={cx('navbar')} style={show ? {} : { transform: `translate(${-100}%`, opacity: 0 }}>
                         {DATA_NAVBAR.main.map((item, index) => {
                             return (
                                 <Link
@@ -49,9 +49,9 @@ function Nav(Bar) {
                         </div>
                     </div>
                 </div>
-            )}
+            }
         </div>
     );
 }
 
-export default Nav;
+export default NavBar;

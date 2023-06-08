@@ -28,9 +28,9 @@ function Banner() {
                 </div>
             </div>
             <div className={cx('wrapper-bottom')}>
-                <div className="container">
-                    <MenuBanner data={MENU_LIST_DATA} />
-                </div>
+                {/* <div className="container"> */}
+                <MenuBanner data={MENU_LIST_DATA} />
+                {/* </div> */}
             </div>
         </div>
     );
