@@ -1,5 +1,6 @@
 .login-page {
-    height: 100vh;
+    max-height: 97vh;
+    max-width: 100vw;
     .login100-form-title-sub {
         font-size: 18px;
         padding-top: 60px;
@@ -17,6 +18,35 @@
         a:hover {
             color: white;
         }
+    }
+    .logo-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .logo {
+        display: inline-block;
+        width: 150px;
+        margin-bottom: 50px;
+        text-align: right;
+        justify-self: flex-end;
+    }
+    #input-password {
+        position: relative;
+    }
+    .show-password {
+        position: absolute;
+        right: 40px;
+        font-size: 2rem;
+        color: #6111ca;
+        top: 45px;
+        cursor: pointer;
+    }
+    .messError {
+        color: red !important;
+        margin-bottom: 16px !important;
+        display: inline-block;
+        font-size: 1.6rem !important;
     }
     /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
@@ -244,7 +274,7 @@
         background-position: center;
         position: relative;
         z-index: 1;
-        background-image: url('../../assets//images/bglogin_optimized.jpg');
+        background-image: url('../../assets//images/bg-end.jpg');
     }
 
     .login100-more::before {
@@ -267,7 +297,7 @@
         height: 100vh;
         display: block;
         background-color: #f7f7f7;
-        padding: 80px 55px 55px 55px;
+        padding: 20px 55px 55px 55px;
     }
 
     .login100-form-title {
@@ -572,12 +602,13 @@
     }
 
     .alert-validate::after {
-        content: '\f12a';
+        content: '!';
         display: block;
         position: absolute;
         z-index: 110;
         color: #c80000;
-        font-size: 16px;
+        font-size: 22px;
+        font-weight: 700;
         top: 50%;
         -webkit-transform: translateY(-50%);
         -moz-transform: translateY(-50%);
@@ -593,10 +624,10 @@
     }
 
     @media (max-width: 992px) {
-        .alert-validate::before {
-            visibility: visible;
-            opacity: 1;
-        }
+        // .alert-validate::before {
+        //     visibility: visible;
+        //     opacity: 1;
+        // }
     }
 
     /*==================================================================
@@ -618,7 +649,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 36px;
+        padding-bottom: 26px;
         padding-top: 8px;
     }
 }

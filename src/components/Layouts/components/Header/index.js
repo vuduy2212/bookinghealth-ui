@@ -1,14 +1,19 @@
 import classNames from 'classnames/bind';
-import { FiMenu } from 'react-icons/fi';
-import { BsQuestionCircleFill } from 'react-icons/bs';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import style from './Header.module.scss';
 import images from '~/assets/images';
 import MenuHeaderItem from './MenuHeaderItem';
 import NavBar from '~/components/NavBar';
 import Button from '~/components/Button';
+import { useSelector } from 'react-redux';
 const cx = classNames.bind(style);
 function Header() {
+    const loginState = useSelector((state) => state.auth.login);
+    useEffect(() => {
+        setUser(loginState?.currentUser?.email);
+    }, [loginState]);
+    const [user, setUser] = useState(null);
     return (
         <div className={cx('wrapper')}>
             <div className="container d-flex align-items-center">
@@ -29,9 +34,18 @@ function Header() {
                         <BsQuestionCircleFill />
                         <span className={cx('help-btn-title')}>Hỗ trợ</span>
                     </Link> */}
-                    <Button primary className={cx('help-btn')} to={'/login'}>
-                        Đăng nhập
-                    </Button>
+                    {!user ? (
+                        <>
+                            <Button small primary className={cx('help-btn')} to={'/login'}>
+                                Đăng nhập
+                            </Button>
+                            <Button small primary className={cx('help-btn')} to={'/register'}>
+                                Đăng ký
+                            </Button>
+                        </>
+                    ) : (
+                        <span className={cx('welcome')}>Xin chào, {user}</span>
+                    )}
                 </div>
             </div>
         </div>

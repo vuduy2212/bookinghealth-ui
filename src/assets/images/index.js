@@ -1,5 +1,4 @@
 const images = {
-    bglogin: require('./happiness-cheerful-elderly-woman-men-talking-with-female-caregiver-nurse-doctor-having-health-checking-consult-living-areacaretakers-with-senior-couple-sitting-living-room-nursing-home.jpg'),
     logo: require('./bookingcare-2020-logo.svg').default,
     noImage: require('./pngfind.com-placeholder-png-6104451.png'),
     banner: require('./bookingcare-cover-4.jpg'),
