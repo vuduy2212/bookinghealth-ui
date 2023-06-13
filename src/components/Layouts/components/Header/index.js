@@ -8,9 +8,31 @@ import NavBar from '~/components/NavBar';
 import Button from '~/components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '~/redux/apiRequest';
-
+import { BiEditAlt, BiHelpCircle, BiLogOutCircle } from 'react-icons/bi';
+import Menu from '~/components/Popper/Menu';
+import Image from '~/components/Image';
 const cx = classNames.bind(style);
 function Header() {
+    const MENU_ITEM = [
+        {
+            icon: <BiEditAlt />,
+            title: 'Cập nhật thông tin',
+            to: '/update-user',
+        },
+        {
+            icon: <BiHelpCircle />,
+            title: 'Trợ giúp',
+            to: 'help',
+        },
+        {
+            icon: <BiLogOutCircle />,
+            title: 'Đăng xuất',
+            onClick: () => {
+                handleLogOut();
+            },
+        },
+    ];
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const loginState = useSelector((state) => state.auth.login);
@@ -52,10 +74,10 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <span className={cx('welcome')}>Xin chào, {user?.firstName}</span>
-                            <Button small primary className={cx('help-btn')} onClick={handleLogOut}>
-                                Đăng xuất
-                            </Button>
+                            <span className={cx('welcome')}>{user.lastName + '' + user.firstName}</span>
+                            <Menu data={MENU_ITEM}>
+                                <Image className={cx('avatar')} src="" fallback={images.noImage} alt="avatar"></Image>
+                            </Menu>
                         </>
                     )}
                 </div>
