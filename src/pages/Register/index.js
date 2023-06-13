@@ -1,14 +1,15 @@
 import classNames from 'classnames/bind';
 import styles from '~/pages/Register/Register.module.scss';
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import images from '~/assets/images';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { registerUser } from '~/redux/apiRequest';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 const cx = classNames.bind(styles);
 function Register() {
+    const user = useSelector((state) => state.auth.login);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
@@ -108,7 +109,7 @@ function Register() {
         };
     }, []);
 
-    return (
+    return !user.currentUser ? (
         <div className={cx('login-page')}>
             <div className={cx('limiter')}>
                 <div className={cx('container-login100')}>
@@ -218,7 +219,8 @@ function Register() {
                 </div>
             </div>
         </div>
+    ) : (
+        <Navigate to={'/'} />
     );
 }
-
 export default Register;

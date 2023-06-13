@@ -1,5 +1,15 @@
 import axios from 'axios';
-import { loginFailed, loginStart, loginSuccess, registerFailed, registerStart, registerSuccess } from './authSlice';
+import {
+    logOutFailed,
+    logOutStart,
+    logOutSuccess,
+    loginFailed,
+    loginStart,
+    loginSuccess,
+    registerFailed,
+    registerStart,
+    registerSuccess,
+} from './authSlice';
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
@@ -14,12 +24,23 @@ export const loginUser = async (user, dispatch, navigate) => {
     }
 };
 export const registerUser = async (user, dispatch, navigate) => {
-    dispatch(registerStart);
+    dispatch(registerStart());
     try {
         await axios.post('/api/auth/register', user);
-        dispatch(registerSuccess);
+        dispatch(registerSuccess());
         navigate('/login');
     } catch (error) {
         dispatch(registerFailed());
+    }
+};
+
+export const logOut = async (dispatch, navigate) => {
+    dispatch(logOutStart());
+    try {
+        await axios.post('/api/auth/logout');
+        dispatch(logOutSuccess());
+        navigate('/login');
+    } catch (error) {
+        dispatch(logOutFailed());
     }
 };

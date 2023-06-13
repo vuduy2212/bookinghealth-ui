@@ -1,17 +1,24 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './Header.module.scss';
 import images from '~/assets/images';
 import MenuHeaderItem from './MenuHeaderItem';
 import NavBar from '~/components/NavBar';
 import Button from '~/components/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from '~/redux/apiRequest';
+
 const cx = classNames.bind(style);
 function Header() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const loginState = useSelector((state) => state.auth.login);
+    const handleLogOut = () => {
+        logOut(dispatch, navigate);
+    };
     useEffect(() => {
-        setUser(loginState?.currentUser?.email);
+        setUser(loginState?.currentUser);
     }, [loginState]);
     const [user, setUser] = useState(null);
     return (
@@ -44,7 +51,12 @@ function Header() {
                             </Button>
                         </>
                     ) : (
-                        <span className={cx('welcome')}>Xin chào, {user}</span>
+                        <>
+                            <span className={cx('welcome')}>Xin chào, {user?.firstName}</span>
+                            <Button small primary className={cx('help-btn')} onClick={handleLogOut}>
+                                Đăng xuất
+                            </Button>
+                        </>
                     )}
                 </div>
             </div>

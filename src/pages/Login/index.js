@@ -2,13 +2,15 @@
 import classNames from 'classnames/bind';
 import styles from '~/pages/Login/Login.module.scss';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { loginUser } from '~/redux/apiRequest';
 import { useDispatch, useSelector } from 'react-redux';
 import images from '~/assets/images';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { validate, showValidate, hideValidate } from '~/middleware/validateForm';
 const cx = classNames.bind(styles);
 function Login() {
+    const user = useSelector((state) => state.auth.login);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPw, setShowPw] = useState(false);
@@ -43,50 +45,23 @@ function Login() {
     };
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        // validate
-        const validate = (input) => {
-            if (input.type === 'email' || input.name === 'email') {
-                if (
-                    input.value
-                        .trim()
-                        .match(
-                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                        ) == null
-                ) {
-                    return false;
-                }
-            } else {
-                if (input.value.trim() === '') {
-                    return false;
-                }
-            }
-        };
-        const showValidate = (input) => {
-            const thisAlert = input.parentElement;
-            thisAlert.classList.add(`${cx('alert-validate')}`);
-        };
         let check = true;
-        const hideValidate = (input) => {
-            const thisAlert = input.parentElement;
-
-            thisAlert.classList.remove(`${cx('alert-validate')}`);
-        };
         const inputList = document.querySelectorAll(`.${cx('validate-input')} .${cx('input100')}`);
         [...inputList].forEach((element) => {
             if (validate(element) === false) {
-                showValidate(element);
+                showValidate(element, cx);
                 check = false;
             } else {
-                hideValidate(element);
+                hideValidate(element, cx);
             }
             element.addEventListener('focus', () => {
-                hideValidate(element);
+                hideValidate(element, cx);
             });
         });
 
         for (let i = 0; i < inputList.length; i++) {
             inputList[i].onFocus = () => {
-                hideValidate(inputList[i]);
+                hideValidate(inputList[i], cx);
             };
         }
         if (check === true) {
@@ -98,7 +73,7 @@ function Login() {
         }
         // validate
     };
-    return (
+    return !user.currentUser ? (
         <div className={cx('login-page')}>
             <div className={cx('limiter')}>
                 <div className={cx('container-login100')}>
@@ -185,6 +160,8 @@ function Login() {
                 </div>
             </div>
         </div>
+    ) : (
+        <Navigate to={'/'} />
     );
 }
 
