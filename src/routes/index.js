@@ -1,8 +1,9 @@
 import Home from '~/pages/Home';
 import Handbook from '~/pages/Handbook';
-import { DefaultLayout } from '~/components/Layouts';
+import { DefaultLayout, DefaultLayoutLite } from '~/components/Layouts';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
+import UpdateUser from '~/pages/UpdateUser';
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
     {
@@ -28,6 +29,11 @@ const publicRoutes = [
     {
         path: '/register',
         component: Register,
+        layout: null,
+    },
+    {
+        path: '/update-user',
+        component: UpdateUser,
         layout: null,
     },
 ];

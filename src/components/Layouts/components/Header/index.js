@@ -8,7 +8,7 @@ import NavBar from '~/components/NavBar';
 import Button from '~/components/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '~/redux/apiRequest';
-import { BiEditAlt, BiHelpCircle, BiLogOutCircle } from 'react-icons/bi';
+import { BiEditAlt, BiHelpCircle, BiHistory, BiLogOutCircle } from 'react-icons/bi';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 const cx = classNames.bind(style);
@@ -18,6 +18,11 @@ function Header() {
             icon: <BiEditAlt />,
             title: 'Cập nhật thông tin',
             to: '/update-user',
+        },
+        {
+            icon: <BiHistory />,
+            title: 'Lịch sử khám bệnh',
+            to: '/history-user',
         },
         {
             icon: <BiHelpCircle />,
@@ -74,7 +79,9 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <span className={cx('welcome')}>{user.lastName + '' + user.firstName}</span>
+                            <span className={cx('welcome')}>
+                                {user.lastName && user.firstName ? user.lastName + ' ' + user.firstName : 'Xin chào'}
+                            </span>
                             <Menu data={MENU_ITEM}>
                                 <Image className={cx('avatar')} src="" fallback={images.noImage} alt="avatar"></Image>
                             </Menu>

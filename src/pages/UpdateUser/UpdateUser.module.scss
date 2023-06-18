@@ -1,0 +1,32 @@
+.content {
+    padding-top: 75px;
+
+    .label {
+        font-size: 1.8rem;
+    }
+
+    .input {
+        font-size: 1.8rem;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+}
+
+.boder {
+    border: solid 5px var(--primary) !important;
+    border-radius: 30px;
+}
+
+.form-warrper {
+    padding-top: 40px;
+}
+
+.button-submit {
+    background-color: var(--primary);
+    color: #333;
+    font-weight: 600;
+    &:hover {
+        opacity: 0.8;
+    }
+    margin: 24px 0;
+}

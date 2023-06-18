@@ -55,6 +55,10 @@ const authSlice = createSlice({
             state.logOut.isFetching = false;
             state.logOut.error = true;
         },
+        updateSuccess: (state, action) => {
+            // state.login.currentUser = action.payload;
+            Object.assign(state.login.currentUser, action.payload);
+        },
     },
 });
 export const {
@@ -67,5 +71,6 @@ export const {
     logOutStart,
     logOutSuccess,
     logOutFailed,
+    updateSuccess,
 } = authSlice.actions;
 export default authSlice.reducer;

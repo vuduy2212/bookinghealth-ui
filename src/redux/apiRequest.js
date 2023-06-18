@@ -9,7 +9,9 @@ import {
     registerFailed,
     registerStart,
     registerSuccess,
+    updateSuccess,
 } from './authSlice';
+import { useSelector } from 'react-redux';
 
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
@@ -43,4 +45,11 @@ export const logOut = async (dispatch, navigate) => {
     } catch (error) {
         dispatch(logOutFailed());
     }
+};
+export const updateUser = async (dispatch, navigate, userUpdated, user, axiosJWT) => {
+    try {
+        const res = await axiosJWT.patch(`./api/user/update/${user.id}`, userUpdated);
+        dispatch(updateSuccess(res.data));
+        navigate('/');
+    } catch (error) {}
 };

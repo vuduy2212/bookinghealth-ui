@@ -1,0 +1,25 @@
+.wrapper {
+    background-color: var(--primary);
+    height: 58px;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    position: fixed;
+}
+
+.back-icon {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.wrapper-icon {
+    padding: 10px;
+}
+
+.title {
+    font-size: 1.8rem;
+    color: white;
+    margin-left: 20px;
+}

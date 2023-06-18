@@ -1,5 +1,6 @@
 import Banner from './Banner';
 import SliderSimple from '~/components/SliderSimple';
+import { useSelector } from 'react-redux';
 import {
     DATA_SLIDER_CHUYENKHOAPHOBIEN,
     DATA_SLIDER_COSOYTENOIBAT,
@@ -7,6 +8,7 @@ import {
     DATA_SLIDER_CAMNANG,
 } from './dataExample';
 function Home() {
+    const user = useSelector((state) => state.auth.login.currentUser);
     return (
         <div>
             <Banner />
