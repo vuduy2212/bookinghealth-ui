@@ -5,6 +5,8 @@ const images = {
     bocongthuong: require('./bo-cong-thuong.svg').default,
     logoFacebook: require('./facebook-square.svg').default,
     logoYoutube: require('./youtube-square.svg').default,
+    doctor: require('./doctor-icon.svg').default,
+
     // icon of banner
     khamchuyenkhoa: require('./133537-khamchuyenkhoa.png'),
     khamtuxa: require('./133657-khamtuxa.png'),

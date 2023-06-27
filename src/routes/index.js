@@ -1,9 +1,10 @@
-import Home from '~/pages/Home';
-import Handbook from '~/pages/Handbook';
-import { DefaultLayout, DefaultLayoutLite } from '~/components/Layouts';
-import Login from '~/pages/Login';
-import Register from '~/pages/Register';
-import UpdateUser from '~/pages/UpdateUser';
+import Home from '~/pages/UserPages/Home';
+import Handbook from '~/pages/UserPages/Handbook';
+import { DefaultLayout } from '~/components/Layouts';
+import Login from '~/pages/UserPages/Login';
+import Register from '~/pages/UserPages/Register';
+import UpdateUser from '~/pages/UserPages/UpdateUser';
+import UserManage from '~/pages/AdminPages/UserManage';
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
     {
@@ -39,6 +40,14 @@ const publicRoutes = [
 ];
 
 // privateRoutes: phải đăng nhập, mới vào được
-const privateRoutes = [];
+
+const privateRoutes = [
+    // admin mới vào được
+    {
+        path: '/admin/user-manager',
+        component: UserManage,
+        layout: null,
+    },
+];
 
 export { publicRoutes, privateRoutes };

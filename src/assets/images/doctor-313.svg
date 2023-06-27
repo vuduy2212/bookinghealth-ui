@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+
+<defs>
+</defs>
+<g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
+	<circle cx="58.144999999999996" cy="74.615" r="13.145" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
+	<path d="M 45 40.375 L 45 40.375 c -9.415 0 -17.118 -7.703 -17.118 -17.118 v -6.139 C 27.882 7.703 35.585 0 45 0 h 0 c 9.415 0 17.118 7.703 17.118 17.118 v 6.139 C 62.118 32.672 54.415 40.375 45 40.375 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(110,177,225); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+	<path d="M 55.078 42.803 L 45 54.44 L 34.922 42.803 c -12.728 2.118 -22.513 13.239 -22.513 26.544 v 17.707 c 0 1.621 1.326 2.946 2.946 2.946 h 59.29 c 1.621 0 2.946 -1.326 2.946 -2.946 V 69.346 C 77.591 56.042 67.805 44.921 55.078 42.803 z M 67.204 76.875 c 0 0.667 -0.541 1.208 -1.208 1.208 h -3.877 v 3.877 c 0 0.667 -0.541 1.208 -1.208 1.208 H 56.73 c -0.667 0 -1.208 -0.541 -1.208 -1.208 v -3.877 h -3.877 c -0.667 0 -1.208 -0.541 -1.208 -1.208 v -4.179 c 0 -0.667 0.541 -1.208 1.208 -1.208 h 3.877 V 67.61 c 0 -0.667 0.541 -1.208 1.208 -1.208 h 4.179 c 0.667 0 1.208 0.541 1.208 1.208 v 3.877 h 3.877 c 0.667 0 1.208 0.541 1.208 1.208 V 76.875 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(110,177,225); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+</g>
+</svg>

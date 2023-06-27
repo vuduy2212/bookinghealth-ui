@@ -1,0 +1,46 @@
+.wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    min-height: 36px;
+    min-width: 82px;
+    height: 100%;
+    padding-right: 20px;
+    color: #282e41;
+    cursor: pointer;
+    background-color: transparent;
+    &:hover {
+        color: #fff;
+    }
+    &.disable {
+        pointer-events: none;
+        opacity: 0.5;
+        user-select: none;
+    }
+}
+// .wrapper + .wrapper {
+//     margin-left: 16px;
+// }
+
+.icon + .title,
+title + .icon {
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    font-size: 1.4rem;
+    width: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.active {
+    color: white;
+}

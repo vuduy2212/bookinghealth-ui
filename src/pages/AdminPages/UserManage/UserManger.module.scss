@@ -1,0 +1,57 @@
+.content {
+    padding-top: 68px;
+    font-size: 1.6rem;
+}
+
+.header-table {
+    background-color: #05a76e;
+    color: white;
+}
+
+.email-col {
+    width: 250px;
+}
+
+.id-col {
+    width: 75px;
+}
+
+.name-col {
+    width: 100px;
+}
+
+.yearOfBirth-col {
+    width: 100px;
+}
+
+.gender-col {
+    width: 100px;
+}
+
+.address-col {
+    width: 200px;
+}
+.delete-button {
+    &:hover {
+        background-color: rgb(238, 71, 71);
+    }
+}
+
+.wrapper-search {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.custome-search-field {
+    font-size: 1.5rem !important;
+    margin-left: 12px;
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0 15px 0;
+    font-size: 2.5rem;
+    color: #333;
+}

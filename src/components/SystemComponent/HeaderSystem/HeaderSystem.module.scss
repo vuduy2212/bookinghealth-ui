@@ -1,0 +1,74 @@
+.wrapper {
+    height: 52.73px;
+    width: 100vw;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    position: fixed;
+}
+
+.content {
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+    width: 92vw;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.icon-admin {
+    font-size: 3rem;
+    margin-right: 8px;
+}
+.icon-doctor {
+    width: 40px;
+    margin-right: 8px;
+    filter: invert(0%) sepia(0%) saturate(7491%) hue-rotate(234deg) brightness(107%) contrast(97%);
+}
+.logo {
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+    color: #333;
+    &:hover {
+        color: white;
+    }
+    margin-right: 20px;
+}
+
+.menu-drop {
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 135px;
+    height: 100%;
+    cursor: pointer;
+    &:hover {
+        color: white;
+    }
+    span {
+        margin-right: 3px;
+    }
+    padding-right: 20px;
+    &.active {
+        color: white;
+    }
+}
+
+.welcome {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.avatar {
+    margin-left: 16px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}

@@ -48,8 +48,17 @@ export const logOut = async (dispatch, navigate) => {
 };
 export const updateUser = async (dispatch, navigate, userUpdated, user, axiosJWT) => {
     try {
-        const res = await axiosJWT.patch(`./api/user/update/${user.id}`, userUpdated);
+        const res = await axiosJWT.patch(`/api/user/update/${user.id}`, userUpdated, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
         dispatch(updateSuccess(res.data));
         navigate('/');
+    } catch (error) {}
+};
+export const deleteUser = async (user, id, axiosJWT) => {
+    try {
+        await axiosJWT.delete(`/api/user/delete/${id}`, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
     } catch (error) {}
 };

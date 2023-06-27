@@ -8,7 +8,7 @@ import { Fragment, useState } from 'react';
 import Header from './Header';
 
 const cx = classNames.bind(styles);
-function Menu({ data = [], children }) {
+function Menu({ data = [], children, placement = 'bottom-end', offset = [18, 8], small = false }) {
     const handleOnClick = (item) => {
         if (!!item.children) {
             setMenuList((prev) => [...prev, item.children]);
@@ -44,13 +44,13 @@ function Menu({ data = [], children }) {
     };
     return (
         <Tippy
-            offset={[18, 8]}
+            offset={offset}
             delay={[0, 400]}
-            placement="bottom-end"
+            placement={placement}
             interactive
             render={(attrs) => (
                 <div className={cx('wrapper')} tabIndex="-1" {...attrs}>
-                    <WrapperPopper>{renderItem()}</WrapperPopper>
+                    <WrapperPopper small={small}>{renderItem()}</WrapperPopper>
                 </div>
             )}
             onHide={() => setMenuList((prev) => prev.slice(0, 1))}

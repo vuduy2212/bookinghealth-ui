@@ -1,0 +1,69 @@
+import { useState } from 'react';
+import classNames from 'classnames/bind';
+
+import styles from './ModalDelete.module.scss';
+import Button from '~/components/Button';
+import { MdClose } from 'react-icons/md';
+import axios from 'axios';
+import { createAxios } from '~/redux/createInstance';
+import { loginSuccess } from '~/redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUser } from '~/redux/apiRequest';
+import { AiFillLayout } from 'react-icons/ai';
+const cx = classNames.bind(styles);
+function ModalDelete({ id, reload }) {
+    const user = useSelector((state) => state.auth.login.currentUser);
+    const dispatch = useDispatch();
+    const [modal, setModal] = useState(false);
+    let axiosJWT = createAxios(user, dispatch, loginSuccess);
+    const toggleModal = () => {
+        setModal(!modal);
+    };
+
+    if (modal) {
+        document.body.classList.add(cx('active-modal'));
+    } else {
+        document.body.classList.remove(cx('active-modal'));
+    }
+
+    const handleDelete = async () => {
+        await deleteUser(user, id, axiosJWT);
+        await reload();
+        setModal(false);
+    };
+
+    return (
+        <>
+            <Button rounded onClick={toggleModal} className={cx('btn-modal')}>
+                Xóa
+            </Button>
+
+            {modal && (
+                <div className={cx('modal')}>
+                    <div onClick={toggleModal} className={cx('overlay')}></div>
+                    <div className={cx('modal-content')}>
+                        <div className={cx('modal-header')}>
+                            <span className={cx('modal-title')}>Xóa vĩnh viễn</span>
+                            <button className={cx('close-modal')} onClick={toggleModal}>
+                                <MdClose className={cx('modal-icon-close')} />
+                            </button>
+                        </div>
+                        <div className={cx('modal-body')}>
+                            <span className={cx('modal-desc')}>Bạn có chắc chắn xóa vĩnh viễn không</span>
+                        </div>
+                        <div className={cx('modal-footer')}>
+                            <Button rounded className={cx('modal-button-close')} onClick={toggleModal}>
+                                Close
+                            </Button>
+                            <Button rounded className={cx('modal-button-delete')} onClick={handleDelete}>
+                                Xóa
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+    );
+}
+
+export default ModalDelete;

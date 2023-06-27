@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './Header.module.scss';
 import images from '~/assets/images';
@@ -44,7 +44,7 @@ function Header() {
     const handleLogOut = () => {
         logOut(dispatch, navigate);
     };
-    useEffect(() => {
+    useLayoutEffect(() => {
         setUser(loginState?.currentUser);
     }, [loginState]);
     const [user, setUser] = useState(null);
