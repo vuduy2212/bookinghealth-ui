@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import images from '~/assets/images';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { validate, showValidate, hideValidate } from '~/middleware/validateForm';
+import { loginFailed } from '~/redux/authSlice';
 const cx = classNames.bind(styles);
 function Login() {
     const user = useSelector((state) => state.auth.login);
@@ -18,6 +19,7 @@ function Login() {
     const navigate = useNavigate();
     const state = useSelector((state) => state.auth.login);
     useEffect(() => {
+        dispatch(loginFailed(null));
         const handleBlur = function (item) {
             if (item.value.trim() !== '') {
                 item.classList.add(cx('has-val'));
@@ -31,7 +33,12 @@ function Login() {
                 handleBlur(item);
             });
         }
-
+        const inputList = document.querySelectorAll(`.${cx('validate-input')} .${cx('input100')}`);
+        [...inputList].forEach((element) => {
+            element.addEventListener('focus', () => {
+                dispatch(loginFailed(null));
+            });
+        });
         return () => {
             for (let item of input100) {
                 item.removeEventListener('blur', () => {
@@ -72,6 +79,8 @@ function Login() {
             loginUser(newUser, dispatch, navigate);
         }
         // validate
+
+        console.log('component render');
     };
     return !user.currentUser ? (
         <div className={cx('login-page')}>

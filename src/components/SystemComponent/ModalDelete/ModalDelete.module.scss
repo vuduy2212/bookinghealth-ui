@@ -3,8 +3,16 @@
 }
 
 .btn-modal {
+    background-color: rgb(255, 35, 35);
     &:hover {
-        background-color: rgb(238, 71, 71);
+        background-color: rgb(182, 11, 11);
+    }
+}
+
+.green-theme {
+    background-color: rgb(6, 197, 63) !important;
+    &:hover {
+        background-color: rgb(11, 128, 31) !important;
     }
 }
 
@@ -62,6 +70,7 @@
 
 .modal-body {
     padding: 16px;
+    color: rgb(182, 11, 11);
 }
 
 .modal-desc {
@@ -90,8 +99,12 @@
 
 .modal-button-delete {
     color: #fff;
-    background-color: rgb(214, 48, 48);
+    background-color: rgb(255, 35, 35);
     &:hover {
-        background-color: rgb(196, 12, 12);
+        background-color: rgb(182, 11, 11);
     }
+}
+
+.d-none {
+    display: none !important;
 }

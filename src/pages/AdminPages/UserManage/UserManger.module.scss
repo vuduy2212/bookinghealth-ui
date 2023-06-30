@@ -9,7 +9,7 @@
 }
 
 .email-col {
-    width: 250px;
+    width: 300px;
 }
 
 .id-col {
@@ -17,7 +17,7 @@
 }
 
 .name-col {
-    width: 100px;
+    width: 150px;
 }
 
 .yearOfBirth-col {
@@ -30,6 +30,9 @@
 
 .address-col {
     width: 200px;
+}
+
+.action-col {
 }
 .delete-button {
     &:hover {
@@ -54,4 +57,10 @@
     margin: 20px 0 15px 0;
     font-size: 2.5rem;
     color: #333;
+}
+
+// confirm page
+
+.first-name-col {
+    width: 200px;
 }

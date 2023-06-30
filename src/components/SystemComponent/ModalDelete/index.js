@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
+import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './ModalDelete.module.scss';
 import Button from '~/components/Button';
 import { MdClose } from 'react-icons/md';
@@ -11,7 +14,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUser } from '~/redux/apiRequest';
 import { AiFillLayout } from 'react-icons/ai';
 const cx = classNames.bind(styles);
-function ModalDelete({ id, reload }) {
+function ModalDelete({
+    greenTheme = false,
+    id,
+    reload,
+    submitAction,
+    titleButton,
+    titleHeader,
+    titleBody,
+    titleConfirm,
+    roleId = null,
+    showToast,
+}) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
     const [modal, setModal] = useState(false);
@@ -26,16 +40,23 @@ function ModalDelete({ id, reload }) {
         document.body.classList.remove(cx('active-modal'));
     }
 
-    const handleDelete = async () => {
-        await deleteUser(user, id, axiosJWT);
+    const handleSubmit = async () => {
+        await submitAction(user, id, axiosJWT, roleId);
         await reload();
         setModal(false);
+        showToast();
     };
 
     return (
         <>
-            <Button rounded onClick={toggleModal} className={cx('btn-modal')}>
-                Xóa
+            <Button
+                rounded
+                onClick={toggleModal}
+                className={cx('btn-modal', {
+                    'green-theme': greenTheme,
+                })}
+            >
+                {titleButton}
             </Button>
 
             {modal && (
@@ -43,20 +64,26 @@ function ModalDelete({ id, reload }) {
                     <div onClick={toggleModal} className={cx('overlay')}></div>
                     <div className={cx('modal-content')}>
                         <div className={cx('modal-header')}>
-                            <span className={cx('modal-title')}>Xóa vĩnh viễn</span>
+                            <span className={cx('modal-title')}>{titleHeader}</span>
                             <button className={cx('close-modal')} onClick={toggleModal}>
                                 <MdClose className={cx('modal-icon-close')} />
                             </button>
                         </div>
                         <div className={cx('modal-body')}>
-                            <span className={cx('modal-desc')}>Bạn có chắc chắn xóa vĩnh viễn không</span>
+                            <span className={cx('modal-desc')}>{titleBody}</span>
                         </div>
                         <div className={cx('modal-footer')}>
                             <Button rounded className={cx('modal-button-close')} onClick={toggleModal}>
                                 Close
                             </Button>
-                            <Button rounded className={cx('modal-button-delete')} onClick={handleDelete}>
-                                Xóa
+                            <Button
+                                rounded
+                                className={cx('modal-button-delete', {
+                                    'green-theme': greenTheme,
+                                })}
+                                onClick={handleSubmit}
+                            >
+                                {titleConfirm}
                             </Button>
                         </div>
                     </div>

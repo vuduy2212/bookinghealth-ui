@@ -13,6 +13,7 @@ const authSlice = createSlice({
             isFetching: false,
             error: false,
             success: false,
+            messageError: null,
         },
         logOut: {
             isFetching: false,
@@ -40,10 +41,12 @@ const authSlice = createSlice({
         registerSuccess: (state, action) => {
             state.register.isFetching = false;
             state.register.error = false;
+            state.login.messageError = action.null;
         },
-        registerFailed: (state) => {
+        registerFailed: (state, action) => {
             state.register.isFetching = false;
             state.register.error = true;
+            state.register.messageError = action.payload;
         },
         logOutStart: (state, action) => {
             state.logOut.isFetching = true;

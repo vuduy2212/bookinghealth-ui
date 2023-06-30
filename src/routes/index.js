@@ -5,6 +5,10 @@ import Login from '~/pages/UserPages/Login';
 import Register from '~/pages/UserPages/Register';
 import UpdateUser from '~/pages/UserPages/UpdateUser';
 import UserManage from '~/pages/AdminPages/UserManage';
+import PatientManage from '~/pages/AdminPages/UserManage/PatientManage';
+import AdminManage from '~/pages/AdminPages/UserManage/AdminManage';
+import DoctorManage from '~/pages/AdminPages/UserManage/DoctorManage';
+import UnConfirmed from '~/pages/AdminPages/UserManage/UnConfirmed';
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
     {
@@ -44,8 +48,23 @@ const publicRoutes = [
 const privateRoutes = [
     // admin mới vào được
     {
-        path: '/admin/user-manager',
-        component: UserManage,
+        path: '/admin/patient-manage',
+        component: PatientManage,
+        layout: null,
+    },
+    {
+        path: '/admin/admin-manage',
+        component: AdminManage,
+        layout: null,
+    },
+    {
+        path: '/admin/doctor-manage',
+        component: DoctorManage,
+        layout: null,
+    },
+    {
+        path: '/admin/auth-manage',
+        component: UnConfirmed,
         layout: null,
     },
 ];

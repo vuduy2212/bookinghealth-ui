@@ -12,9 +12,34 @@
             width: 35%;
         }
     }
+    .wrapper-input-phone {
+        max-width: 60%;
+    }
+    .select-wrapper {
+        width: 35%;
+        font-size: 1.7rem;
+        color: #999999;
+    }
+    .select {
+        color: #555555;
+        margin-top: 4px;
+        width: 100%;
+        font-size: 1.8rem;
+        padding: 8px;
+        margin-bottom: 5px;
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        background-color: transparent;
+        & option {
+            background-color: transparent;
+        }
+        &:focus-visible {
+            border-color: #6610f2;
+        }
+    }
     .login100-form-title-sub {
         font-size: 16px;
-        padding-top: 28px;
+        padding-top: 16px;
         padding-bottom: 36px;
         display: inline-block;
         text-align: center;
@@ -49,6 +74,12 @@
         color: #6111ca;
         top: 45px;
         cursor: pointer;
+    }
+    .messError {
+        color: red !important;
+        margin-bottom: 4px !important;
+        display: inline-block;
+        font-size: 1.6rem !important;
     }
     /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/

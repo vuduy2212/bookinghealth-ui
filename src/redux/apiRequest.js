@@ -17,8 +17,16 @@ export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
         const res = await axios.post('/api/auth/login', user);
-        dispatch(loginSuccess(res.data));
-        navigate('/');
+        await dispatch(loginSuccess(res.data));
+        if (res.data.roleId === 'R3') {
+            navigate('/');
+        }
+        if (res.data.roleId === 'R1') {
+            navigate('/admin/patient-manage');
+        }
+        if (res.data.roleId === 'R2') {
+            navigate('/');
+        }
     } catch (error) {
         if (error.response.status == '404') {
             dispatch(loginFailed(error.response.data));
@@ -32,7 +40,9 @@ export const registerUser = async (user, dispatch, navigate) => {
         dispatch(registerSuccess());
         navigate('/login');
     } catch (error) {
-        dispatch(registerFailed());
+        if (error.response.status == '404') {
+            dispatch(registerFailed(error.response.data));
+        }
     }
 };
 
@@ -46,13 +56,31 @@ export const logOut = async (dispatch, navigate) => {
         dispatch(logOutFailed());
     }
 };
-export const updateUser = async (dispatch, navigate, userUpdated, user, axiosJWT) => {
+export const updateSelf = async (dispatch, navigate, userUpdated, user, axiosJWT) => {
     try {
         const res = await axiosJWT.patch(`/api/user/update/${user.id}`, userUpdated, {
             headers: { token: `Bearer ${user.accessToken}` },
         });
         dispatch(updateSuccess(res.data));
         navigate('/');
+    } catch (error) {}
+};
+export const updateUser = async (user, id, axiosJWT, roleId) => {
+    try {
+        let newRoleId = '';
+        if (roleId == 'R2x') {
+            newRoleId = 'R2';
+        }
+        if (roleId == 'R1x') {
+            newRoleId = 'R1';
+        }
+        const res = await axiosJWT.patch(
+            `/api/user/update/${id}`,
+            { roleId: newRoleId },
+            {
+                headers: { token: `Bearer ${user.accessToken}` },
+            },
+        );
     } catch (error) {}
 };
 export const deleteUser = async (user, id, axiosJWT) => {

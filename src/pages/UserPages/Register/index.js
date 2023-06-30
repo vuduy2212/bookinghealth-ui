@@ -7,8 +7,10 @@ import images from '~/assets/images';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { registerUser } from '~/redux/apiRequest';
 import { useDispatch, useSelector } from 'react-redux';
+import { registerFailed } from '~/redux/authSlice';
 const cx = classNames.bind(styles);
 function Register() {
+    const state = useSelector((state) => state.auth.register);
     const user = useSelector((state) => state.auth.login);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -17,6 +19,7 @@ function Register() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [roleId, setRoleId] = useState('R3');
     const [showPw, setShowPw] = useState(false);
     const toggleShowPassword = () => {
         showPw ? setShowPw(false) : setShowPw(true);
@@ -81,10 +84,15 @@ function Register() {
                 firstName,
                 lastName,
                 phoneNumber,
-                roleId: 'R3',
+                roleId,
             };
-            registerUser(newUser, dispatch, navigate('/login'));
+            registerUser(newUser, dispatch, navigate);
         }
+        [...inputList].forEach((element) => {
+            element.addEventListener('focus', () => {
+                dispatch(registerFailed(null));
+            });
+        });
     };
     useEffect(() => {
         const handleBlur = function (item) {
@@ -108,7 +116,7 @@ function Register() {
             }
         };
     }, []);
-
+    console.log(roleId);
     return !user.currentUser ? (
         <div className={cx('login-page')}>
             <div className={cx('limiter')}>
@@ -151,18 +159,33 @@ function Register() {
                                     <span className={cx('label-input100')}>Tên</span>
                                 </div>
                             </div>
-                            <div
-                                className={cx('wrap-input100', 'validate-input-register')}
-                                data-validate="PhoneNumber is required: VietNam PhoneNumber"
-                            >
-                                <input
-                                    className={cx('input100')}
-                                    type="text"
-                                    name="phoneNumber"
-                                    onChange={(e) => setPhoneNumber(e.target.value)}
-                                />
-                                <span className={cx('focus-input100')}></span>
-                                <span className={cx('label-input100')}>Số điện thoại</span>
+                            <div className={cx('container-name-input')}>
+                                <div
+                                    className={cx('wrap-input100', 'validate-input-register', 'wrapper-input-phone')}
+                                    data-validate="PhoneNumber is required: VietNam PhoneNumber"
+                                >
+                                    <input
+                                        className={cx('input100')}
+                                        type="text"
+                                        name="phoneNumber"
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                    />
+                                    <span className={cx('focus-input100')}></span>
+                                    <span className={cx('label-input100')}>Số điện thoại</span>
+                                </div>
+                                <div className={cx('select-wrapper')}>
+                                    <label htmlFor="select">Vai trò</label>
+                                    <select
+                                        id="select"
+                                        className={cx('select')}
+                                        value={roleId}
+                                        onChange={(e) => setRoleId(e.target.value)}
+                                    >
+                                        <option value="R2x">Bác sĩ</option>
+                                        <option value="R3">Bệnh nhân</option>
+                                        <option value="R1x">Admin</option>
+                                    </select>
+                                </div>
                             </div>
                             <div
                                 className={cx('wrap-input100', 'validate-input-register')}
@@ -203,7 +226,7 @@ function Register() {
                                     <></>
                                 )}
                             </div>
-
+                            <span className={cx('txt1', 'messError')}>{state.messageError}</span>
                             <div className={cx('container-login100-form-btn')}>
                                 <button className={cx('login100-form-btn')}>Đăng ký</button>
                             </div>

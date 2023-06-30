@@ -15,9 +15,9 @@ import { useLayoutEffect, useState } from 'react';
 import HeaderAdmin from '~/components/SystemComponent/HeaderSystem/HeaderAdmin';
 import ModalDelete from '~/components/SystemComponent/ModalDelete';
 import ProtectedRoute from '~/routes/ProtectedRoute';
-import { deleteUser } from '~/redux/apiRequest';
+import { updateUser, deleteUser } from '~/redux/apiRequest';
 const cx = classNames.bind(styles);
-function UserManage({ typeUser }) {
+function UnConfirmed() {
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
     let axiosJWT = createAxios(user, dispatch, loginSuccess);
@@ -30,8 +30,8 @@ function UserManage({ typeUser }) {
                 reload={getData}
                 submitAction={deleteUser}
                 titleButton="Xóa"
-                titleHeader="Xác nhận xóa"
-                titleBody="Bạn có chắc chắn với hành động xóa này không"
+                titleHeader="Xác nhận xóa tài khoản"
+                titleBody="Bạn có chắc chắn muốn xóa tài khoản này không"
                 titleConfirm="Xóa"
                 showToast={() => {
                     toast.success(<h4>Xóa thành công</h4>, {
@@ -40,11 +40,31 @@ function UserManage({ typeUser }) {
                     });
                 }}
             />
+            <ModalDelete
+                greenTheme
+                id={row.id}
+                reload={getData}
+                submitAction={updateUser}
+                titleButton="Xác nhận"
+                titleHeader="Xác nhận tài khoản"
+                titleBody="Bạn có chắc chắn xác nhận tài khoản này không"
+                titleConfirm="Xác nhận"
+                roleId={row.roleId}
+                showToast={() => {
+                    toast.success(<h4>Xác nhận thành công</h4>, {
+                        position: toast.POSITION.TOP_RIGHT,
+                        autoClose: 2000,
+                    });
+                }}
+            />
         </div>
     );
+    const roleFomatter = (cell, row) => {
+        return <span>{cell == 'R2x' ? 'Bác sĩ' : 'Admin'}</span>;
+    };
     const getData = async () => {
         try {
-            const res = await axiosJWT.get(`/api/user/get-all/${typeUser}`, {
+            const res = await axiosJWT.get(`/api/user/get-all/unconfirmed`, {
                 headers: { token: `Bearer ${user.accessToken}` },
             });
             setProducts(res.data);
@@ -65,6 +85,7 @@ function UserManage({ typeUser }) {
         {
             dataField: 'lastName',
             text: 'Họ',
+            headerClasses: cx('first-name-col'),
         },
         {
             dataField: 'firstName',
@@ -74,6 +95,7 @@ function UserManage({ typeUser }) {
         {
             dataField: 'phoneNumber',
             text: 'Số điện thoại',
+            headerClasses: cx('first-name-col'),
         },
         {
             dataField: 'email',
@@ -81,25 +103,17 @@ function UserManage({ typeUser }) {
             headerClasses: cx('email-col'),
         },
         {
-            dataField: 'yearOfBirth',
-            text: 'Năm sinh',
-            headerClasses: cx('yearOfBirth-col'),
-        },
-        {
-            dataField: 'address',
-            text: 'Địa chỉ',
-            headerClasses: cx('address-col'),
-        },
-        {
-            dataField: 'gender',
-            text: 'Giới tính',
-            headerClasses: cx('gender-col'),
+            dataField: 'roleId',
+            text: 'Vai trò',
+            sort: true,
+            formatter: roleFomatter,
+            headerClasses: cx('name-col'),
         },
         {
             dataField: 'Xoa',
             text: 'Action',
-            headerClasses: cx('action-col'),
             formatter: buttonDeleteFomatter,
+            headerClasses: cx('action-col'),
         },
     ];
     return (
@@ -110,10 +124,7 @@ function UserManage({ typeUser }) {
                     <ToolkitProvider bootstrap4 keyField="id" data={products} columns={columns} search>
                         {(props) => (
                             <div>
-                                <h2 className={cx('title')}>
-                                    Quản lí{' '}
-                                    {typeUser === 'patient' ? 'Bệnh nhân' : typeUser === 'admin' ? 'Admin' : 'Bác sĩ'}
-                                </h2>
+                                <h2 className={cx('title')}>Quản lí yêu cầu tạo tài khoản</h2>
                                 <div className={cx('wrapper-search', 'mx-5')}>
                                     <h4>Tìm kiếm</h4>
                                     <SearchBar
@@ -140,4 +151,4 @@ function UserManage({ typeUser }) {
     );
 }
 
-export default UserManage;
+export default UnConfirmed;

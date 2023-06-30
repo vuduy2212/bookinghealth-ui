@@ -26,15 +26,19 @@ function HeaderAdmin({
     const MENU_ITEM_USER = [
         {
             title: 'Quản lí bệnh nhân',
-            to: '/update-user',
+            to: '/admin/patient-manage',
         },
         {
             title: 'Quản lí bác sĩ',
-            to: '/history-user',
+            to: '/admin/doctor-manage',
         },
         {
             title: 'Quản lí admin',
-            to: 'help',
+            to: '/admin/admin-manage',
+        },
+        {
+            title: 'Yêu cầu tạo tài khoản',
+            to: '/admin/auth-manage',
         },
     ];
     const MENU_ITEM = [

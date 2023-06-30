@@ -7,7 +7,7 @@ import HeaderLite from '~/components/HeaderLite/index.';
 import Button from '~/components/Button';
 import { createAxios } from '~/redux/createInstance';
 import { loginSuccess } from '~/redux/authSlice';
-import { updateUser } from '~/redux/apiRequest';
+import { updateSelf } from '~/redux/apiRequest';
 import ProtectedRoute from '~/routes/ProtectedRoute';
 const cx = classNames.bind(style);
 function UpdateUser() {
@@ -27,7 +27,7 @@ function UpdateUser() {
             address,
             gender,
         };
-        await updateUser(dispatch, navigate, userUpdated, user, axiosJWT);
+        await updateSelf(dispatch, navigate, userUpdated, user, axiosJWT);
         navigate('/');
     };
 
