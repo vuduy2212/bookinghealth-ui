@@ -9,6 +9,7 @@ import PatientManage from '~/pages/AdminPages/UserManage/PatientManage';
 import AdminManage from '~/pages/AdminPages/UserManage/AdminManage';
 import DoctorManage from '~/pages/AdminPages/UserManage/DoctorManage';
 import UnConfirmed from '~/pages/AdminPages/UserManage/UnConfirmed';
+import UpdateInfo from '~/pages/DoctorPages/UpdateInfo';
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
     {
@@ -65,6 +66,13 @@ const privateRoutes = [
     {
         path: '/admin/auth-manage',
         component: UnConfirmed,
+        layout: null,
+    },
+
+    // doctor mới vào được
+    {
+        path: '/doctor/update-info',
+        component: UpdateInfo,
         layout: null,
     },
 ];

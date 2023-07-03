@@ -2,6 +2,10 @@ import classNames from 'classnames/bind';
 import { useState, useEffect } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Lightbox from 'react-image-lightbox';
+import { Buffer } from 'buffer';
+
+import 'react-image-lightbox/style.css';
 import style from './UpdateUser.module.scss';
 import HeaderLite from '~/components/HeaderLite/index.';
 import Button from '~/components/Button';
@@ -9,6 +13,8 @@ import { createAxios } from '~/redux/createInstance';
 import { loginSuccess } from '~/redux/authSlice';
 import { updateSelf } from '~/redux/apiRequest';
 import ProtectedRoute from '~/routes/ProtectedRoute';
+import { FaUpload } from 'react-icons/fa';
+import CommonUtils from '~/utils/CommonUtils';
 const cx = classNames.bind(style);
 function UpdateUser() {
     const navigate = useNavigate();
@@ -19,6 +25,34 @@ function UpdateUser() {
     const [yearOfBirth, setYearOfBirth] = useState(user?.yearOfBirth);
     const [address, setAddress] = useState(user?.address);
     const [gender, setGender] = useState(user?.gender);
+    const [image, setImage] = useState(user?.image);
+    const [previewImgURL, setPreviewImgURL] = useState(() => {
+        if (user?.image) {
+            return CommonUtils.toFileFromBase64(user.image);
+        } else {
+            return '';
+        }
+    });
+    const [isOpenPreview, setIsOpenPreview] = useState(false);
+    const handleChangeImage = async (e) => {
+        try {
+            let files = e.target.files;
+            let file = files[0];
+            if (file) {
+                setImage(await CommonUtils.toBase64(file));
+                let objectUrl = URL.createObjectURL(file);
+                setPreviewImgURL(objectUrl);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const openPreviewImage = () => {
+        if (previewImgURL === '') {
+            return;
+        }
+        setIsOpenPreview(true);
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         const userUpdated = {
@@ -26,6 +60,7 @@ function UpdateUser() {
             yearOfBirth,
             address,
             gender,
+            image,
         };
         await updateSelf(dispatch, navigate, userUpdated, user, axiosJWT);
         navigate('/');
@@ -129,6 +164,30 @@ function UpdateUser() {
                                                 <option value="O">Khác</option>
                                             </select>
                                         </div>
+                                        <div className="col-12 col-md-6 mx-5">
+                                            <label className={cx('form-label', 'label')}>Ảnh đại diện</label>
+                                            <div className={cx('avatar-container')}>
+                                                <label
+                                                    htmlFor="inputAvatarFile"
+                                                    className={cx('label', 'upload-avatar')}
+                                                >
+                                                    Tải ảnh
+                                                    <FaUpload style={{ marginLeft: '10px' }} />
+                                                </label>
+                                                <input
+                                                    type="file"
+                                                    className={cx('form-control', 'input')}
+                                                    id="inputAvatarFile"
+                                                    onChange={(e) => handleChangeImage(e)}
+                                                    hidden
+                                                />
+                                                <div
+                                                    className={cx('avatar-preview-container')}
+                                                    style={{ backgroundImage: `url(${previewImgURL})` }}
+                                                    onClick={openPreviewImage}
+                                                ></div>
+                                            </div>
+                                        </div>
 
                                         <div className="row d-flex justify-content-center">
                                             <div className="col-4 ">
@@ -144,6 +203,17 @@ function UpdateUser() {
                     </div>
                 </div>
             </div>
+            {isOpenPreview ? (
+                <Lightbox
+                    mainSrc={previewImgURL}
+                    onCloseRequest={() => setIsOpenPreview(false)}
+                    onImageLoad={() => {
+                        window.dispatchEvent(new Event('resize'));
+                    }}
+                />
+            ) : (
+                <></>
+            )}
         </ProtectedRoute>
     );
 }

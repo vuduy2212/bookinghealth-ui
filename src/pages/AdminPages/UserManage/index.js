@@ -100,6 +100,7 @@ function UserManage({ typeUser }) {
             text: 'Action',
             headerClasses: cx('action-col'),
             formatter: buttonDeleteFomatter,
+            align: 'center',
         },
     ];
     return (

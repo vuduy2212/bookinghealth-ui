@@ -30,3 +30,34 @@
     }
     margin: 24px 0;
 }
+
+.avatar-container {
+    display: flex;
+    width: 100%;
+    position: relative;
+    align-items: center;
+}
+
+.upload-avatar {
+    background-color: #ada9a9;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 11px;
+    margin: 0;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.avatar-preview-container {
+    width: 100px;
+    height: 100px;
+    margin-left: 25px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 999px;
+    position: absolute;
+    right: 120px;
+    cursor: pointer;
+}

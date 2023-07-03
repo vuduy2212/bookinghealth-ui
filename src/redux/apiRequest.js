@@ -25,7 +25,7 @@ export const loginUser = async (user, dispatch, navigate) => {
             navigate('/admin/patient-manage');
         }
         if (res.data.roleId === 'R2') {
-            navigate('/');
+            navigate('/doctor/update-info');
         }
     } catch (error) {
         if (error.response.status == '404') {
@@ -62,19 +62,19 @@ export const updateSelf = async (dispatch, navigate, userUpdated, user, axiosJWT
             headers: { token: `Bearer ${user.accessToken}` },
         });
         dispatch(updateSuccess(res.data));
-        navigate('/');
+        //navigate('/');
     } catch (error) {}
 };
-export const updateUser = async (user, id, axiosJWT, roleId) => {
+export const confirmUser = async (user, id, axiosJWT, roleId) => {
     try {
         let newRoleId = '';
-        if (roleId == 'R2x') {
+        if (roleId === 'R2x') {
             newRoleId = 'R2';
         }
-        if (roleId == 'R1x') {
+        if (roleId === 'R1x') {
             newRoleId = 'R1';
         }
-        const res = await axiosJWT.patch(
+        await axiosJWT.patch(
             `/api/user/update/${id}`,
             { roleId: newRoleId },
             {

@@ -18,6 +18,7 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const state = useSelector((state) => state.auth.login);
+    console.log(state.messageError);
     useEffect(() => {
         dispatch(loginFailed(null));
         const handleBlur = function (item) {
@@ -65,7 +66,6 @@ function Login() {
                 hideValidate(element, cx);
             });
         });
-
         for (let i = 0; i < inputList.length; i++) {
             inputList[i].onFocus = () => {
                 hideValidate(inputList[i], cx);
@@ -78,9 +78,6 @@ function Login() {
             };
             loginUser(newUser, dispatch, navigate);
         }
-        // validate
-
-        console.log('component render');
     };
     return !user.currentUser ? (
         <div className={cx('login-page')}>

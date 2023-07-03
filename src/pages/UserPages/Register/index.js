@@ -7,7 +7,7 @@ import images from '~/assets/images';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { registerUser } from '~/redux/apiRequest';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerFailed } from '~/redux/authSlice';
+import { loginFailed, registerFailed } from '~/redux/authSlice';
 const cx = classNames.bind(styles);
 function Register() {
     const state = useSelector((state) => state.auth.register);
@@ -88,13 +88,9 @@ function Register() {
             };
             registerUser(newUser, dispatch, navigate);
         }
-        [...inputList].forEach((element) => {
-            element.addEventListener('focus', () => {
-                dispatch(registerFailed(null));
-            });
-        });
     };
     useEffect(() => {
+        dispatch(registerFailed(null));
         const handleBlur = function (item) {
             if (item.value.trim() !== '') {
                 item.classList.add(cx('has-val'));
@@ -108,6 +104,12 @@ function Register() {
                 handleBlur(item);
             });
         }
+        const inputList = document.querySelectorAll(`.${cx('input100')}`);
+        [...inputList].forEach((element) => {
+            element.addEventListener('focus', () => {
+                dispatch(registerFailed(null));
+            });
+        });
         return () => {
             for (let item of input100) {
                 item.removeEventListener('blur', () => {
@@ -116,7 +118,6 @@ function Register() {
             }
         };
     }, []);
-    console.log(roleId);
     return !user.currentUser ? (
         <div className={cx('login-page')}>
             <div className={cx('limiter')}>

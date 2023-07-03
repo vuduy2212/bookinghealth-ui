@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import style from './Header.module.scss';
 import images from '~/assets/images';
 import MenuHeaderItem from './MenuHeaderItem';
@@ -11,8 +12,10 @@ import { logOut } from '~/redux/apiRequest';
 import { BiEditAlt, BiHelpCircle, BiHistory, BiLogOutCircle } from 'react-icons/bi';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
+import CommonUtils from '~/utils/CommonUtils';
 const cx = classNames.bind(style);
 function Header() {
+    const [user, setUser] = useState(null);
     const MENU_ITEM = [
         {
             icon: <BiEditAlt />,
@@ -47,7 +50,6 @@ function Header() {
     useLayoutEffect(() => {
         setUser(loginState?.currentUser);
     }, [loginState]);
-    const [user, setUser] = useState(null);
     return (
         <div className={cx('wrapper')}>
             <div className="container d-flex align-items-center">
@@ -83,7 +85,12 @@ function Header() {
                                 {user.lastName && user.firstName ? user.lastName + ' ' + user.firstName : 'Xin chào'}
                             </span>
                             <Menu data={MENU_ITEM}>
-                                <Image className={cx('avatar')} src="" fallback={images.noImage} alt="avatar"></Image>
+                                <Image
+                                    className={cx('avatar')}
+                                    src={CommonUtils.toFileFromBase64(user.image)}
+                                    fallback={images.noImage}
+                                    alt="avatar"
+                                ></Image>
                             </Menu>
                         </>
                     )}

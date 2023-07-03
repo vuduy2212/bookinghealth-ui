@@ -15,7 +15,7 @@ import { useLayoutEffect, useState } from 'react';
 import HeaderAdmin from '~/components/SystemComponent/HeaderSystem/HeaderAdmin';
 import ModalDelete from '~/components/SystemComponent/ModalDelete';
 import ProtectedRoute from '~/routes/ProtectedRoute';
-import { updateUser, deleteUser } from '~/redux/apiRequest';
+import { confirmUser, deleteUser } from '~/redux/apiRequest';
 const cx = classNames.bind(styles);
 function UnConfirmed() {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -44,7 +44,7 @@ function UnConfirmed() {
                 greenTheme
                 id={row.id}
                 reload={getData}
-                submitAction={updateUser}
+                submitAction={confirmUser}
                 titleButton="Xác nhận"
                 titleHeader="Xác nhận tài khoản"
                 titleBody="Bạn có chắc chắn xác nhận tài khoản này không"
@@ -114,6 +114,7 @@ function UnConfirmed() {
             text: 'Action',
             formatter: buttonDeleteFomatter,
             headerClasses: cx('action-col'),
+            align: 'center',
         },
     ];
     return (
