@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    align-items: center;
+
+    :last-child {
+        &::after {
+            display: none !important;
+        }
+    }
+}
+
+.item {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-right: 8px;
+    &:hover {
+        color: var(--primary);
+    }
+
+    &::after {
+        margin-left: 8px;
+        content: '/';
+    }
+}

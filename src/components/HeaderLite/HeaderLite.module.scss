@@ -6,6 +6,7 @@
     justify-content: center;
     width: 100vw;
     position: fixed;
+    z-index: 9999;
 }
 
 .back-icon {
@@ -16,6 +17,7 @@
 
 .wrapper-icon {
     padding: 10px;
+    padding-left: 0;
 }
 
 .title {

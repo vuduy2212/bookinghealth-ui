@@ -7,8 +7,17 @@ import {
     DATA_SLIDER_BACSYNOIBAT,
     DATA_SLIDER_CAMNANG,
 } from './dataExample';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import dataHomePage from './apiRequestHomePage';
 function Home() {
     const user = useSelector((state) => state.auth.login.currentUser);
+    const [dataTopDoctor, setDataTopDoctor] = useState([]);
+    useEffect(() => {
+        const getDataDoctorHome = async () => {
+            setDataTopDoctor(await dataHomePage.topDoctorHome(8));
+        };
+        getDataDoctorHome();
+    }, []);
     return (
         <div>
             <Banner />
@@ -31,7 +40,7 @@ function Home() {
                 title="Bác sĩ nổi bật tuần qua"
                 textMoreButton="Tìm kiếm"
                 white
-                data={DATA_SLIDER_BACSYNOIBAT}
+                data={dataTopDoctor}
                 docterSlider
                 linkMoreBtn="/xemthem"
             />

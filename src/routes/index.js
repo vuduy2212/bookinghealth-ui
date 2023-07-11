@@ -10,6 +10,11 @@ import AdminManage from '~/pages/AdminPages/UserManage/AdminManage';
 import DoctorManage from '~/pages/AdminPages/UserManage/DoctorManage';
 import UnConfirmed from '~/pages/AdminPages/UserManage/UnConfirmed';
 import UpdateInfo from '~/pages/DoctorPages/UpdateInfo';
+import DoctorDetail from '~/pages/UserPages/DoctorDetail';
+import ScheduleManage from '~/pages/DoctorPages/ScheduleManage';
+import BookingManage from '~/pages/DoctorPages/BookingManage';
+import UpdateProfile from '~/pages/DoctorPages/UpdateProfile';
+
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
     {
@@ -42,6 +47,11 @@ const publicRoutes = [
         component: UpdateUser,
         layout: null,
     },
+    {
+        path: '/doctor-detail/:id',
+        component: DoctorDetail,
+        layout: null,
+    },
 ];
 
 // privateRoutes: phải đăng nhập, mới vào được
@@ -49,30 +59,45 @@ const publicRoutes = [
 const privateRoutes = [
     // admin mới vào được
     {
-        path: '/admin/patient-manage',
+        path: '/system/admin/patient-manage',
         component: PatientManage,
         layout: null,
     },
     {
-        path: '/admin/admin-manage',
+        path: '/system/admin/admin-manage',
         component: AdminManage,
         layout: null,
     },
     {
-        path: '/admin/doctor-manage',
+        path: '/system/admin/doctor-manage',
         component: DoctorManage,
         layout: null,
     },
     {
-        path: '/admin/auth-manage',
+        path: '/system/admin/auth-manage',
         component: UnConfirmed,
         layout: null,
     },
 
     // doctor mới vào được
     {
-        path: '/doctor/update-info',
+        path: '/system/doctor/booking',
+        component: BookingManage,
+        layout: null,
+    },
+    {
+        path: '/system/doctor/schedule',
+        component: ScheduleManage,
+        layout: null,
+    },
+    {
+        path: '/system/doctor/update-info',
         component: UpdateInfo,
+        layout: null,
+    },
+    {
+        path: '/system/doctor/update-profile',
+        component: UpdateProfile,
         layout: null,
     },
 ];

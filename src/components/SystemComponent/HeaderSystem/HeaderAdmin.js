@@ -11,6 +11,7 @@ import { BiEditAlt, BiHelpCircle, BiHistory, BiLogOutCircle } from 'react-icons/
 import { logOut } from '~/redux/apiRequest';
 import Image from '~/components/Image';
 import images from '~/assets/images';
+import CommonUtils from '~/utils/CommonUtils';
 const cx = classNames.bind(styles);
 function HeaderAdmin({
     schedule = false,
@@ -26,19 +27,19 @@ function HeaderAdmin({
     const MENU_ITEM_USER = [
         {
             title: 'Quản lí bệnh nhân',
-            to: '/admin/patient-manage',
+            to: '/system/admin/patient-manage',
         },
         {
             title: 'Quản lí bác sĩ',
-            to: '/admin/doctor-manage',
+            to: '/system/admin/doctor-manage',
         },
         {
             title: 'Quản lí admin',
-            to: '/admin/admin-manage',
+            to: '/system/admin/admin-manage',
         },
         {
             title: 'Yêu cầu tạo tài khoản',
-            to: '/admin/auth-manage',
+            to: '/system/admin/auth-manage',
         },
     ];
     const MENU_ITEM = [
@@ -75,7 +76,7 @@ function HeaderAdmin({
                     <MdSupportAgent className={cx('icon-admin')} />
                     <span className={cx('title')}>Admin Page</span>
                 </Link>
-                <MenuItem to="/admin/schedule" className={schedule ? 'active' : ''}>
+                <MenuItem to="/system/admin/schedule" className={schedule ? 'active' : ''}>
                     Đơn đặt lịch
                 </MenuItem>
                 <Menu data={MENU_ITEM_USER} placement="bottom-start" offset={[-18, 8]} small>
@@ -88,16 +89,16 @@ function HeaderAdmin({
                         <AiFillCaretDown />
                     </div>
                 </Menu>
-                <MenuItem to="/admin/specialist" className={specialist ? 'active' : ''}>
+                <MenuItem to="/system/admin/specialist" className={specialist ? 'active' : ''}>
                     Chuyên khoa
                 </MenuItem>
-                <MenuItem to="/admin/clinic" className={clinic ? 'active' : ''}>
+                <MenuItem to="/system/admin/clinic" className={clinic ? 'active' : ''}>
                     Bệnh viện
                 </MenuItem>
-                <MenuItem to="/admin/product" className={product ? 'active' : ''}>
+                <MenuItem to="/system/admin/product" className={product ? 'active' : ''}>
                     Sản phẩm
                 </MenuItem>
-                <MenuItem to="/admin/handbook" className={handbook ? 'active' : ''}>
+                <MenuItem to="/system/admin/handbook" className={handbook ? 'active' : ''}>
                     Bài viết
                 </MenuItem>
 
@@ -107,7 +108,12 @@ function HeaderAdmin({
                         : 'Xin chào'}
                 </span>
                 <Menu data={MENU_ITEM}>
-                    <Image className={cx('avatar')} src="" fallback={images.noImage} alt="avatar"></Image>
+                    <Image
+                        className={cx('avatar')}
+                        src={CommonUtils.toFileFromBase64(currentUser.image)}
+                        fallback={images.noImage}
+                        alt="avatar"
+                    ></Image>
                 </Menu>
             </div>
         </header>

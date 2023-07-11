@@ -9,7 +9,7 @@ function HeaderLite({ title = '' }) {
     return user.currentUser ? (
         <div className={cx('wrapper')}>
             <div className="container d-flex align-items-center">
-                <Link to={'..'} className={cx('wrapper-icon')}>
+                <Link to={-1} className={cx('wrapper-icon')}>
                     <BiArrowBack className={cx('back-icon')} />
                 </Link>
                 <span className={cx('title')}>{title}</span>

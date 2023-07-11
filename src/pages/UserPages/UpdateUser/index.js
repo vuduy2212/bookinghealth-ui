@@ -15,17 +15,20 @@ import { updateSelf } from '~/redux/apiRequest';
 import ProtectedRoute from '~/routes/ProtectedRoute';
 import { FaUpload } from 'react-icons/fa';
 import CommonUtils from '~/utils/CommonUtils';
+import getAllCode from '~/service/common/getAllCode';
 const cx = classNames.bind(style);
-function UpdateUser() {
+function UpdateUser({ forDoctor = false }) {
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
     let axiosJWT = createAxios(user, dispatch, loginSuccess);
-    const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber);
-    const [yearOfBirth, setYearOfBirth] = useState(user?.yearOfBirth);
-    const [address, setAddress] = useState(user?.address);
-    const [gender, setGender] = useState(user?.gender);
-    const [image, setImage] = useState(user?.image);
+    const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || '');
+    const [yearOfBirth, setYearOfBirth] = useState(user.yearOfBirth || '');
+    const [address, setAddress] = useState(user.address || '');
+    const [gender, setGender] = useState(user.gender || '');
+    const [positionId, setPositionId] = useState(user.positionId || '');
+    const [image, setImage] = useState(user.image);
+    const [changedImage, setChangedImage] = useState(false);
     const [previewImgURL, setPreviewImgURL] = useState(() => {
         if (user?.image) {
             return CommonUtils.toFileFromBase64(user.image);
@@ -34,7 +37,9 @@ function UpdateUser() {
         }
     });
     const [isOpenPreview, setIsOpenPreview] = useState(false);
+    const [positionCode, setPositionCode] = useState([]);
     const handleChangeImage = async (e) => {
+        setChangedImage(true);
         try {
             let files = e.target.files;
             let file = files[0];
@@ -60,12 +65,21 @@ function UpdateUser() {
             yearOfBirth,
             address,
             gender,
-            image,
+            positionId,
         };
+        if (changedImage === true) {
+            userUpdated.image = image;
+        }
         await updateSelf(dispatch, navigate, userUpdated, user, axiosJWT);
-        navigate('/');
+        navigate(-1);
     };
 
+    useEffect(() => {
+        const getCodeFromService = async () => {
+            setPositionCode(await getAllCode('position'));
+        };
+        getCodeFromService();
+    }, []);
     return (
         <ProtectedRoute redirectPath="/login" isAllowed={user}>
             <div className={cx('wrapper')}>
@@ -136,6 +150,30 @@ function UpdateUser() {
                                                 id="inputCity"
                                             />
                                         </div>
+                                        {forDoctor ? (
+                                            <div className=" col-12 col-md-4 mx-5">
+                                                <label htmlFor="inputPosition" className={cx('form-label', 'label')}>
+                                                    Chức danh
+                                                </label>
+                                                <select
+                                                    value={positionId}
+                                                    id="inputPosition"
+                                                    className={cx('form-select', 'input')}
+                                                    onChange={(e) => setPositionId(e.target.value)}
+                                                >
+                                                    <option value={''}>Chọn chức danh</option>
+                                                    {positionCode.map((item, index) => {
+                                                        return (
+                                                            <option value={item.keyMap} key={index}>
+                                                                {item.value}
+                                                            </option>
+                                                        );
+                                                    })}
+                                                </select>
+                                            </div>
+                                        ) : (
+                                            <></>
+                                        )}
                                         <div className=" col-12 col-md-12">
                                             <label htmlFor="inputCity" className={cx('form-label', 'label')}>
                                                 Địa chỉ

@@ -9,7 +9,10 @@ class CommonUtils {
         });
     }
     static toFileFromBase64(base64) {
-        return new Buffer(base64, 'base64').toString('binary');
+        if (base64) {
+            return new Buffer(base64, 'base64').toString('binary');
+        }
+        return '';
     }
 }
 

@@ -106,6 +106,7 @@ function SliderSimple({
                                         title={item.title}
                                         title2={item.title2}
                                         title3={item.title3}
+                                        title4={item.title4}
                                         to={item.to}
                                         image={item.image}
                                         onMouseDown={(e) => handleOnMouseDown(e)}

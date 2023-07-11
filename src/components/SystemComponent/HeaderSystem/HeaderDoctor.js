@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BiEditAlt, BiHelpCircle, BiHistory, BiLogOutCircle } from 'react-icons/bi';
 import { logOut } from '~/redux/apiRequest';
 import Image from '~/components/Image';
+import CommonUtils from '~/utils/CommonUtils';
+import { AiFillProfile } from 'react-icons/ai';
 const cx = classNames.bind(styles);
 function HeaderDoctor() {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -18,7 +20,12 @@ function HeaderDoctor() {
         {
             icon: <BiEditAlt />,
             title: 'Cập nhật thông tin',
-            to: '/update-user',
+            to: '/system/doctor/update-info',
+        },
+        {
+            icon: <AiFillProfile />,
+            title: 'Cập nhật hồ sơ',
+            to: '/system/doctor/update-profile',
         },
         {
             icon: <BiHistory />,
@@ -48,17 +55,22 @@ function HeaderDoctor() {
                     <img src={images.doctor} className={cx('icon-doctor')}></img>
                     <span className={cx('title')}>Doctor Page</span>
                 </Link>
-                <MenuItem to="/admin/schedule">Yêu cầu đặt lịch</MenuItem>
-                <MenuItem to="/admin/clinic">Cập nhật thông tin</MenuItem>
-                <MenuItem to="/admin/clinic">Bệnh nhân đã khám</MenuItem>
-                <MenuItem to="/admin/clinic">Lịch sử khám bệnh</MenuItem>
-                <MenuItem to="/admin/clinic">Bài viết</MenuItem>
+                <MenuItem to="/system/doctor/booking">Yêu cầu đặt lịch</MenuItem>
+                <MenuItem to="/system/doctor/schedule">Quản lí thời gian khám</MenuItem>
+                <MenuItem to="/system/doctor/patient-examined">Bệnh nhân đã khám</MenuItem>
+                <MenuItem to="/system/doctor/history">Lịch sử khám bệnh</MenuItem>
+                <MenuItem to="/system/doctor/handbook">Bài viết</MenuItem>
 
                 <span className={cx('welcome')}>
                     {user?.lastName && user?.firstName ? user.lastName + ' ' + user.firstName : 'Xin chào'}
                 </span>
                 <Menu data={MENU_ITEM}>
-                    <Image className={cx('avatar')} src="" fallback={images.noImage} alt="avatar"></Image>
+                    <Image
+                        className={cx('avatar')}
+                        src={CommonUtils.toFileFromBase64(user.image)}
+                        fallback={images.noImage}
+                        alt="avatar"
+                    ></Image>
                 </Menu>
             </div>
         </header>

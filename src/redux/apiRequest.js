@@ -22,10 +22,10 @@ export const loginUser = async (user, dispatch, navigate) => {
             navigate('/');
         }
         if (res.data.roleId === 'R1') {
-            navigate('/admin/patient-manage');
+            navigate('/system/admin/patient-manage');
         }
         if (res.data.roleId === 'R2') {
-            navigate('/doctor/update-info');
+            navigate('/system/doctor/booking');
         }
     } catch (error) {
         if (error.response.status == '404') {

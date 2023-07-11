@@ -18,7 +18,6 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const state = useSelector((state) => state.auth.login);
-    console.log(state.messageError);
     useEffect(() => {
         dispatch(loginFailed(null));
         const handleBlur = function (item) {

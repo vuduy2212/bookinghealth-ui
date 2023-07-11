@@ -11,10 +11,11 @@ function SliderItem({
     handbookSlider = false,
     title2,
     title3,
+    title4,
     onClick,
     ...props
 }) {
-    const textTitle = `${title}\n${!!title2 ? title2 : ''}`;
+    //const textTitle = title ? `${title} ${!!title2 ? title2 : ''}`;
     return (
         <Link
             draggable="false"
@@ -32,8 +33,10 @@ function SliderItem({
                 })}
                 style={{ backgroundImage: `url(${image})` }}
             ></div>
-            <h3 className={cx('title')}>{textTitle}</h3>
+            {title && <h3 className={cx('title')}>{title}</h3>}
+            {title2 && <h3 className={cx('title')}>{title2}</h3>}
             {title3 && <h4 className={cx('decs')}>{title3}</h4>}
+            {title4 && <h4 className={cx('decs')}>{title4}</h4>}
         </Link>
     );
 }
