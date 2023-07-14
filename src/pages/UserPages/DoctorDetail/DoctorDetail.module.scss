@@ -1,3 +1,54 @@
 .content {
     padding-top: 80px;
 }
+
+.intro-container {
+    height: 166px;
+    padding: 15px 0px;
+    display: flex;
+}
+
+.intro-avatar {
+    height: 100%;
+    width: 136px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 15px;
+    img {
+        border-radius: 50%;
+        height: 120px;
+        width: 120px;
+        object-fit: cover;
+    }
+}
+
+.intro-title {
+    font-size: 2.7rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #333;
+}
+.intro-desc {
+    font-size: 1.3rem;
+    color: #555;
+}
+.profile-container {
+    background-color: #f9f9f9;
+}
+.profile {
+    h2 {
+        font-size: 1.6rem;
+    }
+    li,
+    p {
+        font-size: 1.4rem;
+    }
+    img {
+        width: 100%;
+        margin: 20px 0;
+    }
+    padding: 20px;
+    border-bottom: 1px solid #f9f9f9;
+}

@@ -39,6 +39,10 @@ body {
     padding-left: 15px;
 }
 
+:global(.react-datepicker__month-container) {
+    // width: 340px;
+    // height: 374px;
+}
 button,
 input,
 [tabindex] {

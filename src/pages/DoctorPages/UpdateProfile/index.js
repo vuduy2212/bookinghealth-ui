@@ -12,6 +12,7 @@ import { getProfileDoctor, UpdateProfileDoctor } from '~/service/doctor/profileD
 import { loginSuccess } from '~/redux/authSlice';
 import { createAxios } from '~/redux/createInstance';
 import { useNavigate } from 'react-router-dom';
+import ProtectedRoute from '~/routes/ProtectedRoute';
 const cx = classNames.bind(styles);
 function UpdateProfile() {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -29,8 +30,8 @@ function UpdateProfile() {
     const handleSubmit = async () => {
         await UpdateProfileDoctor(axiosJWT, user, {
             description,
-            contentHTML,
             contentMarkdown,
+            contentHTML,
         });
         navigate(-1);
     };
@@ -39,33 +40,36 @@ function UpdateProfile() {
             const data = await getProfileDoctor(user.id);
             setDescription(data.description || '');
             setcontentMarkdown(data.contentMarkdown || '');
+            setcontentHTML(data.contentHTML || '');
         };
         getData();
     }, []);
     return (
-        <div>
-            <HeaderLite title={`Cập nhật hồ sơ bác sĩ : \u00A0${user.lastName} ${user.firstName}`} />
-            <div className={cx('content', 'container')}>
-                <div className={cx('desc')}>
-                    <h2>Cập nhật phần giới thiệu</h2>
-                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-                </div>
-                <div className={cx('detail-info')}>
-                    <h2>Cập nhật thông tin chi tiết </h2>
-                    <MdEditor
-                        style={{ height: '500px' }}
-                        renderHTML={(text) => mdParser.render(text)}
-                        value={contentMarkdown}
-                        onChange={handleEditorChange}
-                    />
-                </div>
-                <div className={cx('footer')}>
-                    <Button rounded large className={cx('button-submit')} onClick={handleSubmit}>
-                        Cập nhật
-                    </Button>
+        <ProtectedRoute isAllowed={user.roleId === 'R2'}>
+            <div>
+                <HeaderLite title={`Cập nhật hồ sơ bác sĩ : \u00A0${user.lastName} ${user.firstName}`} />
+                <div className={cx('content', 'container')}>
+                    <div className={cx('desc')}>
+                        <h2>Cập nhật phần giới thiệu</h2>
+                        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+                    </div>
+                    <div className={cx('detail-info')}>
+                        <h2>Cập nhật thông tin chi tiết </h2>
+                        <MdEditor
+                            style={{ height: '500px' }}
+                            renderHTML={(text) => mdParser.render(text)}
+                            value={contentMarkdown}
+                            onChange={handleEditorChange}
+                        />
+                    </div>
+                    <div className={cx('footer')}>
+                        <Button rounded large className={cx('button-submit')} onClick={handleSubmit}>
+                            Cập nhật
+                        </Button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </ProtectedRoute>
     );
 }
 

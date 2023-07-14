@@ -12,3 +12,8 @@ export const UpdateProfileDoctor = async (axiosJWT, user, profileUpdated) => {
         });
     } catch (error) {}
 };
+
+export const getDetailDoctor = async (id) => {
+    const response = await axios.get(`/api/doctor/get-detail-doctor/${id}`);
+    return response.data;
+};

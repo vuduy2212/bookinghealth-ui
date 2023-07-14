@@ -13,6 +13,8 @@ import { BiEditAlt, BiHelpCircle, BiHistory, BiLogOutCircle } from 'react-icons/
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import CommonUtils from '~/utils/CommonUtils';
+import { FiSettings } from 'react-icons/fi';
+import { FaFileMedicalAlt } from 'react-icons/fa';
 const cx = classNames.bind(style);
 function Header() {
     const [user, setUser] = useState(null);
@@ -31,6 +33,16 @@ function Header() {
             icon: <BiHelpCircle />,
             title: 'Trợ giúp',
             to: 'help',
+        },
+        {
+            icon: <FiSettings />,
+            title: 'Admin Page',
+            to: '/system/admin/patient-manage',
+        },
+        {
+            icon: <FaFileMedicalAlt />,
+            title: 'Doctor Page',
+            to: '/system/doctor/booking',
         },
         {
             icon: <BiLogOutCircle />,

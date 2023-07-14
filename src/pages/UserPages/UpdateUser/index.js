@@ -16,6 +16,8 @@ import ProtectedRoute from '~/routes/ProtectedRoute';
 import { FaUpload } from 'react-icons/fa';
 import CommonUtils from '~/utils/CommonUtils';
 import getAllCode from '~/service/common/getAllCode';
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-bootstrap';
 const cx = classNames.bind(style);
 function UpdateUser({ forDoctor = false }) {
     const navigate = useNavigate();

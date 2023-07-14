@@ -1,6 +1,6 @@
 import Home from '~/pages/UserPages/Home';
 import Handbook from '~/pages/UserPages/Handbook';
-import { DefaultLayout } from '~/components/Layouts';
+import { DefaultLayout, DoctorLayout } from '~/components/Layouts';
 import Login from '~/pages/UserPages/Login';
 import Register from '~/pages/UserPages/Register';
 import UpdateUser from '~/pages/UserPages/UpdateUser';
