@@ -8,7 +8,14 @@ import { Fragment, useState } from 'react';
 import Header from './Header';
 
 const cx = classNames.bind(styles);
-function Menu({ data = [], children, placement = 'bottom-end', offset = [18, 8], small = false }) {
+function Menu({
+    data = [],
+    children,
+    placement = 'bottom-end',
+    offset = [18, 8],
+    small = false,
+    delayMenu = [0, 400],
+}) {
     const handleOnClick = (item) => {
         if (!!item.children) {
             setMenuList((prev) => [...prev, item.children]);
@@ -45,7 +52,7 @@ function Menu({ data = [], children, placement = 'bottom-end', offset = [18, 8],
     return (
         <Tippy
             offset={offset}
-            delay={[0, 400]}
+            delay={delayMenu}
             placement={placement}
             interactive
             render={(attrs) => (

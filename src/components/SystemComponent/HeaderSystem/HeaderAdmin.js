@@ -42,16 +42,12 @@ function HeaderAdmin({
             to: '/system/admin/auth-manage',
         },
     ];
+
     const MENU_ITEM = [
         {
             icon: <BiEditAlt />,
             title: 'Cập nhật thông tin',
             to: '/update-user',
-        },
-        {
-            icon: <BiHistory />,
-            title: 'Lịch sử khám bệnh',
-            to: '/history-user',
         },
         {
             icon: <BiHelpCircle />,
@@ -79,7 +75,7 @@ function HeaderAdmin({
                 <MenuItem to="/system/admin/schedule" className={schedule ? 'active' : ''}>
                     Đơn đặt lịch
                 </MenuItem>
-                <Menu data={MENU_ITEM_USER} placement="bottom-start" offset={[-18, 8]} small>
+                <Menu data={MENU_ITEM_USER} placement="bottom-start" offset={[-18, 8]} small delayMenu={[0, 200]}>
                     <div
                         className={cx('menu-drop', {
                             ['active']: user,

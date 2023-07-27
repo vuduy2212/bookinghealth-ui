@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux';
 const cx = classNames.bind(style);
 function HeaderLite({ title = '' }) {
     const user = useSelector((state) => state.auth.login);
-    return user.currentUser ? (
+
+    return (
         <div className={cx('wrapper')}>
             <div className="container d-flex align-items-center">
                 <Link to={-1} className={cx('wrapper-icon')}>
@@ -15,8 +16,6 @@ function HeaderLite({ title = '' }) {
                 <span className={cx('title')}>{title}</span>
             </div>
         </div>
-    ) : (
-        <Navigate to={'/login'} />
     );
 }
 

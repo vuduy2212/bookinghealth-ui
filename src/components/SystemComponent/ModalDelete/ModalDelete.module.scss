@@ -4,6 +4,9 @@
 
 .btn-modal {
     background-color: rgb(255, 35, 35);
+    color: white;
+    margin-right: 8px;
+    border-radius: 4px;
     &:hover {
         background-color: rgb(182, 11, 11);
     }

@@ -5,7 +5,7 @@ export const getProfileDoctor = async (id) => {
     return response.data;
 };
 
-export const UpdateProfileDoctor = async (axiosJWT, user, profileUpdated) => {
+export const updateProfileDoctor = async (axiosJWT, user, profileUpdated) => {
     try {
         const res = await axiosJWT.patch(`/api/doctor/update-profile/${user.id}`, profileUpdated, {
             headers: { token: `Bearer ${user.accessToken}` },

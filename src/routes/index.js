@@ -4,7 +4,6 @@ import { DefaultLayout, DoctorLayout } from '~/components/Layouts';
 import Login from '~/pages/UserPages/Login';
 import Register from '~/pages/UserPages/Register';
 import UpdateUser from '~/pages/UserPages/UpdateUser';
-import UserManage from '~/pages/AdminPages/UserManage';
 import PatientManage from '~/pages/AdminPages/UserManage/PatientManage';
 import AdminManage from '~/pages/AdminPages/UserManage/AdminManage';
 import DoctorManage from '~/pages/AdminPages/UserManage/DoctorManage';
@@ -14,6 +13,11 @@ import DoctorDetail from '~/pages/UserPages/DoctorDetail';
 import ScheduleManage from '~/pages/DoctorPages/ScheduleManage';
 import BookingManage from '~/pages/DoctorPages/BookingManage';
 import UpdateProfile from '~/pages/DoctorPages/UpdateProfile';
+import SpecialistManage from '~/pages/AdminPages/SpecialistManage';
+import ClinicManage from '~/pages/AdminPages/ClinicManage';
+import HandbookManage from '~/pages/AdminPages/HandbookManage';
+import ClinicCreate from '~/pages/AdminPages/ClinicCreate';
+import SpecialistCreate from '~/pages/AdminPages/SpecialistCreate';
 
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
@@ -76,6 +80,26 @@ const privateRoutes = [
     {
         path: '/system/admin/auth-manage',
         component: UnConfirmed,
+        layout: null,
+    },
+    {
+        path: '/system/admin/specialist',
+        component: SpecialistManage,
+        layout: null,
+    },
+    {
+        path: '/system/admin/create-specialist',
+        component: SpecialistCreate,
+        layout: null,
+    },
+    {
+        path: '/system/admin/clinic',
+        component: ClinicManage,
+        layout: null,
+    },
+    {
+        path: '/system/admin/handbook',
+        component: HandbookManage,
         layout: null,
     },
 

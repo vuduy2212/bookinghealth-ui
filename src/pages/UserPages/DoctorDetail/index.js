@@ -5,12 +5,11 @@ import classNames from 'classnames/bind';
 
 import style from './DoctorDetail.module.scss';
 import Image from '~/components/Image';
-import images from '~/assets/images';
 import { useEffect, useState } from 'react';
 import { getDetailDoctor } from '~/service/doctor/profileDoctor';
 import CommonUtils from '~/utils/CommonUtils';
-import ProtectedRoute from '~/routes/ProtectedRoute';
-import { useSelector } from 'react-redux';
+import ScheduleDoctor from '~/components/ScheduleDoctor';
+import InfoExamination from '~/components/InfoExamination';
 const cx = classNames.bind(style);
 function DoctorDetail() {
     let { id } = useParams();
@@ -42,7 +41,16 @@ function DoctorDetail() {
                         <div className={cx('intro-desc')}>{desc}</div>
                     </div>
                 </div>
-                <div className={cx('booking')}></div>
+                <div className={cx('booking-container')}>
+                    <div className={cx('row')}>
+                        <div className={cx('col-7', 'content-left')}>
+                            <ScheduleDoctor id={id} />
+                        </div>
+                        <div className={cx('col-5', 'content-right')}>
+                            <InfoExamination />
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className={cx('profile-container')}>
                 <div className="container">

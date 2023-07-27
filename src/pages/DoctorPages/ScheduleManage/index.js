@@ -1,26 +1,31 @@
 import classNames from 'classnames/bind';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import axios from 'axios';
+import Flatpickr from 'react-flatpickr';
+
 //-------------------------------
 import HeaderDoctor from '~/components/SystemComponent/HeaderSystem/HeaderDoctor';
 import styles from './ScheduleManage.module.scss';
 import ProtectedRoute from '~/routes/ProtectedRoute';
-//import 'flatpickr/dist/flatpickr.css';
 import 'flatpickr/dist/themes/material_green.css';
-import Flatpickr from 'react-flatpickr';
 import getAllCode from '~/service/common/getAllCode';
 import Button from '~/components/Button';
 import { toast, ToastContainer } from 'react-toastify';
-import moment from 'moment/moment';
-import axios from 'axios';
+import { getScheduleDoctorOneDate, saveScheduleDoctor } from '~/service/doctor/scheduleDoctor';
+import { createAxios } from '~/redux/createInstance';
+import { loginSuccess } from '~/redux/authSlice';
+
 const cx = classNames.bind(styles);
 function ScheduleManage() {
     let currentDate = new Date();
     const user = useSelector((state) => state.auth.login.currentUser);
-    const [date, setDate] = useState(new Date());
+    const dispatch = useDispatch();
+    let axiosJWT = createAxios(user, dispatch, loginSuccess);
+    const [date, setDate] = useState(new Date().setHours(0, 0, 0, 0));
     //const [allScheduleTime, setAllScheduleTime] = useState([]);
     const [scheduleDoctor, setScheduleDoctor] = useState([]);
-    const [maxPatient, setMaxPatient] = useState('');
+    const [maxPatient, setMaxPatient] = useState(2);
     const handleClickTime = (item) => {
         setScheduleDoctor((prev) => {
             return prev.map((time, element) => {
@@ -30,6 +35,14 @@ function ScheduleManage() {
                 return time;
             });
         });
+    };
+    const handleOnChangeDate = async (dateSelect) => {
+        setDate(dateSelect);
+        const response = await getScheduleDoctorOneDate(user.id, dateSelect, scheduleDoctor);
+        const schedule = response.arraySchedule;
+        const maxNumber = response.maxPatient;
+        setScheduleDoctor(schedule);
+        setMaxPatient(maxNumber);
     };
     const handleSubmit = async () => {
         if (maxPatient === '') {
@@ -44,19 +57,26 @@ function ScheduleManage() {
         });
         const result = dataScheduleDoctor.map((item) => {
             return {
-                idDoctor: user.id,
-                date: moment(date[0]).format('DD/MM/YYYY'),
+                doctorId: user.id,
+                date: new Date(date).getTime(),
                 maxNumber: maxPatient,
                 timeType: item.keyMap,
             };
         });
-        await axios.post('/api/doctor/bulk-create-schedule', { arraySchedule: result });
+
+        // await axios.post('/api/doctor/bulk-create-schedule', {
+        //     arraySchedule: result,
+        //     doctorId: user.id,
+        //     date: new Date(date).getTime(),
+        // });
+        await saveScheduleDoctor(axiosJWT, user, result, date);
+
         toast.success(<h4>Lưu kế hoạch khám bệnh thành công</h4>, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 2000,
         });
     };
-    useEffect(() => {
+    useLayoutEffect(() => {
         const getRangeTime = async () => {
             let data = await getAllCode('time');
             data = data.map((item, index) => {
@@ -65,7 +85,11 @@ function ScheduleManage() {
                     isSelected: false,
                 };
             });
-            setScheduleDoctor(data);
+            const response = await getScheduleDoctorOneDate(user.id, date, data);
+            const schedule = response.arraySchedule;
+            const maxNumber = response.maxPatient;
+            setScheduleDoctor(schedule);
+            setMaxPatient(maxNumber);
         };
         getRangeTime();
     }, []);
@@ -92,7 +116,7 @@ function ScheduleManage() {
                                                     }-${currentDate.getFullYear()}`,
                                                 }}
                                                 // event
-                                                onChange={(dateSelect) => setDate(dateSelect)}
+                                                onChange={(dateSelect) => handleOnChangeDate(dateSelect)}
                                             />
                                         </div>
                                     </div>
@@ -104,9 +128,8 @@ function ScheduleManage() {
                                             className={cx()}
                                             onChange={(e) => setMaxPatient(e.target.value)}
                                         >
-                                            <option value={''}>Chọn số lượng</option>
                                             <option value={1}>1</option>
-                                            <option value={1}>2</option>
+                                            <option value={2}>2</option>
                                             <option value={3}>3</option>
                                             <option value={4}>4</option>
                                             <option value={5}>5</option>

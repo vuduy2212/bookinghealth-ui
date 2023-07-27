@@ -8,7 +8,7 @@ import HeaderLite from '~/components/HeaderLite/index.';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '~/components/Button';
 import { useEffect, useState } from 'react';
-import { getProfileDoctor, UpdateProfileDoctor } from '~/service/doctor/profileDoctor';
+import { getProfileDoctor, updateProfileDoctor } from '~/service/doctor/profileDoctor';
 import { loginSuccess } from '~/redux/authSlice';
 import { createAxios } from '~/redux/createInstance';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +28,7 @@ function UpdateProfile() {
     const [contentHTML, setcontentHTML] = useState('');
     const [contentMarkdown, setcontentMarkdown] = useState('');
     const handleSubmit = async () => {
-        await UpdateProfileDoctor(axiosJWT, user, {
+        await updateProfileDoctor(axiosJWT, user, {
             description,
             contentMarkdown,
             contentHTML,

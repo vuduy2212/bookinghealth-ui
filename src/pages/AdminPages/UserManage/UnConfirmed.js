@@ -146,8 +146,8 @@ function UnConfirmed() {
                         )}
                     </ToolkitProvider>
                 </div>
-                <ToastContainer />
             </div>
+            <ToastContainer />
         </ProtectedRoute>
     );
 }

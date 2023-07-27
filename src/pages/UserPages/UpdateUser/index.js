@@ -16,24 +16,22 @@ import ProtectedRoute from '~/routes/ProtectedRoute';
 import { FaUpload } from 'react-icons/fa';
 import CommonUtils from '~/utils/CommonUtils';
 import getAllCode from '~/service/common/getAllCode';
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-bootstrap';
 const cx = classNames.bind(style);
 function UpdateUser({ forDoctor = false }) {
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
     let axiosJWT = createAxios(user, dispatch, loginSuccess);
-    const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber || '');
-    const [yearOfBirth, setYearOfBirth] = useState(user.yearOfBirth || '');
-    const [address, setAddress] = useState(user.address || '');
-    const [gender, setGender] = useState(user.gender || '');
-    const [positionId, setPositionId] = useState(user.positionId || '');
-    const [image, setImage] = useState(user.image);
+    const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber || '');
+    const [yearOfBirth, setYearOfBirth] = useState(user?.yearOfBirth || '');
+    const [address, setAddress] = useState(user?.address || '');
+    const [gender, setGender] = useState(user?.gender || '');
+    const [positionId, setPositionId] = useState(user?.positionId || '');
+    const [image, setImage] = useState(user?.image);
     const [changedImage, setChangedImage] = useState(false);
     const [previewImgURL, setPreviewImgURL] = useState(() => {
         if (user?.image) {
-            return CommonUtils.toFileFromBase64(user.image);
+            return CommonUtils.toFileFromBase64(user?.image);
         } else {
             return '';
         }
