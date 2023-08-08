@@ -1,0 +1,47 @@
+.content {
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+}
+
+.box-1 {
+    .header {
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        color: #666;
+        font-weight: 600;
+    }
+    .name-clinic {
+        font-weight: 600;
+        font-size: 1.4rem;
+        padding: 3px 0;
+    }
+    .address {
+        font-size: 1.4rem;
+        padding: 3px 0;
+        color: #666;
+    }
+}
+
+.price-container {
+    padding-top: 13px;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    color: #666;
+    font-weight: 600;
+    .price {
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin-left: 4px;
+        color: #333;
+    }
+}
+
+.note {
+    padding: 13px 0;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 1.4rem;
+    color: #666;
+}

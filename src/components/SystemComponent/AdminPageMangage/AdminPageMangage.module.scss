@@ -47,9 +47,13 @@
 .quantity-col {
     width: 250px;
 }
-.action-col {
-    width: 300px;
+.quantity-col-small {
+    width: 150px;
 }
+.action-col {
+    width: 250px;
+}
+
 .delete-button {
     &:hover {
         background-color: rgb(238, 71, 71);

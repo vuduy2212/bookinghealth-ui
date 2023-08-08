@@ -10,10 +10,15 @@ export const updateProfileDoctor = async (axiosJWT, user, profileUpdated) => {
         const res = await axiosJWT.patch(`/api/doctor/update-profile/${user.id}`, profileUpdated, {
             headers: { token: `Bearer ${user.accessToken}` },
         });
-    } catch (error) {}
+    } catch (error) {
+        throw new Error('Fetch Error');
+    }
 };
 
 export const getDetailDoctor = async (id) => {
     const response = await axios.get(`/api/doctor/get-detail-doctor/${id}`);
+    if (response.data === null) {
+        return {};
+    }
     return response.data;
 };

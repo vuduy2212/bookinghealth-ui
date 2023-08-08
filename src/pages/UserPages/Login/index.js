@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
+import { TailSpin } from 'react-loading-icons';
 import { loginUser } from '~/redux/apiRequest';
 import { useDispatch, useSelector } from 'react-redux';
 import images from '~/assets/images';
@@ -15,6 +16,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPw, setShowPw] = useState(false);
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const state = useSelector((state) => state.auth.login);
@@ -50,7 +52,7 @@ function Login() {
     const toggleShowPassword = () => {
         showPw ? setShowPw(false) : setShowPw(true);
     };
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         let check = true;
         const inputList = document.querySelectorAll(`.${cx('validate-input')} .${cx('input100')}`);
@@ -75,7 +77,9 @@ function Login() {
                 email,
                 password,
             };
-            loginUser(newUser, dispatch, navigate);
+            setLoading(true);
+            await loginUser(newUser, dispatch, navigate);
+            setLoading(false);
         }
     };
     return !user.currentUser ? (
@@ -151,7 +155,9 @@ function Login() {
                             </div>
                             <span className={cx('txt1', 'messError')}>{state.messageError}</span>
                             <div className={cx('container-login100-form-btn')}>
-                                <button className={cx('login100-form-btn')}>Đăng nhập</button>
+                                <button className={cx('login100-form-btn')}>
+                                    {loading ? <TailSpin /> : 'Đăng nhập'}
+                                </button>
                             </div>
                             <span className={cx('login100-form-title-sub')}>
                                 Bạn chưa có tài khoản?

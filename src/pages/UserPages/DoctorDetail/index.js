@@ -17,6 +17,9 @@ function DoctorDetail() {
     const [img, setImg] = useState('');
     const [desc, setDesc] = useState('');
     const [profile, setProfile] = useState('');
+    const [price, setPrice] = useState(0);
+    const [nameClinic, setNameClinic] = useState('');
+    const [addressClinic, setAddressClinic] = useState('');
     useEffect(() => {
         const getDataDoctor = async () => {
             const data = await getDetailDoctor(id);
@@ -24,6 +27,9 @@ function DoctorDetail() {
             setImg(data.image || '');
             setDesc(data.Markdown.description || '');
             setProfile(data.Markdown.contentHTML || '');
+            setPrice(data.Clinics.Doctor_Info.price || 0);
+            setNameClinic(data.Clinics.name || '');
+            setAddressClinic(data.Clinics.address || '');
         };
         getDataDoctor();
     }, []);
@@ -47,7 +53,7 @@ function DoctorDetail() {
                             <ScheduleDoctor id={id} />
                         </div>
                         <div className={cx('col-5', 'content-right')}>
-                            <InfoExamination />
+                            <InfoExamination nameClinic={nameClinic} address={addressClinic} price={price} />
                         </div>
                     </div>
                 </div>

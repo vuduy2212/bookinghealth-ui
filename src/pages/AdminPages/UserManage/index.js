@@ -16,6 +16,7 @@ import HeaderAdmin from '~/components/SystemComponent/HeaderSystem/HeaderAdmin';
 import ModalDelete from '~/components/SystemComponent/ModalDelete';
 import ProtectedRoute from '~/routes/ProtectedRoute';
 import { deleteUser } from '~/redux/apiRequest';
+import LoadingIcon from '~/components/LoadingIcon';
 const cx = classNames.bind(styles);
 function UserManage({ typeUser }) {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -23,6 +24,7 @@ function UserManage({ typeUser }) {
     let axiosJWT = createAxios(user, dispatch, loginSuccess);
     const { SearchBar } = Search;
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
     const buttonDeleteFomatter = (cell, row) => (
         <div>
             <ModalDelete
@@ -44,10 +46,12 @@ function UserManage({ typeUser }) {
     );
     const getData = async () => {
         try {
+            setLoading(true);
             const res = await axiosJWT.get(`/api/user/get-all/${typeUser}`, {
                 headers: { token: `Bearer ${user.accessToken}` },
             });
             setProducts(res.data);
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
@@ -125,12 +129,16 @@ function UserManage({ typeUser }) {
                                         placeholder="Search somthing"
                                     />
                                 </div>
-                                <BootstrapTable
-                                    bootstrap4
-                                    headerWrapperClasses={cx('header-table')}
-                                    pagination={paginationFactory()}
-                                    {...props.baseProps}
-                                />
+                                {loading ? (
+                                    <LoadingIcon />
+                                ) : (
+                                    <BootstrapTable
+                                        bootstrap4
+                                        headerWrapperClasses={cx('header-table')}
+                                        pagination={paginationFactory()}
+                                        {...props.baseProps}
+                                    />
+                                )}
                             </div>
                         )}
                     </ToolkitProvider>

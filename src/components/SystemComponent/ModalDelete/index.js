@@ -43,8 +43,8 @@ function ModalDelete({
     const handleSubmit = async () => {
         setModal(false);
         await submitAction(user, id, axiosJWT, roleId);
-        await reload();
         showToast();
+        await reload();
     };
 
     return (

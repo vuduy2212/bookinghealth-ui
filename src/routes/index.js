@@ -18,6 +18,9 @@ import ClinicManage from '~/pages/AdminPages/ClinicManage';
 import HandbookManage from '~/pages/AdminPages/HandbookManage';
 import ClinicCreate from '~/pages/AdminPages/ClinicCreate';
 import SpecialistCreate from '~/pages/AdminPages/SpecialistCreate';
+import SpecialistUpdate from '~/pages/AdminPages/SpecialistUpdate';
+import ClinicUpdate from '~/pages/AdminPages/ClinicUpdate';
+import Booking from '~/pages/UserPages/Booking';
 
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
@@ -56,6 +59,11 @@ const publicRoutes = [
         component: DoctorDetail,
         layout: null,
     },
+    {
+        path: '/booking/:doctorId/:date/:timeType',
+        component: Booking,
+        layout: DefaultLayout,
+    },
 ];
 
 // privateRoutes: phải đăng nhập, mới vào được
@@ -63,40 +71,58 @@ const publicRoutes = [
 const privateRoutes = [
     // admin mới vào được
     {
-        path: '/system/admin/patient-manage',
+        path: '/system/admin/patient-manage', // Quản lí bệnh nhân
         component: PatientManage,
         layout: null,
     },
     {
-        path: '/system/admin/admin-manage',
+        path: '/system/admin/admin-manage', // Quản lí admin
         component: AdminManage,
         layout: null,
     },
     {
-        path: '/system/admin/doctor-manage',
+        path: '/system/admin/doctor-manage', // Quản lí bác sĩ
         component: DoctorManage,
         layout: null,
     },
     {
-        path: '/system/admin/auth-manage',
+        path: '/system/admin/auth-manage', // Quản lí tạo tài khoản
         component: UnConfirmed,
         layout: null,
     },
+    // Chuyên khoa-------------------------------------------------------------------------------------------
     {
-        path: '/system/admin/specialist',
+        path: '/system/admin/specialist', // Quản lí chuyên khoa
         component: SpecialistManage,
         layout: null,
     },
     {
-        path: '/system/admin/create-specialist',
+        path: '/system/admin/create-specialist', // Tạo chuyên khoa
         component: SpecialistCreate,
         layout: null,
     },
     {
-        path: '/system/admin/clinic',
+        path: '/system/admin/update-specialist/:specialistId', // Chỉnh sửa chuyên khoa
+        component: SpecialistUpdate,
+        layout: null,
+    },
+    // Phòng khám-------------------------------------------------------------------------------------------
+    {
+        path: '/system/admin/clinic', // Quản lí Phòng khám
         component: ClinicManage,
         layout: null,
     },
+    {
+        path: '/system/admin/create-clinic', // Tạo Phòng khám
+        component: ClinicCreate,
+        layout: null,
+    },
+    {
+        path: '/system/admin/update-clinic/:clinicId', // Chỉnh sửa Phòng khám
+        component: ClinicUpdate,
+        layout: null,
+    },
+    // Bài viết-------------------------------------------------------------------------------------------
     {
         path: '/system/admin/handbook',
         component: HandbookManage,

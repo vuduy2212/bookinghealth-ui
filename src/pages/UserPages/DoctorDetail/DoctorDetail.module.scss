@@ -35,6 +35,7 @@
     color: #555;
 }
 .profile-container {
+    border-top: 1px solid #dadada;
     background-color: #f9f9f9;
 }
 .profile {
@@ -54,5 +55,9 @@
 }
 
 .booking-container {
-    //border: 1px solid red;
+    margin-bottom: 30px;
+}
+
+.content-right {
+    margin-top: 80px !important;
 }

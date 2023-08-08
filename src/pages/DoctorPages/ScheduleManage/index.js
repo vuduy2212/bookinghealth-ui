@@ -70,7 +70,6 @@ function ScheduleManage() {
         //     date: new Date(date).getTime(),
         // });
         await saveScheduleDoctor(axiosJWT, user, result, date);
-
         toast.success(<h4>Lưu kế hoạch khám bệnh thành công</h4>, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 2000,

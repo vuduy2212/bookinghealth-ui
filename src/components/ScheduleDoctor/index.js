@@ -46,7 +46,6 @@ function ScheduleDoctor({ id }) {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('date-container')}>

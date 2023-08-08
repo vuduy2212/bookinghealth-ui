@@ -1,0 +1,247 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    input,
+    textarea {
+        border: none;
+        outline: none;
+        &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+}
+
+.header-container {
+    border-bottom: 2px solid #eee;
+    background: #f6f6f6;
+    width: 100%;
+}
+.header {
+    padding: 10px 15px;
+    width: 700px;
+    display: flex;
+}
+
+.intro-avatar {
+    height: 100%;
+    width: 100px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-right: 20px;
+    img {
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        object-fit: cover;
+    }
+}
+
+.info-doctor {
+}
+
+.title {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: #555;
+    text-transform: uppercase;
+}
+
+.name-doctor {
+    color: #337ab7;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    margin: 5px 0px;
+    padding: 0px;
+    font-weight: 600;
+}
+.time {
+    color: #555;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.place {
+    color: #555;
+    font-size: 1.3rem;
+}
+
+.form-container {
+    padding: 10px 15px;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+}
+.price-container {
+    width: 220px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid #f89008;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.input-wrapper {
+    width: 100%;
+    margin-top: 20px;
+    p {
+        padding-top: 5px;
+        color: #666;
+        font-size: 13px;
+        margin: 0;
+    }
+}
+.input-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: table;
+    position: relative;
+    border-collapse: separate;
+    background: #fff;
+    font-size: 1.5rem;
+
+    span {
+        margin-right: 10px;
+        color: #666;
+        vertical-align: top;
+        margin-bottom: 4px;
+    }
+    input {
+        width: 95%;
+        &:focus {
+        }
+    }
+    textarea {
+        width: 95%;
+    }
+}
+
+.icon-input {
+    margin-bottom: 2px;
+}
+
+.gender-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.gender-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    cursor: pointer;
+
+    input {
+        margin-right: 8px;
+    }
+}
+
+.input-box:has(> input:focus) {
+    border: 2px solid var(--primary);
+    span {
+        color: var(--primary);
+    }
+}
+
+.input-box:has(> textarea:focus) {
+    border: 2px solid var(--primary);
+    span {
+        color: var(--primary);
+    }
+}
+
+.pay-method-title {
+    margin-top: 15px;
+    color: #337ab7;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+.pay-method {
+    margin-top: 10px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    span {
+        margin-left: 8px;
+    }
+}
+
+.pay-price {
+    background: #f6f6f6;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-size: 1.5rem;
+}
+.pay-price-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+    &:nth-child(2) {
+        margin-bottom: 18px;
+    }
+}
+.pay-price-row-end {
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+    &:last-child {
+        color: red;
+    }
+}
+
+.note-sub {
+    padding-top: 15px;
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.note-main {
+    margin-top: 15px;
+    background: #d4effc;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    h4 {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+}
+
+.button-submit {
+    border-radius: 3px;
+
+    background: #ffc419;
+    color: #fff;
+    border: 1px solid transparent;
+    font-weight: 700;
+    font-size: 16px;
+    width: 100%;
+}
+
+.term-of-use {
+    padding-top: 10px;
+    display: inline-block;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+}

@@ -1,4 +1,5 @@
 import AdminPageMangage from '~/components/SystemComponent/AdminPageMangage';
+import { deleteSpecialist } from '~/service/specialist';
 
 function SpecialistManage() {
     return (
@@ -25,11 +26,11 @@ function SpecialistManage() {
                     dataField: 'Xoa',
                     text: 'Action',
                     headerClasses: 'action-col',
-                    //formatter: buttonDeleteFomatter,
                     align: 'center',
                 },
             ]}
-            api="/api/specialist/get-all"
+            api="/api/specialist/get-all-no-image"
+            deleteSevice={deleteSpecialist}
         ></AdminPageMangage>
     );
 }
