@@ -1,0 +1,62 @@
+.content {
+    padding-top: 68px;
+    font-size: 1.6rem;
+}
+
+.header-table {
+    background-color: #05a76e;
+    color: white;
+}
+
+.id-col {
+    width: 60px;
+}
+.name-col {
+    width: 200px;
+}
+.time-col {
+    width: 150px;
+}
+.action-col {
+}
+.info-col {
+    width: 250px;
+}
+.delete-button {
+    &:hover {
+        background-color: rgb(238, 71, 71);
+    }
+}
+
+.wrapper-search {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.custome-search-field {
+    font-size: 1.5rem !important;
+    margin-left: 12px;
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0 15px 0;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+// confirm page
+
+.first-name-col {
+    width: 200px;
+}
+
+.loading-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}

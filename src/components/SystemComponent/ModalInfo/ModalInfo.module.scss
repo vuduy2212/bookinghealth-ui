@@ -3,6 +3,7 @@
 }
 
 .btn-modal {
+    width: 60%;
     background-color: rgb(255, 35, 35);
     color: white;
     margin-right: 8px;
@@ -18,7 +19,12 @@
         background-color: rgb(11, 128, 31) !important;
     }
 }
-
+.blue-theme {
+    background-color: #0899ce !important;
+    &:hover {
+        background-color: #0f82ac !important;
+    }
+}
 .modal,
 .overlay {
     width: 100vw;
@@ -35,7 +41,7 @@
 }
 .modal-content {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
@@ -66,14 +72,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 2px solid #ccc;
     border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
 }
 
 .modal-body {
     padding: 16px;
-    color: rgb(182, 11, 11);
+    padding-top: 0;
+    color: #333;
+    font-size: 1.7rem;
+    font-weight: 500;
 }
 
 .modal-desc {
@@ -100,15 +109,25 @@
     }
 }
 
-.modal-button-delete {
-    color: #fff;
-    background-color: rgb(255, 35, 35);
-    &:hover {
-        background-color: rgb(182, 11, 11);
-    }
-    margin-left: 10px;
-}
-
 .d-none {
     display: none !important;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.item-label {
+    margin-right: 6px;
+}
+
+.header-info {
+    margin: 25px 0 20px 0;
+}
+
+.modal-info-patient {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
 }

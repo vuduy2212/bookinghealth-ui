@@ -10,16 +10,22 @@ import { BiCalendar, BiMouse, BiPointer } from 'react-icons/bi';
 import { FaCalendar, FaMousePointer, FaRegHandPointUp } from 'react-icons/fa';
 import Button from '../Button';
 import { MdAdsClick } from 'react-icons/md';
+import LoadingIcon from '../LoadingIcon';
+import TailSpin from 'react-loading-icons/dist/esm/components/tail-spin';
+import { Spinner } from 'react-bootstrap';
 const cx = classNames.bind(style);
 function ScheduleDoctor({ id }) {
     const [arrDate, setArrDate] = useState([]);
     const [arrTime, setArrTime] = useState([]);
     const [date, setDate] = useState(moment(new Date()).startOf('day').valueOf());
+    const [loading, setLoading] = useState(false);
     const handleChangeDate = async (e) => {
         setDate(e.target.value);
+        setLoading(true);
         const response = await axios.get(`/api/doctor/get-schedule-one-date/${id}/${e.target.value}`);
         const data = response.data;
         setArrTime(data);
+        setLoading(false);
     };
     useLayoutEffect(() => {
         const arrDate = [];
@@ -64,10 +70,20 @@ function ScheduleDoctor({ id }) {
                 LỊCH KHÁM
             </span>
             <div className={cx('schedule-time')}>
-                {arrTime.length > 0 ? (
+                {loading ? (
+                    <></>
+                ) : arrTime.length <= 0 ? (
+                    <span className={cx('no-time-title')}>
+                        Bác sĩ không có lịch khám ngày:{' '}
+                        {capitalizeFirstLetter(moment.unix(date / 1000).format('dddd - DD/MM'))}
+                        <br />
+                        Vui lòng chọn ngày khác !
+                    </span>
+                ) : (
                     arrTime.map((item) => {
                         return (
                             <Button
+                                disable={item.currentNumber >= item.maxNumber}
                                 to={`/booking/${item.doctorId}/${date}/${item.timeType}`}
                                 className={cx('schedule-time-item')}
                                 key={item.id}
@@ -76,13 +92,6 @@ function ScheduleDoctor({ id }) {
                             </Button>
                         );
                     })
-                ) : (
-                    <span className={cx('no-time-title')}>
-                        Bác sĩ không có lịch khám ngày:{' '}
-                        {capitalizeFirstLetter(moment.unix(date / 1000).format('dddd - DD/MM'))}
-                        <br />
-                        Vui lòng chọn ngày khác !
-                    </span>
                 )}
             </div>
             <span className={cx('instruct-title')}>

@@ -70,7 +70,7 @@ function UpdateUser({ forDoctor = false }) {
         if (changedImage === true) {
             userUpdated.image = image;
         }
-        await updateSelf(dispatch, navigate, userUpdated, user, axiosJWT);
+        await updateSelf(dispatch, userUpdated, user, axiosJWT);
         navigate(-1);
     };
 

@@ -21,6 +21,10 @@ import SpecialistCreate from '~/pages/AdminPages/SpecialistCreate';
 import SpecialistUpdate from '~/pages/AdminPages/SpecialistUpdate';
 import ClinicUpdate from '~/pages/AdminPages/ClinicUpdate';
 import Booking from '~/pages/UserPages/Booking';
+import BookingSuccess from '~/pages/UserPages/BookingSuccess';
+import BookingManageAdmin from '~/pages/AdminPages/BookingManageAdmin';
+import BookingManageDoctor from '~/pages/DoctorPages/BookingManageDoctor';
+import PatientExamined from '~/pages/DoctorPages/PatientExamined';
 
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
@@ -62,6 +66,11 @@ const publicRoutes = [
     {
         path: '/booking/:doctorId/:date/:timeType',
         component: Booking,
+        layout: DefaultLayout,
+    },
+    {
+        path: '/booking/successful-appointment',
+        component: BookingSuccess,
         layout: DefaultLayout,
     },
 ];
@@ -129,10 +138,21 @@ const privateRoutes = [
         layout: null,
     },
 
+    {
+        path: '/system/admin/confirm-booking',
+        component: BookingManageAdmin,
+        layout: null,
+    },
+
     // doctor mới vào được
     {
         path: '/system/doctor/booking',
-        component: BookingManage,
+        component: BookingManageDoctor,
+        layout: null,
+    },
+    {
+        path: '/system/doctor/patient-examined',
+        component: PatientExamined,
         layout: null,
     },
     {

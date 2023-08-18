@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import HeaderLite from '~/components/HeaderLite/index.';
 import SiteMap from '~/components/SiteMap';
 import classNames from 'classnames/bind';
@@ -12,6 +12,7 @@ import ScheduleDoctor from '~/components/ScheduleDoctor';
 import InfoExamination from '~/components/InfoExamination';
 const cx = classNames.bind(style);
 function DoctorDetail() {
+    const navigate = useNavigate();
     let { id } = useParams();
     const [name, setName] = useState('');
     const [img, setImg] = useState('');
@@ -21,9 +22,10 @@ function DoctorDetail() {
     const [nameClinic, setNameClinic] = useState('');
     const [addressClinic, setAddressClinic] = useState('');
     useEffect(() => {
+        window.scrollTo(0, 0);
         const getDataDoctor = async () => {
             const data = await getDetailDoctor(id);
-            setName(`${data.positionData.value} ${data.lastName} ${data.firstName}`);
+            setName(`${data.positionData.value || 'Bác sĩ'} ${data.lastName} ${data.firstName}`);
             setImg(data.image || '');
             setDesc(data.Markdown.description || '');
             setProfile(data.Markdown.contentHTML || '');

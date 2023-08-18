@@ -56,13 +56,12 @@ export const logOut = async (dispatch, navigate) => {
         dispatch(logOutFailed());
     }
 };
-export const updateSelf = async (dispatch, navigate, userUpdated, user, axiosJWT) => {
+export const updateSelf = async (dispatch, userUpdated, user, axiosJWT) => {
     try {
         const res = await axiosJWT.patch(`/api/user/update/${user.id}`, userUpdated, {
             headers: { token: `Bearer ${user.accessToken}` },
         });
         dispatch(updateSuccess(res.data));
-        //navigate('/');
     } catch (error) {}
 };
 export const confirmUser = async (user, id, axiosJWT, roleId) => {

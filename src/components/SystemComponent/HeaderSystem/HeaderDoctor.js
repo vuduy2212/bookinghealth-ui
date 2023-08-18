@@ -59,7 +59,6 @@ function HeaderDoctor() {
                 <MenuItem to="/system/doctor/schedule">Quản lí thời gian khám</MenuItem>
                 <MenuItem to="/system/doctor/patient-examined">Bệnh nhân đã khám</MenuItem>
                 <MenuItem to="/system/doctor/history">Lịch sử khám bệnh</MenuItem>
-                <MenuItem to="/system/doctor/handbook">Bài viết</MenuItem>
 
                 <span className={cx('welcome')}>
                     {user?.lastName && user?.firstName ? user.lastName + ' ' + user.firstName : 'Xin chào'}

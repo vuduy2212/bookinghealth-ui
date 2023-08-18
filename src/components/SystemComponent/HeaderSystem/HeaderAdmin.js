@@ -14,7 +14,7 @@ import images from '~/assets/images';
 import CommonUtils from '~/utils/CommonUtils';
 const cx = classNames.bind(styles);
 function HeaderAdmin({
-    schedule = false,
+    booking = false,
     user = false,
     clinic = false,
     product = false,
@@ -72,8 +72,8 @@ function HeaderAdmin({
                     <MdSupportAgent className={cx('icon-admin')} />
                     <span className={cx('title')}>Admin Page</span>
                 </Link>
-                <MenuItem to="/system/admin/schedule" className={schedule ? 'active' : ''}>
-                    Đơn đặt lịch
+                <MenuItem to="/system/admin/confirm-booking" className={booking ? 'active' : ''}>
+                    Yêu cầu đặt lịch
                 </MenuItem>
                 <Menu data={MENU_ITEM_USER} placement="bottom-start" offset={[-18, 8]} small delayMenu={[0, 200]}>
                     <div

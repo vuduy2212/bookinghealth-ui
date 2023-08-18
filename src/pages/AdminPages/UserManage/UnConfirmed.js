@@ -133,7 +133,7 @@ function UnConfirmed() {
                                         className={cx('custome-search-field')}
                                         // style={{ color: 'white' }}
                                         delay={0}
-                                        placeholder="Search somthing"
+                                        placeholder="Search something"
                                     />
                                 </div>
                                 <BootstrapTable
