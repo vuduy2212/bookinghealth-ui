@@ -1,6 +1,6 @@
 import Home from '~/pages/UserPages/Home';
 import Handbook from '~/pages/UserPages/Handbook';
-import { DefaultLayout, DoctorLayout } from '~/components/Layouts';
+import { DefaultLayout, DefaultLayoutLite, DoctorLayout } from '~/components/Layouts';
 import Login from '~/pages/UserPages/Login';
 import Register from '~/pages/UserPages/Register';
 import UpdateUser from '~/pages/UserPages/UpdateUser';
@@ -25,6 +25,9 @@ import BookingSuccess from '~/pages/UserPages/BookingSuccess';
 import BookingManageAdmin from '~/pages/AdminPages/BookingManageAdmin';
 import BookingManageDoctor from '~/pages/DoctorPages/BookingManageDoctor';
 import PatientExamined from '~/pages/DoctorPages/PatientExamined';
+import ExaminedHistory from '~/pages/UserPages/ExaminedHistory';
+import SpecialistDetail from '~/pages/UserPages/SpecialistDetail';
+import ClinicDetail from '~/pages/UserPages/ClinicDetail';
 
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
@@ -64,6 +67,16 @@ const publicRoutes = [
         layout: null,
     },
     {
+        path: '/specialist-detail/:id',
+        component: SpecialistDetail,
+        layout: null,
+    },
+    {
+        path: '/clinic-detail/:id',
+        component: ClinicDetail,
+        layout: DefaultLayoutLite,
+    },
+    {
         path: '/booking/:doctorId/:date/:timeType',
         component: Booking,
         layout: DefaultLayout,
@@ -78,6 +91,12 @@ const publicRoutes = [
 // privateRoutes: phải đăng nhập, mới vào được
 
 const privateRoutes = [
+    {
+        path: '/examination-history', // Quản lí bệnh nhân
+        component: ExaminedHistory,
+        layout: DefaultLayoutLite,
+    },
+
     // admin mới vào được
     {
         path: '/system/admin/patient-manage', // Quản lí bệnh nhân

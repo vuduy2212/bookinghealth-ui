@@ -8,7 +8,6 @@ function DefaultLayoutLite({ children }) {
         <div className={cx('wrapper')}>
             <Header lite />
             <div className={cx('content')}>{children}</div>
-            <Footer />
         </div>
     );
 }

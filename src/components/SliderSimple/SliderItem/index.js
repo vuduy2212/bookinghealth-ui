@@ -9,6 +9,7 @@ function SliderItem({
     paddingImg,
     docterSlider = false,
     handbookSlider = false,
+    clinicSlider = false,
     title2,
     title3,
     title4,
@@ -24,6 +25,7 @@ function SliderItem({
             className={cx('wrapper', {
                 docterSlider,
                 handbookSlider,
+                clinicSlider,
             })}
             {...props}
         >

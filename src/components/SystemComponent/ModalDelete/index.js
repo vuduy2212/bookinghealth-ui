@@ -25,6 +25,7 @@ function ModalDelete({
     titleConfirm,
     roleId = null,
     showToast,
+    date = '',
 }) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
@@ -44,7 +45,8 @@ function ModalDelete({
         setModal(false);
         await submitAction(user, id, axiosJWT, roleId);
         showToast();
-        await reload();
+        console.log('date: ' + date);
+        await reload(date);
     };
 
     return (

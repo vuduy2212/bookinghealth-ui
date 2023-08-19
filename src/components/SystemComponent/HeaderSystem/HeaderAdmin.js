@@ -91,12 +91,6 @@ function HeaderAdmin({
                 <MenuItem to="/system/admin/clinic" className={clinic ? 'active' : ''}>
                     Bệnh viện
                 </MenuItem>
-                <MenuItem to="/system/admin/product" className={product ? 'active' : ''}>
-                    Sản phẩm
-                </MenuItem>
-                <MenuItem to="/system/admin/handbook" className={handbook ? 'active' : ''}>
-                    Bài viết
-                </MenuItem>
 
                 <span className={cx('welcome')}>
                     {currentUser?.lastName && currentUser?.firstName

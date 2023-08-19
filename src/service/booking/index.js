@@ -78,3 +78,13 @@ export const getPatientExamined = async (axiosJWT, user, date) => {
         throw new Error(error);
     }
 };
+export const getBookingOnePatient = async (axiosJWT, user) => {
+    try {
+        const res = await axiosJWT.get(`/api/booking/get-all-booking-one-patient/${user.id}`, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+        return res.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};

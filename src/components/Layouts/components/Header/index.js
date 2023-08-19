@@ -27,7 +27,7 @@ function Header() {
         {
             icon: <BiHistory />,
             title: 'Lịch sử khám bệnh',
-            to: '/history-user',
+            to: '/examination-history',
         },
         {
             icon: <BiHelpCircle />,

@@ -27,6 +27,7 @@ function ModalUploadFile({
     titleConfirm,
     roleId = null,
     showToast,
+    date = '',
 }) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
@@ -58,7 +59,7 @@ function ModalUploadFile({
         setModal(false);
         await submitAction(user, id, axiosJWT, file);
         showToast();
-        await reload();
+        await reload(date);
     };
 
     return (

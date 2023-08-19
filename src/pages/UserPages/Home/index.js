@@ -20,12 +20,18 @@ const cx = classNames.bind(styles);
 function Home() {
     const user = useSelector((state) => state.auth.login.currentUser);
     const [dataTopDoctor, setDataTopDoctor] = useState([]);
+    const [dataTopSpecialist, setDataTopSpecialist] = useState([]);
+    const [dataTopClinic, setDataTopClinic] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         const getDataDoctorHome = async () => {
             setLoading(true);
-            const data = await dataHomePage.topDoctorHome(8);
-            setDataTopDoctor(data);
+            const dataTopDoctorHome = await dataHomePage.topDoctorHome(8);
+            const dataTopSpecialistHome = await dataHomePage.topSpecialistHome(8);
+            const dataTopClinicHome = await dataHomePage.topClinicHome(4);
+            setDataTopDoctor(dataTopDoctorHome);
+            setDataTopSpecialist(dataTopSpecialistHome);
+            setDataTopClinic(dataTopClinicHome);
             setLoading(false);
         };
         getDataDoctorHome();
@@ -46,23 +52,24 @@ function Home() {
             )}
             <Banner />
             <SliderSimple
-                title="Chuyên khoa phổ biến"
+                title="Chuyên khoa khám bệnh"
                 textMoreButton="Xem thêm"
                 white
-                data={DATA_SLIDER_CHUYENKHOAPHOBIEN}
+                data={dataTopSpecialist}
                 linkMoreBtn="/xemthem"
             />
             <SliderSimple
+                clinicSlider
                 paddingImg
-                title="Cơ sở y tế nổi bật"
+                title="Cơ sở y tế "
                 textMoreButton="Tìm kiếm"
                 grey
-                data={DATA_SLIDER_COSOYTENOIBAT}
+                data={dataTopClinic}
                 linkMoreBtn="/xemthem"
             />
 
             <SliderSimple
-                title="Bác sĩ nổi bật tuần qua"
+                title="Bác sĩ"
                 textMoreButton="Tìm kiếm"
                 white
                 data={dataTopDoctor}

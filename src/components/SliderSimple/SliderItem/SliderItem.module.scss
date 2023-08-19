@@ -39,6 +39,13 @@
         text-align: center;
     }
 }
+.wrapper.clinicSlider {
+    .image-container {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
 .wrapper.handbookSlider {
     flex-direction: row;
     width: 540px;

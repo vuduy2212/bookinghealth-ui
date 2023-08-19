@@ -18,6 +18,7 @@ function SliderSimple({
     paddingImg = false,
     docterSlider = false,
     handbookSlider = false,
+    clinicSlider = false,
     linkMoreBtn,
     ...props
 }) {
@@ -100,6 +101,7 @@ function SliderSimple({
                             return (
                                 <div key={index}>
                                     <SliderItem
+                                        clinicSlider={clinicSlider}
                                         docterSlider={docterSlider}
                                         handbookSlider={handbookSlider}
                                         paddingImg={paddingImg}

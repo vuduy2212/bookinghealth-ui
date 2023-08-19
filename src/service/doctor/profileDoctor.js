@@ -22,3 +22,12 @@ export const getDetailDoctor = async (id) => {
     }
     return response.data;
 };
+
+export const getAllDoctorOneSpecialist = async (id) => {
+    const response = await axios.get(`/api/doctor/get-all-one-specialist/${id}`);
+    return response.data;
+};
+export const getAllDoctorOneClinic = async (id) => {
+    const response = await axios.get(`/api/doctor/get-all-one-clinic/${id}`);
+    return response.data;
+};
