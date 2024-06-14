@@ -68,9 +68,7 @@ function Header() {
                 <div className={cx('inner')}>
                     <NavBar></NavBar>
                     <Link to={'/'}>
-                        <div className={cx('logo')}>
-                            <img src={images.logo} alt="BookingCare Logo"></img>
-                        </div>
+                        <div className={cx('logo')}>{/* <img src={images.logo} alt="BookingCare Logo"></img> */}</div>
                     </Link>
                     <div className={cx('menu-header', 'd-none', 'd-xl-flex')}>
                         <MenuHeaderItem title="Chuyên khoa" desc="Tìm bác sĩ theo chuyên khoa" to="/chuyenkhoa" />

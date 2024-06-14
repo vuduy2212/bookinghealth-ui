@@ -8,14 +8,7 @@ import { Fragment, useState } from 'react';
 import Header from './Header';
 
 const cx = classNames.bind(styles);
-function Menu({
-    data = [],
-    children,
-    placement = 'bottom-end',
-    offset = [18, 8],
-    small = false,
-    delayMenu = [0, 400],
-}) {
+function Menu({ data = [], children, placement = 'bottom-end', offset = [18, 8], small = false, delayMenu = [0, 50] }) {
     const handleOnClick = (item) => {
         if (!!item.children) {
             setMenuList((prev) => [...prev, item.children]);
@@ -55,6 +48,7 @@ function Menu({
             delay={delayMenu}
             placement={placement}
             interactive
+            trigger="click"
             render={(attrs) => (
                 <div className={cx('wrapper')} tabIndex="-1" {...attrs}>
                     <WrapperPopper small={small}>{renderItem()}</WrapperPopper>

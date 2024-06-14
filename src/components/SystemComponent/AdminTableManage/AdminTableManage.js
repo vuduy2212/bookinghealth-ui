@@ -6,18 +6,18 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import { ToastContainer, toast } from 'react-toastify';
 
+import LoadingIcon from '~/components/LoadingIcon';
 import 'react-toastify/dist/ReactToastify.css';
 import { createAxios } from '~/redux/createInstance';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '~/redux/authSlice';
-import styles from './UserManger.module.scss';
+import styles from './AdminTableManage.module.scss';
 import { useLayoutEffect, useState } from 'react';
 import ModalDelete from '~/components/SystemComponent/ModalDelete';
-import { deleteUser } from '~/redux/apiRequest';
-import LoadingIcon from '~/components/LoadingIcon';
-import { AdminLayout } from '~/components/Layouts';
+import Button from '~/components/Button';
+import axios from 'axios';
 const cx = classNames.bind(styles);
-function UserManage({ typeUser }) {
+function AdminTableManage({ typeManage, titlePage, columnsData, api, deleteSevice }) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
     let axiosJWT = createAxios(user, dispatch, loginSuccess);
@@ -26,10 +26,13 @@ function UserManage({ typeUser }) {
     const [loading, setLoading] = useState(false);
     const buttonDeleteFomatter = (cell, row) => (
         <div>
+            <Button className={cx('button-edit')} rounded to={`/system/admin/update-${typeManage}/${row.id}`}>
+                Chỉnh sửa
+            </Button>
             <ModalDelete
                 id={row.id}
                 reload={getData}
-                submitAction={deleteUser}
+                submitAction={deleteSevice}
                 titleButton="Xóa"
                 titleHeader="Xác nhận xóa"
                 titleBody="Bạn có chắc chắn với hành động xóa này không"
@@ -46,9 +49,7 @@ function UserManage({ typeUser }) {
     const getData = async () => {
         try {
             setLoading(true);
-            const res = await axiosJWT.get(`/api/user/get-all/${typeUser}`, {
-                headers: { token: `Bearer ${user.accessToken}` },
-            });
+            const res = await axios.get(api);
             setProducts(res.data);
             setLoading(false);
         } catch (error) {
@@ -58,73 +59,43 @@ function UserManage({ typeUser }) {
     useLayoutEffect(() => {
         getData();
     }, []);
-    const columns = [
-        {
-            dataField: 'id',
-            text: 'ID',
-            sort: true,
-            headerClasses: cx('id-col'),
-        },
-        {
-            dataField: 'lastName',
-            text: 'Họ',
-        },
-        {
-            dataField: 'firstName',
-            text: 'Tên',
-            headerClasses: cx('name-col'),
-        },
-        {
-            dataField: 'phoneNumber',
-            text: 'Số điện thoại',
-        },
-        {
-            dataField: 'email',
-            text: 'Email',
-            headerClasses: cx('email-col'),
-        },
-        {
-            dataField: 'yearOfBirth',
-            text: 'Năm sinh',
-            headerClasses: cx('yearOfBirth-col'),
-        },
-        // {
-        //     dataField: 'address',
-        //     text: 'Địa chỉ',
-        //     headerClasses: cx('address-col'),
-        // },
-        {
-            dataField: 'gender',
-            text: 'Giới tính',
-            headerClasses: cx('gender-col'),
-        },
-        {
-            dataField: 'Xoa',
-            text: 'Action',
-            headerClasses: cx('action-col'),
-            formatter: buttonDeleteFomatter,
-            align: 'center',
-        },
-    ];
+    const columns = columnsData.map((item, index) => {
+        if (item?.headerClasses) {
+            item.headerClasses = cx(item.headerClasses);
+        }
+        if (item.text === 'Action') {
+            item.formatter = buttonDeleteFomatter;
+        }
+        return item;
+    });
     return (
-        <AdminLayout userPage={true}>
-            <div className={cx('content', 'mx-5')}>
+        <div>
+            <div
+                className={cx('content', {
+                    container: typeManage === 'specialist' || typeManage === 'handbook',
+                    'mx-5': typeManage === 'clinic',
+                })}
+            >
                 <ToolkitProvider bootstrap4 keyField="id" data={products} columns={columns} search>
                     {(props) => (
                         <div>
-                            <h2 className={cx('title')}>
-                                Quản lí{' '}
-                                {typeUser === 'patient' ? 'Bệnh nhân' : typeUser === 'admin' ? 'Admin' : 'Bác sĩ'}
-                            </h2>
-                            <div className={cx('wrapper-search', 'mx-5')}>
-                                <h4>Tìm kiếm</h4>
-                                <SearchBar
-                                    {...props.searchProps}
-                                    className={cx('custome-search-field')}
-                                    // style={{ color: 'white' }}
-                                    delay={0}
-                                    placeholder="Search something"
-                                />
+                            <h2 className={cx('title')}>{titlePage}</h2>
+                            <div className={cx('box-table-header')}>
+                                <Button className={cx('create-button')} to={`/system/admin/create-${typeManage}`}>
+                                    {typeManage === 'specialist' ? 'Thêm chuyên khoa' : ''}
+                                    {typeManage === 'clinic' ? 'Thêm bệnh viện' : ''}
+                                    {typeManage === 'handbook' ? 'Tạo bài viết mới' : ''}
+                                </Button>
+                                <div className={cx('wrapper-search')}>
+                                    <h4>Tìm kiếm</h4>
+                                    <SearchBar
+                                        {...props.searchProps}
+                                        className={cx('custome-search-field')}
+                                        // style={{ color: 'white' }}
+                                        delay={0}
+                                        placeholder="Search something"
+                                    />
+                                </div>
                             </div>
                             {loading ? (
                                 <LoadingIcon />
@@ -139,10 +110,10 @@ function UserManage({ typeUser }) {
                         </div>
                     )}
                 </ToolkitProvider>
-                <ToastContainer />
             </div>
-        </AdminLayout>
+            <ToastContainer />
+        </div>
     );
 }
 
-export default UserManage;
+export default AdminTableManage;

@@ -90,9 +90,7 @@ function Login() {
                         <form onSubmit={(e) => handleFormSubmit(e)} className={cx('login100-form', 'validate-form')}>
                             <div className={cx('logo-container')}>
                                 <Link className={cx('logo')} to={'/'}>
-                                    <div>
-                                        <img src={images.logo} alt="BookingCare Logo"></img>
-                                    </div>
+                                    <div>{/* <img src={images.logo} alt="BookingCare Logo"></img> */}</div>
                                 </Link>
                             </div>
                             <span className={cx('login100-form-title', 'p-b-43')}>Đăng nhập</span>

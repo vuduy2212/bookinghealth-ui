@@ -18,10 +18,10 @@ function Footer() {
                         <Col xs={12} md={6}>
                             <Link to={'/'}>
                                 <div className={cx('logo')}>
-                                    <img src={images.logo} alt="BookingCare Logo"></img>
+                                    {/* <img src={images.logo} alt="BookingCare Logo"></img> */}
                                 </div>
                             </Link>
-                            <h2 className={cx('name-company')}>Công ty Cổ phần Công nghệ BookingCare</h2>
+                            <h2 className={cx('name-company')}>Công ty Cổ phần Công nghệ </h2>
                             <p className={cx('address-company')}>
                                 <FaMapMarkerAlt style={{ marginRight: ' 6px' }} />
                                 Lô B4/D21, Khu đô thị mới Cầu Giấy, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Thành phố Hà
@@ -52,13 +52,13 @@ function Footer() {
                                     Hà Nội, Việt Nam
                                 </p>
                             </div>
-                            <div className={cx('contact')}>
+                            {/* <div className={cx('contact')}>
                                 <strong>Văn phòng tại TP Hồ Chí Minh</strong>
                                 <p>Số 01, Hồ Bá Kiện, Phường 15, Quận 10</p>
-                            </div>
+                            </div> */}
                             <div className={cx('contact')}>
                                 <strong>Hỗ trợ khách hàng</strong>
-                                <p>support@bookingcare.vn (7h - 18h)</p>
+                                <p>support@example.vn (7h - 18h)</p>
                             </div>
                         </Col>
                     </Row>
@@ -68,7 +68,7 @@ function Footer() {
                 <Container fluid="md">
                     <Row>
                         <Col xs={8} className="h-80 h4 text-white">
-                            <small>© 2023 BookingCare.</small>
+                            <small>© 2024 Đặt lịch khám sức khỏe.</small>
                         </Col>
                         <Col xs={4} className="d-flex justify-content-end">
                             <img alt="social-logo" src={images.logoFacebook} className={cx('social-logo')}></img>

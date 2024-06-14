@@ -1,6 +1,6 @@
 import Home from '~/pages/UserPages/Home';
 import Handbook from '~/pages/UserPages/Handbook';
-import { DefaultLayout, DefaultLayoutLite, DoctorLayout } from '~/components/Layouts';
+import { DefaultLayout, DefaultLayoutLite, DoctorLayout, AdminLayout } from '~/components/Layouts';
 import Login from '~/pages/UserPages/Login';
 import Register from '~/pages/UserPages/Register';
 import UpdateUser from '~/pages/UserPages/UpdateUser';
@@ -28,6 +28,7 @@ import PatientExamined from '~/pages/DoctorPages/PatientExamined';
 import ExaminedHistory from '~/pages/UserPages/ExaminedHistory';
 import SpecialistDetail from '~/pages/UserPages/SpecialistDetail';
 import ClinicDetail from '~/pages/UserPages/ClinicDetail';
+import AdminHomePage from '~/pages/AdminPages/AdminHomePage/AdminHomePage';
 
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
@@ -98,6 +99,13 @@ const privateRoutes = [
     },
 
     // admin mới vào được
+
+    {
+        path: '/system/admin/dashboard', // Trang home của admin
+        component: AdminHomePage,
+        layout: null,
+    },
+
     {
         path: '/system/admin/patient-manage', // Quản lí bệnh nhân
         component: PatientManage,
