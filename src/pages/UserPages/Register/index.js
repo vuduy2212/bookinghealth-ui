@@ -180,9 +180,9 @@ function Register() {
                                         value={roleId}
                                         onChange={(e) => setRoleId(e.target.value)}
                                     >
-                                        <option value="R2x">Bác sĩ</option>
+                                        <option value="R2">Bác sĩ</option>
                                         <option value="R3">Bệnh nhân</option>
-                                        <option value="R1x">Admin</option>
+                                        <option value="R1">Admin</option>
                                     </select>
                                 </div>
                             </div>

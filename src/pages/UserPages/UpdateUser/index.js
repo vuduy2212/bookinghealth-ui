@@ -37,7 +37,6 @@ function UpdateUser({ forDoctor = false }) {
         }
     });
     const [isOpenPreview, setIsOpenPreview] = useState(false);
-    const [positionCode, setPositionCode] = useState([]);
     const handleChangeImage = async (e) => {
         setChangedImage(true);
         try {
@@ -74,12 +73,7 @@ function UpdateUser({ forDoctor = false }) {
         navigate(-1);
     };
 
-    useEffect(() => {
-        const getCodeFromService = async () => {
-            setPositionCode(await getAllCode('position'));
-        };
-        getCodeFromService();
-    }, []);
+    useEffect(() => {}, []);
     return (
         <ProtectedRoute redirectPath="/login" isAllowed={user}>
             <div className={cx('wrapper')}>
@@ -150,30 +144,7 @@ function UpdateUser({ forDoctor = false }) {
                                                 id="inputCity"
                                             />
                                         </div>
-                                        {forDoctor ? (
-                                            <div className=" col-12 col-md-4 mx-5">
-                                                <label htmlFor="inputPosition" className={cx('form-label', 'label')}>
-                                                    Chức danh
-                                                </label>
-                                                <select
-                                                    value={positionId}
-                                                    id="inputPosition"
-                                                    className={cx('form-select', 'input')}
-                                                    onChange={(e) => setPositionId(e.target.value)}
-                                                >
-                                                    <option value={''}>Chọn chức danh</option>
-                                                    {positionCode.map((item, index) => {
-                                                        return (
-                                                            <option value={item.keyMap} key={index}>
-                                                                {item.value}
-                                                            </option>
-                                                        );
-                                                    })}
-                                                </select>
-                                            </div>
-                                        ) : (
-                                            <></>
-                                        )}
+
                                         <div className=" col-12 col-md-12">
                                             <label htmlFor="inputCity" className={cx('form-label', 'label')}>
                                                 Địa chỉ

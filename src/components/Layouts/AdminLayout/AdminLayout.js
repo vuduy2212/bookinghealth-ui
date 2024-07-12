@@ -1,4 +1,4 @@
-import NewHeaderSystem from '~/components/SystemComponent/NewHeaderSystem/NewHeaderSystem';
+import NewHeaderSystem from '~/components/SystemComponent/NewHeaderSystem';
 import classNames from 'classnames/bind';
 import styles from './AdminLayout.module.scss';
 import ProtectedRoute from '~/routes/ProtectedRoute';

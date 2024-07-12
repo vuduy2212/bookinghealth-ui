@@ -27,6 +27,7 @@ function ModalInfo({
     roleId = null,
     showToast,
     data = {},
+    children,
 }) {
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();

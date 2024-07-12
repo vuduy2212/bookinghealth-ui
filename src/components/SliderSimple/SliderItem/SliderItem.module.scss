@@ -31,8 +31,12 @@
 
     .image-container {
         width: 45%;
-        padding-top: 45%;
-        border-radius: 50%;
+        //padding-top: 45%;
+        img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
     }
 
     .title {
@@ -44,6 +48,9 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        img {
+            border-radius: 12px;
+        }
     }
 }
 .wrapper.handbookSlider {
@@ -58,7 +65,9 @@
     }
     .image-container {
         width: 60%;
-        padding-top: 28.4%;
+        img {
+            border-radius: 12px;
+        }
     }
 
     .title {
@@ -70,8 +79,11 @@
 }
 
 .image-container {
-    padding-top: 54.545%;
+    //padding-top: 54.545%;
     background-size: cover;
+    img {
+        border-radius: 12px;
+    }
 }
 .image {
     width: 100%;
@@ -98,6 +110,6 @@
 }
 
 .paddingImg {
-    padding-top: 50%;
+    //padding-top: 50%;
     background-color: #fff;
 }

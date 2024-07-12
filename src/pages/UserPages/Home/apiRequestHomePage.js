@@ -10,13 +10,13 @@ const dataHomePage = {
             return response.data.map((item) => {
                 return {
                     title2:
-                        (item['positionData.value'] ? item['positionData.value'] : 'Bác sĩ') +
+                        (item['doctorInfo.positionData.value'] ? item['doctorInfo.positionData.value'] : 'Bác sĩ') +
                         ': ' +
                         item.lastName +
                         ' ' +
                         item.firstName,
-                    title3: 'Cơ xương khớp',
-                    title4: 'Bệnh viện Hữu Nghị Việt Đức',
+                    title3: item['doctorInfo.specialist.name'],
+                    title4: item['doctorInfo.clinic.name'],
                     image: item.image ? CommonUtils.toFileFromBase64(item?.image) : images.noImage,
                     to: `/doctor-detail/${item.id}`,
                 };

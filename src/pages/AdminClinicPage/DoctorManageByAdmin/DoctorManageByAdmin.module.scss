@@ -1,0 +1,187 @@
+.hospital-management {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    padding-top: 100px;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        h1 {
+            margin-left: 4px;
+            font-size: 28px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+
+            input[type='text'] {
+                padding: 10px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                font-size: 16px;
+                width: 250px;
+                transition: border-color 0.3s;
+
+                &:focus {
+                    border-color: #007bff;
+                }
+            }
+
+            a {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 10px;
+                background-color: var(--system-primary);
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+
+                &:hover {
+                    background-color: #2b036b;
+                }
+            }
+        }
+    }
+
+    .hospital-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-size: 18px;
+        }
+
+        td {
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            margin-right: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            // &:first-of-type {
+            //     background-color: #28a745;
+            //     color: #fff;
+
+            //     &:hover {
+            //         background-color: #218838;
+            //     }
+            // }
+
+            // &:last-of-type {
+            //     background-color: #dc3545;
+            //     color: #fff;
+
+            //     &:hover {
+            //         background-color: #c82333;
+            //     }
+            // }
+        }
+        .detailClinic {
+            background-color: #1869c0;
+            color: #fff;
+
+            &:hover {
+                background-color: #04203d;
+            }
+        }
+        .column-action {
+            width: 360px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .header-column-action {
+            width: 360px;
+        }
+        .column-phone {
+            width: 180px;
+        }
+    }
+
+    .add-hospital-form {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 20px;
+
+        h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        input[type='text'] {
+            display: block;
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+
+            &:focus {
+                border-color: #007bff;
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-right: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:first-of-type {
+                background-color: #28a745;
+                color: #fff;
+
+                &:hover {
+                    background-color: #218838;
+                }
+            }
+
+            &:last-of-type {
+                background-color: #6c757d;
+                color: #fff;
+
+                &:hover {
+                    background-color: #5a6268;
+                }
+            }
+        }
+    }
+}

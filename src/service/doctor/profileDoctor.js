@@ -31,3 +31,27 @@ export const getAllDoctorOneClinic = async (id) => {
     const response = await axios.get(`/api/doctor/get-all-one-clinic/${id}`);
     return response.data;
 };
+export const getAllDoctorOneClinicNoImage = async (id) => {
+    const response = await axios.get(`/api/doctor/get-all-one-clinic-no-image/${id}`);
+    return response.data;
+};
+
+export const deleteDoctor = async (user, doctorId, axiosJWT) => {
+    try {
+        await axiosJWT.delete(`/api/doctor/delete-one-doctor/${doctorId}`, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+    } catch (error) {
+        console.error('Error from sever -- /api/doctor/delete-one-doctor/${doctorId');
+    }
+};
+
+export const createDoctorAccount = async (user, dataNewDoctor, axiosJWT) => {
+    try {
+        await axiosJWT.post(`/api/doctor/create-doctor-account`, dataNewDoctor, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+    } catch (error) {
+        throw new Error('Error from sever -- /api/doctor/create-doctor-account');
+    }
+};

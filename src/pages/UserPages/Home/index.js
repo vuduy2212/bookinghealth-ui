@@ -16,6 +16,7 @@ import { Puff } from 'react-loading-icons';
 import { AiOutlineLoading, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { FaTruckLoading } from 'react-icons/fa';
 import TailSpin from 'react-loading-icons/dist/esm/components/tail-spin';
+import { BrowserRouter as Router, Route, Switch, useLocation, useHistory } from 'react-router-dom';
 const cx = classNames.bind(styles);
 function Home() {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -23,9 +24,22 @@ function Home() {
     const [dataTopSpecialist, setDataTopSpecialist] = useState([]);
     const [dataTopClinic, setDataTopClinic] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    /// fix cuộn lên đầu
+    const ScrollToTop = () => {
+        const { pathname } = useLocation();
+
+        useEffect(() => {
+            window.scrollTo(0, 0); // Cuộn lên đầu trang khi chuyển đổi route
+        }, [pathname]);
+
+        return null;
+    };
+    //
     useEffect(() => {
+        window.scrollTo(0, 0);
         const getDataDoctorHome = async () => {
-            setLoading(true);
+            setLoading(false);
             const dataTopDoctorHome = await dataHomePage.topDoctorHome(8);
             const dataTopSpecialistHome = await dataHomePage.topSpecialistHome(8);
             const dataTopClinicHome = await dataHomePage.topClinicHome(4);

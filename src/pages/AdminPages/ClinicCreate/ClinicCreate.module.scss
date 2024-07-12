@@ -13,7 +13,9 @@
         font-weight: 500;
     }
 }
-
+.header123 {
+    background-color: var(--system-primary) !important;
+}
 .name-container {
     width: 300px;
     //margin-top: 20px;
@@ -34,11 +36,12 @@
 .button-submit {
     width: 30%;
     margin: 50px 0 50px 0;
-    background-color: var(--primary);
-    color: #333;
+    background-color: var(--system-primary);
+    color: #fff;
     font-weight: 600;
     &:hover {
         opacity: 0.8;
+        background-color: var(--system-primary);
     }
 }
 
@@ -89,4 +92,14 @@
         padding: 10px;
         border-radius: 10px;
     }
+}
+
+.title-admin-clinic {
+    font-weight: 600;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.row-amdin {
 }

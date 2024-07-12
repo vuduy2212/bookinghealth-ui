@@ -67,7 +67,7 @@ function SpecialistDetail() {
                                                         <span>
                                                             {' '}
                                                             <MdPlace className={cx('icon-place')} />{' '}
-                                                            {item.User.Clinics.address}
+                                                            {item.clinic.address}
                                                         </span>
                                                     </div>
                                                     <Button to={'/doctor-detail/' + item.User.id} primary>
@@ -79,9 +79,9 @@ function SpecialistDetail() {
                                         <div className={cx('col-6', 'schedule')}>
                                             <ScheduleDoctor id={2} />
                                             <InfoExamination
-                                                nameClinic={item.User.Clinics.name}
-                                                address={item.User.Clinics.address}
-                                                price={item.User.Clinics.Doctor_Info.price}
+                                                nameClinic={item.clinic.name}
+                                                address={item.clinic.address}
+                                                price={item.price}
                                             />
                                         </div>
                                     </div>

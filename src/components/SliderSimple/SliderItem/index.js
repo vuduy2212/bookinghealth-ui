@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import style from './SliderItem.module.scss';
 import { Link } from 'react-router-dom';
+import LazyBackground from '~/components/LazyBackground';
 const cx = classNames.bind(style);
 function SliderItem({
     to,
@@ -29,12 +30,13 @@ function SliderItem({
             })}
             {...props}
         >
-            <div
+            <LazyBackground
+                src={image}
                 className={cx('image-container', {
                     paddingImg,
                 })}
-                style={{ backgroundImage: `url(${image})` }}
-            ></div>
+            />
+
             {title && <h3 className={cx('title')}>{title}</h3>}
             {title2 && <h3 className={cx('title')}>{title2}</h3>}
             {title3 && <h4 className={cx('decs')}>{title3}</h4>}

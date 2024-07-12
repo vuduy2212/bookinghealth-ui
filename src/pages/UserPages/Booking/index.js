@@ -139,12 +139,12 @@ function Booking() {
         window.scroll(0, 0);
         const getDataDoctor = async () => {
             const data = await getDetailDoctor(doctorId);
-            setNameDoctor(`${data.positionData.value} ${data.lastName} ${data.firstName}`);
+            setNameDoctor(`${data.doctorInfo.positionData.value} ${data.lastName} ${data.firstName}`);
             setImg(data.image || '');
-            setPrice(data.Clinics.Doctor_Info.price || 0);
-            setNameClinic(data.Clinics.name || '');
-            setAddressClinic(data.Clinics.address || '');
-            setSpecialist(data.Specialists.name);
+            setPrice(data.doctorInfo.price || 0);
+            setNameClinic(data.doctorInfo.clinic.name || '');
+            setAddressClinic(data.doctorInfo.clinic.address || '');
+            setSpecialist(data.doctorInfo.specialist.name);
             const arrTime = await getAllCode('time');
             setTime(arrTime.find((item) => item.keyMap === timeType));
         };

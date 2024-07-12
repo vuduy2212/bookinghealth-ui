@@ -46,6 +46,7 @@ function AdminTableManage({ typeManage, titlePage, columnsData, api, deleteSevic
             />
         </div>
     );
+
     const getData = async () => {
         try {
             setLoading(true);
@@ -66,6 +67,9 @@ function AdminTableManage({ typeManage, titlePage, columnsData, api, deleteSevic
         if (item.text === 'Action') {
             item.formatter = buttonDeleteFomatter;
         }
+        // if (item.text === 'Detail') {
+        //     item.formatter = buttonDetailFomatter;
+        // }
         return item;
     });
     return (

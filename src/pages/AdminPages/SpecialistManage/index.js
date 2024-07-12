@@ -18,11 +18,11 @@ function SpecialistManage() {
                         dataField: 'name',
                         text: 'Tên',
                     },
-                    {
-                        dataField: 'quantity',
-                        text: 'Số lượng bác sĩ',
-                        headerClasses: 'quantity-col',
-                    },
+                    // {
+                    //     dataField: 'quantity',
+                    //     text: 'Số lượng bác sĩ',
+                    //     headerClasses: 'quantity-col',
+                    // },
                     {
                         dataField: 'Xoa',
                         text: 'Action',

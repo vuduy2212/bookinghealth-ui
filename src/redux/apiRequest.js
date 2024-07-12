@@ -18,6 +18,9 @@ export const loginUser = async (user, dispatch, navigate) => {
     try {
         const res = await axios.post('/api/auth/login', user);
         await dispatch(loginSuccess(res.data));
+        if (res.data.roleId === 'R4') {
+            navigate('/system/admin-clinic/doctor-manage');
+        }
         if (res.data.roleId === 'R3') {
             navigate('/');
         }

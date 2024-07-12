@@ -29,6 +29,10 @@ import ExaminedHistory from '~/pages/UserPages/ExaminedHistory';
 import SpecialistDetail from '~/pages/UserPages/SpecialistDetail';
 import ClinicDetail from '~/pages/UserPages/ClinicDetail';
 import AdminHomePage from '~/pages/AdminPages/AdminHomePage/AdminHomePage';
+import NewClinicManage from '~/pages/AdminPages/NewClinicManage';
+import ClinicUpdateByADClinic from '~/pages/AdminClinicPage/ClinicUpdateByADClinic';
+import DoctorManageByAdmin from '~/pages/AdminClinicPage/DoctorManageByAdmin';
+import CreateDoctorAccount from '~/pages/AdminClinicPage/DoctorManageByAdmin/CreateDoctorAccount';
 
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
@@ -93,7 +97,7 @@ const publicRoutes = [
 
 const privateRoutes = [
     {
-        path: '/examination-history', // Quản lí bệnh nhân
+        path: '/examination-history', // Lịch sử khám bệnh của bệnh nhân
         component: ExaminedHistory,
         layout: DefaultLayoutLite,
     },
@@ -145,7 +149,7 @@ const privateRoutes = [
     // Phòng khám-------------------------------------------------------------------------------------------
     {
         path: '/system/admin/clinic', // Quản lí Phòng khám
-        component: ClinicManage,
+        component: NewClinicManage,
         layout: null,
     },
     {
@@ -195,6 +199,23 @@ const privateRoutes = [
     {
         path: '/system/doctor/update-profile',
         component: UpdateProfile,
+        layout: null,
+    },
+
+    /// Admin Clinic mới vào được
+    {
+        path: '/system/admin-clinic/update-clinic', // Chỉnh sửa Phòng khám
+        component: ClinicUpdateByADClinic,
+        layout: null,
+    },
+    {
+        path: '/system/admin-clinic/doctor-manage', // Chỉnh sửa Phòng khám
+        component: DoctorManageByAdmin,
+        layout: null,
+    },
+    {
+        path: '/system/admin-clinic/create-doctor-account', // Chỉnh sửa Phòng khám
+        component: CreateDoctorAccount,
         layout: null,
     },
 ];

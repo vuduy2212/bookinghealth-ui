@@ -1,0 +1,116 @@
+.container {
+    min-height: calc(100vh - 70px);
+    background-color: white;
+    font-weight: 500;
+    width: 280px;
+    padding: 40px 16px 60px 16px;
+}
+
+.info-box {
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: #f5f7ff;
+    display: flex;
+    padding: 16px 0px 16px 20px;
+    border-radius: 8px;
+}
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        border: 2px solid var(--system-primary); /* Màu xanh lam */
+        animation: blink 1.2s infinite alternate;
+    }
+    @keyframes blink {
+        from {
+            border-color: var(--system-primary); /* Màu xanh lam */
+        }
+        to {
+            border-color: transparent; /* Xóa đường viền */
+        }
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    .info-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+    }
+    .info-role {
+        font-size: 1.2rem;
+        color: var(--system-primary);
+    }
+}
+
+.button-sidebar {
+    width: 100%;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    white-space: nowrap;
+    padding: 13px 16px 13px 16px;
+    color: #575c69;
+    border-radius: 8px;
+    -webkit-transition-duration: 0.45s;
+    -moz-transition-duration: 0.45s;
+    -o-transition-duration: 0.45s;
+    transition-duration: 0.45s;
+    transition-property: color;
+    -webkit-transition-property: color;
+    text-transform: capitalize;
+    font-weight: 600;
+    margin-bottom: 10px;
+    &:hover {
+        background-color: var(--system-primary);
+        .arrow-right {
+            color: white;
+        }
+    }
+    &.open {
+        background-color: var(--system-primary);
+        color: white;
+    }
+    .arrow-right {
+        //color: var(--system-primary);
+        display: inline-block;
+        font-size: 1.6rem;
+    }
+    .button-sidebar-title {
+        margin-right: 24px;
+    }
+}
+.menu-two-user {
+    padding-left: 8px;
+    background-color: var(--system-primary);
+    color: white;
+    max-height: 1000px; /* Giá trị lớn để đảm bảo submenu có đủ không gian */
+    opacity: 1;
+    display: block; /* Hiển thị submenu khi mở */
+    border-radius: 8px;
+    @keyframes fadeInDown {
+        0% {
+            max-height: 0;
+        }
+        100% {
+            max-height: 200px;
+        }
+    }
+    animation: fadeInDown 0.4s ease-out forwards; /* Áp dụng hiệu ứng */
+
+    .button-sidebar {
+        background-color: var(--system-primary);
+        color: white;
+        & > :nth-child(2) {
+            margin-left: 2px;
+        }
+    }
+}

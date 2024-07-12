@@ -1,8 +1,18 @@
 import AdminTableManage from '~/components/SystemComponent/AdminTableManage/AdminTableManage';
 import { deleteClinic } from '~/service/clinic';
 import { AdminLayout } from '~/components/Layouts';
-
+import ModalInfo from '~/components/SystemComponent/ModalInfo';
 function ClinicManage() {
+    const infoFomatter = (cell, row) => {
+        return (
+            <ModalInfo
+                blueTheme
+                // data={products.find((item, index) => {
+                //     return item.id === row.id;
+                // })}
+            />
+        );
+    };
     return (
         <AdminLayout clinic={true}>
             <AdminTableManage
@@ -11,18 +21,24 @@ function ClinicManage() {
                 columnsData={[
                     {
                         dataField: 'id',
-                        text: 'STT',
+                        text: 'ID',
                         sort: true,
                         headerClasses: 'id-col',
                     },
                     {
                         dataField: 'name',
                         text: 'Tên',
+                        headerClasses: 'address-col ',
+                    },
+                    {
+                        dataField: 'phoneNumber',
+                        text: 'Tên',
+                        headerClasses: 'name-col',
                     },
                     {
                         dataField: 'address',
                         text: 'Địa chỉ',
-                        headerClasses: '',
+                        headerClasses: 'address-col ',
                     },
 
                     {

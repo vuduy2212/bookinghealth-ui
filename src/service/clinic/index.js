@@ -11,6 +11,17 @@ export const createNewClinic = async (axiosJWT, user, infoClinic) => {
         throw new Error('Error from sever');
     }
 };
+export const createNewClinicAndAdmin = async (axiosJWT, user, infoClinic) => {
+    try {
+        const response = await axiosJWT.post(`/api/clinic/create-new-clinic-and-admin`, infoClinic, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+        return response.data;
+    } catch (error) {
+        console.log('Error from sever - /api/clinic/create-new-clinic-and-admin');
+        throw new Error('Error from sever');
+    }
+};
 
 export const getAllClinicNoImage = async () => {
     try {
@@ -38,9 +49,31 @@ export const getOneClinic = async (id) => {
     }
 };
 
+export const getOneClinicByAdminId = async (axiosJWT, user) => {
+    try {
+        const response = await axiosJWT.get(`/api/clinic/get-one-by-admin-id/${user.id}`, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+        return response.data;
+    } catch (error) {
+        console.log('Error from sever - /api/clinic/create-new');
+    }
+};
+
 export const updateClinic = async (axiosJWT, user, id, ClinicUpdated) => {
     try {
         const response = await axiosJWT.patch(`/api/Clinic/update/${id}`, ClinicUpdated, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+        return response.data;
+    } catch (error) {
+        console.log('Error from sever - /api/clinic/update');
+        throw new Error('Error from sever');
+    }
+};
+export const updateClinicByAdminId = async (axiosJWT, user, adminClinicId, ClinicUpdated) => {
+    try {
+        const response = await axiosJWT.patch(`/api/Clinic/update-by-admin-id/${adminClinicId}`, ClinicUpdated, {
             headers: { token: `Bearer ${user.accessToken}` },
         });
         return response.data;

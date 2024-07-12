@@ -20,6 +20,7 @@ import { getAllClinicName } from '~/service/clinic';
 import { getAllSpecialistNoImage } from '~/service/specialist';
 import LoadingIcon from '~/components/LoadingIcon';
 import { ToastContainer, toast } from 'react-toastify';
+import getAllCode from '~/service/common/getAllCode';
 const cx = classNames.bind(styles);
 function UpdateProfile() {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -37,6 +38,8 @@ function UpdateProfile() {
     const [contentMarkdown, setcontentMarkdown] = useState('');
     const [allClinic, setAllClinic] = useState([]);
     const [allSpecialist, setAllSpecialist] = useState([]);
+    const [positionId, setPositionId] = useState(user?.positionId || '');
+    const [positionCode, setPositionCode] = useState([]);
 
     const [loading, setLoading] = useState(false);
     // State
@@ -51,6 +54,12 @@ function UpdateProfile() {
         return {
             value: element.id,
             label: element.name,
+        };
+    });
+    const optionPosition = positionCode.map((element, index) => {
+        return {
+            value: element.keyMap,
+            label: element.value,
         };
     });
     const handleEditorChange = ({ html, text }) => {
@@ -76,6 +85,7 @@ function UpdateProfile() {
                 clinicId,
                 specialistId,
                 price: Number(price),
+                positionId,
                 description,
                 contentMarkdown,
                 contentHTML,
@@ -99,10 +109,10 @@ function UpdateProfile() {
         const getData = async () => {
             setLoading(true);
             const data = await getProfileDoctor(user.id);
-            console.log(data);
             const dateAllCLinic = await getAllClinicName();
             const dataAllSpecialist = await getAllSpecialistNoImage();
             setClinicId(data.clinicId || '');
+            setPositionId(data.positionId || '');
             setSpecialistId(data.specialistId || '');
             setPrice(String(data.price) || '');
             setDescription(data.description || '');
@@ -113,6 +123,10 @@ function UpdateProfile() {
             setLoading(false);
         };
         getData();
+        const getCodeFromService = async () => {
+            setPositionCode(await getAllCode('position'));
+        };
+        getCodeFromService();
     }, []);
     return (
         <ProtectedRoute isAllowed={user.roleId === 'R2'}>
@@ -127,7 +141,7 @@ function UpdateProfile() {
                     ) : (
                         <>
                             <div className={cx('row', 'row-one')}>
-                                <div className={cx('name-container', 'col-5')}>
+                                <div className={cx('name-container', 'col-4')}>
                                     <span className={cx('label')}>Bệnh viện đang công tác</span>
                                     <Select
                                         className={cx('select-container')}
@@ -139,7 +153,7 @@ function UpdateProfile() {
                                         onChange={(option) => setClinicId(option.value)}
                                     />
                                 </div>
-                                <div className={cx('name-container', 'col-4')}>
+                                <div className={cx('name-container', 'col-3')}>
                                     <span className={cx('label')}>Chuyên khoa</span>
                                     <Select
                                         className={cx('select-container')}
@@ -151,7 +165,8 @@ function UpdateProfile() {
                                         onChange={(option) => setSpecialistId(option.value)}
                                     />
                                 </div>
-                                <div className={cx('name-container', 'col-3')}>
+
+                                <div className={cx('name-container', 'col-2')}>
                                     <span className={cx('label')}>Giá khám</span>
                                     {/* <input className={cx('form-control', 'input')} placeholder="đ" type="text" /> */}
                                     <CurrencyInput
@@ -166,6 +181,39 @@ function UpdateProfile() {
                                     />
                                     ;
                                 </div>
+
+                                <div className={cx('name-container', 'col-2')}>
+                                    <span className={cx('label')}>Chức danh</span>
+                                    <Select
+                                        className={cx('select-container')}
+                                        options={optionPosition}
+                                        placeholder={'Chọn chức danh'}
+                                        value={optionPosition.find((element) => {
+                                            return element.value == positionId;
+                                        })}
+                                        onChange={(option) => setPositionId(option.value)}
+                                    />
+                                </div>
+                                {/* <div className={cx('name-container', 'col-2')}>
+                                    <label htmlFor="inputPosition" className={cx('label')}>
+                                        Chức danh
+                                    </label>
+                                    <select
+                                        value={positionId}
+                                        id="inputPosition"
+                                        className={cx('select-container')}
+                                        onChange={(e) => setPositionId(e.target.value)}
+                                    >
+                                        <option value={''}>Chọn chức danh</option>
+                                        {positionCode.map((item, index) => {
+                                            return (
+                                                <option value={item.keyMap} key={index}>
+                                                    {item.value}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
+                                </div> */}
                             </div>
                             {/* <div className={cx('note')}>
                         <h2>Ghi chú</h2>

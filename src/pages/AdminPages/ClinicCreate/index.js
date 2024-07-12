@@ -16,7 +16,7 @@ import { FaUpload } from 'react-icons/fa';
 import CommonUtils from '~/utils/CommonUtils';
 import Lightbox from 'react-image-lightbox';
 import { toast, ToastContainer } from 'react-toastify';
-import { createNewClinic } from '~/service/clinic';
+import { createNewClinic, createNewClinicAndAdmin } from '~/service/clinic';
 import { ClipLoader } from 'react-spinners';
 const cx = classNames.bind(styles);
 function ClinicCreate() {
@@ -34,6 +34,10 @@ function ClinicCreate() {
     const [description, setDescription] = useState('');
     const [contentHTML, setcontentHTML] = useState('');
     const [contentMarkdown, setContentMarkdown] = useState('');
+    const [firstNameAdmin, setFirstNameAdmin] = useState('');
+    const [lastNameAdmin, setLatsNameAdmin] = useState('');
+    const [emailAdmin, setEmailAdmin] = useState('');
+    const [phoneNumberAdmin, setPhoneNumberAdmin] = useState('');
 
     const [previewImgURL, setPreviewImgURL] = useState('');
     const [isOpenPreview, setIsOpenPreview] = useState(false);
@@ -85,7 +89,18 @@ function ClinicCreate() {
         setIsOpenPreviewLogo(true);
     };
     const handleSubmit = async () => {
-        if (name === '' || address === '' || phoneNumber === '' || logo === '' || image === '' || description === '') {
+        if (
+            name === '' ||
+            address === '' ||
+            phoneNumber === '' ||
+            logo === '' ||
+            image === '' ||
+            description === '' ||
+            firstNameAdmin === '' ||
+            lastNameAdmin === '' ||
+            emailAdmin === '' ||
+            phoneNumberAdmin === ''
+        ) {
             toast.error(<h4>Vui lòng điền đầy đủ thông tin</h4>, {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 2000,
@@ -101,11 +116,15 @@ function ClinicCreate() {
             description,
             contentHTML,
             contentMarkdown,
+            firstNameAdmin,
+            lastNameAdmin,
+            emailAdmin,
+            phoneNumberAdmin,
         };
         try {
             setSubmitting(true);
-            await createNewClinic(axiosJWT, user, data);
-            toast.success(<h4>Tạo thành công {name}</h4>, {
+            await createNewClinicAndAdmin(axiosJWT, user, data);
+            toast.success(<h4>Tạo thành công {name} </h4>, {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 2000,
             });
@@ -120,6 +139,10 @@ function ClinicCreate() {
             setDescription('');
             setcontentHTML('');
             setContentMarkdown('');
+            setLatsNameAdmin('');
+            setFirstNameAdmin('');
+            setEmailAdmin('');
+            setPhoneNumberAdmin('');
         } catch (error) {
             toast.error(<h4>Xin lỗi! Đã có lỗi xảy ra</h4>, {
                 position: toast.POSITION.TOP_RIGHT,
@@ -134,7 +157,7 @@ function ClinicCreate() {
     return (
         <ProtectedRoute isAllowed={!!user && user.roleId === 'R1'}>
             <div>
-                <HeaderLite title={`Thêm bệnh viện`} />
+                <HeaderLite className={cx('header123')} title={`Thêm bệnh viện`} />
                 <div className={cx('content', 'container')}>
                     <div className={cx('row', 'row-one')}>
                         <div className={cx('name-container', 'col-4')}>
@@ -223,6 +246,45 @@ function ClinicCreate() {
                             value={contentMarkdown}
                             onChange={handleEditorChange}
                         />
+                    </div>
+                    <h1 className={cx('title-admin-clinic')}>Thông tin hỗ trợ viên phòng khám</h1>
+                    <div className={cx('row', 'row-admin')}>
+                        <div className={cx('last-name-container', 'col-3')}>
+                            <label className={cx('label')}>Họ </label>
+                            <input
+                                className={cx('form-control', 'input')}
+                                type="text"
+                                value={lastNameAdmin}
+                                onChange={(e) => setLatsNameAdmin(e.target.value)}
+                            />
+                        </div>
+                        <div className={cx('name-container', 'col-2')}>
+                            <label className={cx('label')}>Tên</label>
+                            <input
+                                className={cx('form-control', 'input')}
+                                type="text"
+                                value={firstNameAdmin}
+                                onChange={(e) => setFirstNameAdmin(e.target.value)}
+                            />
+                        </div>
+                        <div className={cx('name-container', 'col-4')}>
+                            <label className={cx('label')}>Email</label>
+                            <input
+                                className={cx('form-control', 'input')}
+                                type="text"
+                                value={emailAdmin}
+                                onChange={(e) => setEmailAdmin(e.target.value)}
+                            />
+                        </div>
+                        <div className={cx('name-container', 'col-3')}>
+                            <label className={cx('label')}>Số điện thoại</label>
+                            <input
+                                className={cx('form-control', 'input')}
+                                type="text"
+                                value={phoneNumberAdmin}
+                                onChange={(e) => setPhoneNumberAdmin(e.target.value)}
+                            />
+                        </div>
                     </div>
                     <div className={cx('footer')}>
                         <Button rounded large className={cx('button-submit')} onClick={handleSubmit}>

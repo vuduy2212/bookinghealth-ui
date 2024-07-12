@@ -36,7 +36,7 @@ function ExaminedHistory() {
                 data={products.find((item, index) => {
                     return item.id === row.id;
                 })}
-            />
+            ></ModalResultExamined>
         );
     };
 

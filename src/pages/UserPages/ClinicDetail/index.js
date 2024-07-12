@@ -13,6 +13,7 @@ import InfoExamination from '~/components/InfoExamination';
 import { getAllDoctorOneClinic, getAllDoctorOneSpecialist } from '~/service/doctor/profileDoctor';
 import Button from '~/components/Button';
 import { getOneClinic } from '~/service/clinic';
+import LazyImage from '~/components/LazyImage';
 const cx = classNames.bind(style);
 function ClinicDetail() {
     const { id } = useParams();
@@ -23,6 +24,7 @@ function ClinicDetail() {
     const [description, setDescription] = useState('');
     const [listDataDoctor, setListDataDoctor] = useState([]);
     useEffect(() => {
+        window.scrollTo(0, 0);
         const getData = async () => {
             const data = await getOneClinic(id);
             const dataDoctor = await getAllDoctorOneClinic(id);
@@ -45,12 +47,12 @@ function ClinicDetail() {
                         <div className={cx('container')}>
                             <div className={cx('intro-avatar-clinic-container')}>
                                 <div className={cx('intro-avatar-clinic', 'row')}>
-                                    <div className={cx('col-3')}>
-                                        <Image className={cx('image-logo')} src={logo} />
+                                    <div className={cx('col-3', 'fix-logo')}>
+                                        <LazyImage className={cx('image-logo')} src={logo} />
                                     </div>
                                     <div className={cx('col-9')}>
                                         <div className={cx('intro-clinic')}>
-                                            <span className={cx('name-clinic')}>Bệnh viện Hữu Nghị Việt Đức</span>
+                                            <span className={cx('name-clinic')}>{name}</span>
                                             <div className={cx('desc-clinic')}>{description}</div>
                                         </div>
                                     </div>
@@ -71,11 +73,11 @@ function ClinicDetail() {
                                         <div className={cx('col-6', 'info-doctor-left')}>
                                             <div className={cx('intro-container')}>
                                                 <div className={cx('intro-avatar')}>
-                                                    <Image src={CommonUtils.toFileFromBase64(item?.User?.image)} />
+                                                    <LazyImage src={CommonUtils.toFileFromBase64(item?.User?.image)} />
                                                 </div>
                                                 <div className={cx('intro-text')}>
                                                     <span className={cx('intro-title')}>
-                                                        {(item.User.positionData.value || 'Bác sỹ ') +
+                                                        {(item.User.doctorInfo.positionData.value || 'Bác sỹ ') +
                                                             ' ' +
                                                             item.User.lastName +
                                                             '' +
@@ -87,7 +89,7 @@ function ClinicDetail() {
                                                         <span>
                                                             {' '}
                                                             <MdPlace className={cx('icon-place')} />{' '}
-                                                            {item.User.Clinics.address}
+                                                            {item.clinic.address}
                                                         </span>
                                                     </div>
                                                     <Button to={'/doctor-detail/' + item.User.id} primary>
@@ -99,9 +101,9 @@ function ClinicDetail() {
                                         <div className={cx('col-6', 'schedule')}>
                                             <ScheduleDoctor id={2} />
                                             <InfoExamination
-                                                nameClinic={item.User.Clinics.name}
-                                                address={item.User.Clinics.address}
-                                                price={item.User.Clinics.Doctor_Info.price}
+                                                nameClinic={item.clinic.name}
+                                                address={item.clinic.address}
+                                                price={item.price}
                                             />
                                         </div>
                                     </div>

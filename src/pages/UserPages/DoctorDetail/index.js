@@ -25,13 +25,13 @@ function DoctorDetail() {
         window.scrollTo(0, 0);
         const getDataDoctor = async () => {
             const data = await getDetailDoctor(id);
-            setName(`${data.positionData.value || 'Bác sĩ'} ${data.lastName} ${data.firstName}`);
+            setName(`${data.doctorInfo.positionData.value || 'Bác sĩ'} ${data.lastName} ${data.firstName}`);
             setImg(data.image || '');
             setDesc(data.Markdown.description || '');
             setProfile(data.Markdown.contentHTML || '');
-            setPrice(data.Clinics.Doctor_Info.price || 0);
-            setNameClinic(data.Clinics.name || '');
-            setAddressClinic(data.Clinics.address || '');
+            setPrice(data.doctorInfo.price || 0);
+            setNameClinic(data.doctorInfo.clinic.name || '');
+            setAddressClinic(data.doctorInfo.clinic.address || '');
         };
         getDataDoctor();
     }, []);

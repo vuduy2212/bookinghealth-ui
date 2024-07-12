@@ -42,23 +42,6 @@ function SideBarSystem({
 }) {
     const [isOpenMenuUser, setIsOpenMenuUser] = useState(false);
     const currentUser = useSelector((state) => state.auth.login.currentUser);
-    const MENU_ITEM = [
-        {
-            icon: <BiEditAlt />,
-            title: 'Cập nhật thông tin',
-            to: '/update-user',
-        },
-        {
-            icon: <BiHelpCircle />,
-            title: 'Trợ giúp',
-            to: 'help',
-        },
-        {
-            icon: <BiLogOutCircle />,
-            title: 'Đăng xuất',
-            to: '',
-        },
-    ];
     return (
         <div className={cx('container')}>
             <div className={cx('info-box')}>
@@ -95,7 +78,7 @@ function SideBarSystem({
                 }}
                 to={'/system/admin/clinic'}
             >
-                Quản lí bệnh viện
+                Quản lí phòng khám
             </Button>
             <Button
                 leftIcon={<BiPlusMedical />}
