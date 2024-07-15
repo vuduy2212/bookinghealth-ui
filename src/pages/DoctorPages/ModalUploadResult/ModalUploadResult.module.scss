@@ -1,0 +1,173 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.green-theme {
+    background-color: #28a745;
+    color: white;
+    border-radius: 4px;
+    &:hover {
+        background-color: #28a745;
+        color: white;
+        opacity: 0.8;
+    }
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .medication-header {
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+    .modal-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333333;
+    }
+    .file-label {
+        margin-left: 0;
+    }
+    .close-modal {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .modal-icon-close {
+        font-size: 24px;
+        color: #999999;
+    }
+
+    .modal-body {
+        margin-top: 20px;
+    }
+
+    .appointment-info {
+        margin-bottom: 20px;
+    }
+
+    .appointment-info p {
+        margin: 5px 0;
+        color: #666666;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #cccccc;
+        resize: none;
+    }
+
+    input[type='file'],
+    input[type='text'],
+    input[type='number'],
+    select {
+        // width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #cccccc;
+        background-color: #f9f9f9;
+        margin-bottom: 10px;
+    }
+
+    .medication-inputs {
+        display: flex;
+        gap: 10px;
+        .large-inputs {
+            width: 70% !important;
+        }
+    }
+    .file-container {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        label {
+            margin-right: 16px;
+            font-weight: 600;
+        }
+    }
+    .medication-item {
+        display: flex;
+        justify-content: space-between;
+        background: #f2f2f2;
+        padding: 10px;
+        border: 1px solid #dddddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .btn-add-medication {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .medication-list {
+        margin-top: 10px;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    .modal-button-close,
+    .modal-button-save {
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+
+    .green-theme {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .active-modal {
+        overflow: hidden;
+    }
+}

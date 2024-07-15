@@ -1,0 +1,54 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 28px; /* Tăng kích cỡ chữ lên */
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 18px; /* Tăng kích cỡ chữ lên */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.specialty-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.specialty-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    text-decoration: none; /* Loại bỏ đường gạch chân mặc định của Link */
+    color: inherit; /* Sử dụng màu chữ mặc định */
+}
+
+.specialty-item:hover {
+    transform: translateY(-5px);
+}
+
+.specialty-logo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.specialty-name {
+    display: block;
+    font-weight: bold;
+    font-size: 1.4rem;
+}

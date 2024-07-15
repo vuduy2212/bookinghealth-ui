@@ -13,6 +13,8 @@ function AdminClinicLayout({
     userPage = false,
     handbook = false,
     shop = false,
+    medication = false,
+    booking = false,
     children,
 }) {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -29,6 +31,8 @@ function AdminClinicLayout({
                         handbook={handbook}
                         shop={shop}
                         doctor={doctor}
+                        medication={medication}
+                        booking={booking}
                     />
                     <div className={cx('wrapper')}>{children}</div>
                 </div>

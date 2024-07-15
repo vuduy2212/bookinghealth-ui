@@ -3,13 +3,14 @@
 }
 
 .btn-modal {
-    width: 60%;
-    background-color: rgb(121, 118, 118);
+    width: 30%;
+    background-color: #007bff;
+
     color: white;
     margin-right: 8px;
     border-radius: 4px;
     &:hover {
-        background-color: rgb(97, 95, 95);
+        background-color: #007bff;
     }
 }
 

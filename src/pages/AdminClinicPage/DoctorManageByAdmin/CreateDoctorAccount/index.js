@@ -81,6 +81,7 @@ function CreateDoctorAccount() {
                 email: emailDoctor,
                 phoneNumber: phoneNumberDoctor,
                 clinicId: user.clinicId,
+                clinicName: user.clinicName,
                 specialistId,
                 positionId,
                 description,
@@ -98,7 +99,7 @@ function CreateDoctorAccount() {
                 setEmailDoctor('');
                 setPhoneNumberDoctor('');
                 setSpecialistId('');
-                setPositionCode('');
+                setPositionId('');
                 setDescription('');
                 setcontentHTML('');
                 setcontentMarkdown('');

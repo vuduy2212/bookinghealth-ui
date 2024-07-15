@@ -1,0 +1,224 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow: hidden; // prevent background scroll
+
+    &-content {
+        position: relative;
+        width: 60%;
+        max-width: 800px;
+        max-height: 80%; // limit height to allow scrolling
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+        animation: slideIn 0.3s ease-in-out;
+        overflow-y: auto; // enable vertical scrolling
+        z-index: 1001; // ensure modal content is above the overlay
+        font-family: 'Arial, sans-serif';
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        .modal-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        margin-top: 10px;
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            cursor: pointer;
+            display: inline-block;
+            .modal-icon-close {
+                color: #333;
+            }
+        }
+    }
+
+    &-body {
+        .appointment-info {
+            margin-bottom: 20px;
+
+            h2 {
+                font-size: 2.2rem;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: #007bff;
+            }
+
+            p {
+                font-size: 1.8rem;
+                margin: 5px 0;
+                color: #333;
+
+                strong {
+                    font-weight: 600;
+                    color: #333;
+                }
+            }
+        }
+
+        .result-info {
+            margin-bottom: 20px;
+
+            h3 {
+                font-size: 2.2rem;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: #000;
+            }
+
+            p {
+                background: #f9f9f9;
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: #333;
+            }
+
+            .btn-open-file {
+                margin-top: 10px;
+                display: inline-block;
+                background-color: #007bff;
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-align: center;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
+            }
+        }
+
+        .medication-list {
+            margin-top: 20px;
+
+            h3 {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: #333;
+            }
+
+            .medication-header {
+                display: flex;
+                justify-content: space-between;
+                background: #ececec;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: 600;
+
+                span {
+                    font-size: 1.6rem;
+                    color: #333;
+                    flex: 1;
+                    text-align: center;
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .medication-item {
+                display: flex;
+                justify-content: space-between;
+                background: #f9f9f9;
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+
+                span {
+                    font-size: 1.6rem;
+                    color: #555;
+                    flex: 1;
+                    text-align: center;
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    &-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+
+        .modal-button-close {
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #e53935;
+            }
+        }
+    }
+}
+
+.active-modal {
+    overflow: hidden;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.btn-modal {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: #fff;
+
+    &.green-theme {
+        background-color: #4caf50;
+
+        &:hover {
+            background-color: #45a049;
+        }
+    }
+
+    &:hover {
+        background-color: #45a049;
+    }
+}

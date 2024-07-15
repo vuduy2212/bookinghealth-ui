@@ -6,7 +6,7 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import Menu from '~/components/Popper/Menu';
 import styles from './NewHeaderSystem.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { MdSupportAgent } from 'react-icons/md';
+import { MdPassword, MdSupportAgent } from 'react-icons/md';
 import { BiBell, BiEditAlt, BiHelpCircle, BiLogOutCircle, BiNotification } from 'react-icons/bi';
 import { logOut } from '~/redux/apiRequest';
 import Image from '~/components/Image';
@@ -48,6 +48,11 @@ export default function NewHeaderSystem() {
             icon: <BiHelpCircle />,
             title: 'Trợ giúp',
             to: 'help',
+        },
+        {
+            icon: <MdPassword />,
+            title: 'Thay đổi mật khẩu',
+            to: '/change-password',
         },
         {
             icon: <BiLogOutCircle />,

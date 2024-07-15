@@ -14,21 +14,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '~/redux/authSlice';
 import styles from './BookingManageDoctor.module.scss';
 import { useLayoutEffect, useState } from 'react';
-import HeaderAdmin from '~/components/SystemComponent/HeaderSystem/HeaderAdmin';
 import ModalDelete from '~/components/SystemComponent/ModalDelete';
 import ProtectedRoute from '~/routes/ProtectedRoute';
-import { confirmUser, deleteUser } from '~/redux/apiRequest';
 import ModalInfo from '~/components/SystemComponent/ModalInfo';
 import {
     cancelBooking,
-    confirmBooking,
+    completeMedicalExamination,
     finishedExamination,
-    getAllNewBooking,
     getConfirmedBookingOneDoctor,
 } from '~/service/booking';
 import LoadingIcon from '~/components/LoadingIcon';
 import HeaderDoctor from '~/components/SystemComponent/HeaderSystem/HeaderDoctor';
-import ModalUploadFile from '~/components/SystemComponent/ModalUploadFile';
+import ModalUploadResult from '../ModalUploadResult';
+import { FiExternalLink } from 'react-icons/fi';
 const cx = classNames.bind(styles);
 function BookingManageDoctor() {
     let currentDate = new Date();
@@ -47,7 +45,7 @@ function BookingManageDoctor() {
     };
 
     const buttonDeleteFomatter = (cell, row) => (
-        <div>
+        <div className={cx('row-aciton')}>
             <ModalDelete
                 id={row.id}
                 reload={getData}
@@ -64,17 +62,21 @@ function BookingManageDoctor() {
                     });
                 }}
             />
-            <ModalUploadFile
+            <ModalUploadResult
                 greenTheme
-                id={row.id}
+                bookingId={row.id}
                 reload={getData}
                 date={date}
-                submitAction={finishedExamination}
+                submitAction={completeMedicalExamination}
                 titleButton="Đã khám xong"
                 titleHeader="Đã khám xong"
                 titleBody="Bạn có chắc chắn với hành động này không"
                 titleConfirm="Xác nhận"
                 roleId={row.roleId}
+                data={products.find((item, index) => {
+                    return item.id === row.id;
+                })}
+                clinicId={user.clinicId}
                 showToast={() => {
                     toast.success(<h4>Xác nhận thành công: Đã khám xong</h4>, {
                         position: toast.POSITION.TOP_RIGHT,
@@ -92,6 +94,22 @@ function BookingManageDoctor() {
                     return item.id === row.id;
                 })}
             />
+        );
+    };
+    const patientFomatter = (cell, row) => {
+        return (
+            <div className={cx('patient-name-col')}>
+                <span>
+                    {
+                        products.find((item, index) => {
+                            return item.id === row.id;
+                        }).namePatient
+                    }
+                </span>
+                <a href={`/patient-detail/${row.id}`} target="_blank">
+                    <FiExternalLink></FiExternalLink>
+                </a>
+            </div>
         );
     };
     const getData = async (datepara) => {
@@ -114,10 +132,17 @@ function BookingManageDoctor() {
             sort: true,
             headerClasses: cx('id-col'),
         },
+        // {
+        //     dataField: 'namePatient',
+        //     text: 'Họ và tên',
+        //     headerClasses: cx('name-col'),
+        // },
         {
-            dataField: 'namePatient',
-            text: 'Họ và tên',
-            headerClasses: cx('name-col'),
+            dataField: 'Xóa',
+            text: 'Bệnh nhân',
+            formatter: patientFomatter,
+            //headerClasses: cx('info-col'),
+            align: 'center',
         },
         {
             dataField: 'time',

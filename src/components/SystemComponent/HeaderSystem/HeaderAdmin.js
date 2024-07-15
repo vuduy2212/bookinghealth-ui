@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 
 import styles from './HeaderSystem.module.scss';
-import { MdSupportAgent } from 'react-icons/md';
+import { MdPassword, MdSupportAgent } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuItem from './MenuItem';
 import { AiFillCaretDown } from 'react-icons/ai';
@@ -53,6 +53,11 @@ function HeaderAdmin({
             icon: <BiHelpCircle />,
             title: 'Trợ giúp',
             to: 'help',
+        },
+        {
+            icon: <MdPassword />,
+            title: 'Thay đổi mật khẩu',
+            to: '/change-password',
         },
         {
             icon: <BiLogOutCircle />,

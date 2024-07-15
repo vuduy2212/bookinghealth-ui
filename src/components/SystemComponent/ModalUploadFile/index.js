@@ -1,19 +1,13 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './ModalUploadFile.module.scss';
 import Button from '~/components/Button';
 import { MdClose } from 'react-icons/md';
-import axios from 'axios';
 import { createAxios } from '~/redux/createInstance';
 import { loginSuccess } from '~/redux/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser } from '~/redux/apiRequest';
-import { AiFillLayout } from 'react-icons/ai';
-import { FaUpload } from 'react-icons/fa';
 import CommonUtils from '~/utils/CommonUtils';
 const cx = classNames.bind(styles);
 function ModalUploadFile({

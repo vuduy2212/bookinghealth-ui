@@ -75,5 +75,6 @@ export const {
     logOutSuccess,
     logOutFailed,
     updateSuccess,
+    changePasswordSuccess,
 } = authSlice.actions;
 export default authSlice.reducer;

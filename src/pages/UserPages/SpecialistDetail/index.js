@@ -55,19 +55,19 @@ function SpecialistDetail() {
                                                 </div>
                                                 <div className={cx('intro-text')}>
                                                     <span className={cx('intro-title')}>
-                                                        {(item.User.positionData.value || 'Bác sỹ ') +
+                                                        {(item?.User?.positionData?.value || 'Bác sỹ ') +
                                                             ' ' +
-                                                            item.User.lastName +
+                                                            item?.User.lastName +
                                                             '' +
-                                                            item.User.firstName}
+                                                            item?.User.firstName}
                                                     </span>
                                                     <div className={cx('intro-desc')}>
-                                                        {item.User.Markdown.description}
+                                                        {item?.User.Markdown.description}
                                                         <br />
                                                         <span>
                                                             {' '}
                                                             <MdPlace className={cx('icon-place')} />{' '}
-                                                            {item.clinic.address}
+                                                            {item?.clinic.address}
                                                         </span>
                                                     </div>
                                                     <Button to={'/doctor-detail/' + item.User.id} primary>

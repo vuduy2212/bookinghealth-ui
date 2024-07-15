@@ -19,6 +19,7 @@ import {
     BiHistory,
     BiLogOutCircle,
     BiMenu,
+    BiPhone,
     BiPlusMedical,
     BiRightArrow,
     BiUser,
@@ -36,9 +37,10 @@ function SideBarAdminClinic({
     home = false,
     doctor = false,
     clinic = false,
-    medicine = false,
+    medication = false,
     handbook = false,
     shop = false,
+    booking = false,
 }) {
     const currentUser = useSelector((state) => state.auth.login.currentUser);
     return (
@@ -66,9 +68,20 @@ function SideBarAdminClinic({
                     backgroundColor: home ? '#4b49ac' : '',
                     color: home ? 'white' : '',
                 }}
-                to={'/system/admin/dashboard'}
+                to={'/system/admin-clinic/dashboard'}
             >
                 Trang chủ
+            </Button>
+            <Button
+                leftIcon={<BiPhone />}
+                className={cx('button-sidebar')}
+                to={'/system/admin-clinic/new-booking'}
+                style={{
+                    backgroundColor: booking ? '#4b49ac' : '',
+                    color: booking ? 'white' : '',
+                }}
+            >
+                Lịch hẹn mới
             </Button>
             <Button
                 leftIcon={<BiUser />}
@@ -96,10 +109,10 @@ function SideBarAdminClinic({
                 leftIcon={<BiPlusMedical />}
                 className={cx('button-sidebar')}
                 style={{
-                    backgroundColor: medicine ? '#4b49ac' : '',
-                    color: medicine ? 'white' : '',
+                    backgroundColor: medication ? '#4b49ac' : '',
+                    color: medication ? 'white' : '',
                 }}
-                to={'/system/admin-clinic/specialist'}
+                to={'/system/admin-clinic/medication-manage'}
             >
                 Quản lý thuốc men
             </Button>

@@ -19,6 +19,16 @@ export const getAllNewBooking = async (axiosJWT, user) => {
         throw new Error(error);
     }
 };
+export const getAllNewBookingOneClinic = async (axiosJWT, user) => {
+    try {
+        const res = await axiosJWT.get(`/api/booking/get-all-new-appointment-one-clinic/:${user.clinicId}`, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+        return res.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
 export const confirmBooking = async (user, id, axiosJWT) => {
     try {
         const res = await axiosJWT.patch(
@@ -35,7 +45,7 @@ export const confirmBooking = async (user, id, axiosJWT) => {
 };
 export const cancelBooking = async (user, id, axiosJWT) => {
     try {
-        const res = await axiosJWT.delete(`/api/booking/cancel-booking/${id}`, {
+        const res = await axiosJWT.patch(`/api/booking/cancel-booking/${id}`, {
             headers: { token: `Bearer ${user.accessToken}` },
         });
         return res.data;
@@ -78,11 +88,49 @@ export const getPatientExamined = async (axiosJWT, user, date) => {
         throw new Error(error);
     }
 };
+export const getPatientExaminedV2 = async (axiosJWT, user, date) => {
+    try {
+        const res = await axiosJWT.get(`/api/booking/get-patient-examined-one-date-v2/${user.id}/${date}`, {
+            headers: { token: `Bearer ${user.accessToken}` },
+        });
+        return res.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
 export const getBookingOnePatient = async (axiosJWT, user) => {
     try {
         const res = await axiosJWT.get(`/api/booking/get-all-booking-one-patient/${user.id}`, {
             headers: { token: `Bearer ${user.accessToken}` },
         });
+        return res.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+export const getAllExaminedOnePatient = async (id) => {
+    try {
+        const response = await axios.get(`/api/booking/get-all-examined-one-patient/${id}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
+
+export const completeMedicalExamination = async (axiosJWT, user, bookingId, diagnosis, file, medications) => {
+    try {
+        const res = await axiosJWT.post(
+            `/api/booking/complete-medical-examination`,
+            {
+                bookingId,
+                diagnosis,
+                file,
+                medications,
+            },
+            {
+                headers: { token: `Bearer ${user.accessToken}` },
+            },
+        );
         return res.data;
     } catch (error) {
         throw new Error(error);

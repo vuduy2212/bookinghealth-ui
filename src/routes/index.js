@@ -33,6 +33,14 @@ import NewClinicManage from '~/pages/AdminPages/NewClinicManage';
 import ClinicUpdateByADClinic from '~/pages/AdminClinicPage/ClinicUpdateByADClinic';
 import DoctorManageByAdmin from '~/pages/AdminClinicPage/DoctorManageByAdmin';
 import CreateDoctorAccount from '~/pages/AdminClinicPage/DoctorManageByAdmin/CreateDoctorAccount';
+import MedicationManage from '~/pages/AdminClinicPage/MedicationManage';
+import ChangePassword from '~/pages/UserPages/ChangePassword';
+import AllSpecialist from '~/pages/UserPages/AllSpecialist';
+import AllClinic from '~/pages/UserPages/AllClinic';
+import AllDoctor from '~/pages/UserPages/AllDoctor';
+import NewBookingManage from '~/pages/AdminClinicPage/NewBookingManage';
+import ExaminedPatient from '~/pages/UserPages/ExaminedPatient';
+import AdminClinicHomePage from '~/pages/AdminClinicPage/AdminClinicHomePage';
 
 // PublicRoutes: không cần đăng nhập, vẫn vào được
 const publicRoutes = [
@@ -40,6 +48,21 @@ const publicRoutes = [
         path: '/',
         component: Home,
         layout: DefaultLayout,
+    },
+    {
+        path: '/all-specialist',
+        component: AllSpecialist,
+        layout: DefaultLayoutLite,
+    },
+    {
+        path: '/all-clinic',
+        component: AllClinic,
+        layout: DefaultLayoutLite,
+    },
+    {
+        path: '/all-doctor',
+        component: AllDoctor,
+        layout: DefaultLayoutLite,
     },
     {
         path: '/camnang',
@@ -97,8 +120,13 @@ const publicRoutes = [
 
 const privateRoutes = [
     {
-        path: '/examination-history', // Lịch sử khám bệnh của bệnh nhân
+        path: '/booking-history', // Lịch sử khám bệnh của bệnh nhân
         component: ExaminedHistory,
+        layout: DefaultLayoutLite,
+    },
+    {
+        path: '/examined-history', // Lịch sử khám bệnh của bệnh nhân
+        component: ExaminedPatient,
         layout: DefaultLayoutLite,
     },
 
@@ -204,18 +232,38 @@ const privateRoutes = [
 
     /// Admin Clinic mới vào được
     {
+        path: '/system/admin-clinic/dashboard', // Chỉnh sửa Phòng khám
+        component: AdminClinicHomePage,
+        layout: null,
+    },
+    {
         path: '/system/admin-clinic/update-clinic', // Chỉnh sửa Phòng khám
         component: ClinicUpdateByADClinic,
         layout: null,
     },
     {
-        path: '/system/admin-clinic/doctor-manage', // Chỉnh sửa Phòng khám
+        path: '/system/admin-clinic/doctor-manage', // Chỉnh sửa bác sĩ
         component: DoctorManageByAdmin,
+        layout: null,
+    },
+    {
+        path: '/system/admin-clinic/medication-manage', // Quản lí thuocs
+        component: MedicationManage,
         layout: null,
     },
     {
         path: '/system/admin-clinic/create-doctor-account', // Chỉnh sửa Phòng khám
         component: CreateDoctorAccount,
+        layout: null,
+    },
+    {
+        path: '/change-password', // Thay đổi mật khẩu
+        component: ChangePassword,
+        layout: null,
+    },
+    {
+        path: '/system/admin-clinic/new-booking', // Thay đổi mật khẩu
+        component: NewBookingManage,
         layout: null,
     },
 ];

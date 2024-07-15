@@ -44,7 +44,7 @@ function ModalResultExamined({
     } else {
         document.body.classList.remove(cx('active-modal'));
     }
-    const stringbase64 = CommonUtils.toFileFromBase64(data.result);
+    const stringbase64 = CommonUtils.toFileFromBase64(data.resultFile);
 
     const blob = CommonUtils.base64toBlob(String(stringbase64));
     const url = URL.createObjectURL(blob);
@@ -58,7 +58,7 @@ function ModalResultExamined({
                     'blue-theme': blueTheme,
                 })}
             >
-                {'Xem hồ sơ khám bệnh'}
+                {'File kết quả khám chi tiết'}
             </Button>
 
             {modal && (

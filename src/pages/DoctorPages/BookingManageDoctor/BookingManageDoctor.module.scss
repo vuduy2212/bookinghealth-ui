@@ -18,13 +18,25 @@
     width: 150px;
 }
 .action-col {
+    min-width: 300px;
 }
 .info-col {
-    width: 250px;
+    width: 180px;
 }
 .delete-button {
     &:hover {
         background-color: rgb(238, 71, 71);
+    }
+}
+
+.patient-name-col {
+    display: flex;
+    align-items: center;
+    span {
+        margin-right: 15px;
+    }
+    a {
+        font-size: 20px;
     }
 }
 
@@ -98,4 +110,9 @@
 .date-container {
     display: flex;
     flex-direction: column;
+}
+
+.row-aciton {
+    display: flex;
+    justify-content: center;
 }

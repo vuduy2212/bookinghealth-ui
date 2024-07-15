@@ -10,6 +10,7 @@ import { logOut } from '~/redux/apiRequest';
 import Image from '~/components/Image';
 import CommonUtils from '~/utils/CommonUtils';
 import { AiFillProfile } from 'react-icons/ai';
+import { MdPassword } from 'react-icons/md';
 const cx = classNames.bind(styles);
 function HeaderDoctor() {
     const user = useSelector((state) => state.auth.login.currentUser);
@@ -38,6 +39,11 @@ function HeaderDoctor() {
             to: 'help',
         },
         {
+            icon: <MdPassword />,
+            title: 'Thay đổi mật khẩu',
+            to: '/change-password',
+        },
+        {
             icon: <BiLogOutCircle />,
             title: 'Đăng xuất',
             onClick: () => {
@@ -55,10 +61,15 @@ function HeaderDoctor() {
                     <img src={images.doctor} className={cx('icon-doctor')}></img>
                     <span className={cx('title')}>Doctor Page</span>
                 </Link>
-                <MenuItem to="/system/doctor/booking">Yêu cầu đặt lịch</MenuItem>
-                <MenuItem to="/system/doctor/schedule">Quản lí thời gian khám</MenuItem>
-                <MenuItem to="/system/doctor/patient-examined">Bệnh nhân đã khám</MenuItem>
-                <MenuItem to="/system/doctor/history">Lịch sử khám bệnh</MenuItem>
+                <MenuItem className={cx('menu-item')} to="/system/doctor/booking">
+                    Yêu cầu đặt lịch
+                </MenuItem>
+                <MenuItem className={cx('menu-item')} to="/system/doctor/schedule">
+                    Quản lí thời gian khám
+                </MenuItem>
+                <MenuItem className={cx('menu-item')} to="/system/doctor/patient-examined">
+                    Bệnh nhân đã khám
+                </MenuItem>
 
                 <span className={cx('welcome')}>
                     {user?.lastName && user?.firstName ? user.lastName + ' ' + user.firstName : 'Xin chào'}

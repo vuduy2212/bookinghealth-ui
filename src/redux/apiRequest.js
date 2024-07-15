@@ -19,13 +19,13 @@ export const loginUser = async (user, dispatch, navigate) => {
         const res = await axios.post('/api/auth/login', user);
         await dispatch(loginSuccess(res.data));
         if (res.data.roleId === 'R4') {
-            navigate('/system/admin-clinic/doctor-manage');
+            navigate('/system/admin-clinic/dashboard');
         }
         if (res.data.roleId === 'R3') {
             navigate('/');
         }
         if (res.data.roleId === 'R1') {
-            navigate('/system/admin/patient-manage');
+            navigate('/system/admin/dashboard');
         }
         if (res.data.roleId === 'R2') {
             navigate('/system/doctor/booking');

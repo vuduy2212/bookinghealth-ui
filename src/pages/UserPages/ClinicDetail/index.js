@@ -77,7 +77,7 @@ function ClinicDetail() {
                                                 </div>
                                                 <div className={cx('intro-text')}>
                                                     <span className={cx('intro-title')}>
-                                                        {(item.User.doctorInfo.positionData.value || 'Bác sỹ ') +
+                                                        {(item?.User?.doctorInfo?.positionData?.value || 'Bác sỹ ') +
                                                             ' ' +
                                                             item.User.lastName +
                                                             '' +

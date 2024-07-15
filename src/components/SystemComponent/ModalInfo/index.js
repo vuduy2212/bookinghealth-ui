@@ -42,14 +42,9 @@ function ModalInfo({
     } else {
         document.body.classList.remove(cx('active-modal'));
     }
-
-    const handleSubmit = async () => {
-        setModal(false);
-        await submitAction(user, id, axiosJWT, roleId);
-        showToast();
-        await reload();
-    };
-
+    function formatCurrency(amount) {
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + 'VND';
+    }
     return (
         <>
             <Button
@@ -125,6 +120,9 @@ function ModalInfo({
                                     </li>
                                     <li className={cx('info-item')}>
                                         <span className={cx('item-label')}>Đặt lịch lúc:</span> {data.timeBooking}
+                                    </li>
+                                    <li className={cx('info-item')}>
+                                        <span className={cx('item-label')}>Giá khám:</span> {formatCurrency(data.price)}
                                     </li>
                                 </ul>
                             </div>

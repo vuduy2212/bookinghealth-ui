@@ -4,40 +4,25 @@ import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.m
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import { ToastContainer, toast } from 'react-toastify';
-import Flatpickr from 'react-flatpickr';
+import { ToastContainer } from 'react-toastify';
 
 import 'flatpickr/dist/themes/material_green.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { createAxios } from '~/redux/createInstance';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '~/redux/authSlice';
-import styles from './PatientExamined.module.scss';
+import styles from './ExaminedPatient.module.scss';
 import { useLayoutEffect, useState } from 'react';
-import HeaderAdmin from '~/components/SystemComponent/HeaderSystem/HeaderAdmin';
-import ModalDelete from '~/components/SystemComponent/ModalDelete';
+
 import ProtectedRoute from '~/routes/ProtectedRoute';
-import { confirmUser, deleteUser } from '~/redux/apiRequest';
 import ModalInfo from '~/components/SystemComponent/ModalInfo';
-import {
-    cancelBooking,
-    confirmBooking,
-    finishedExamination,
-    getAllNewBooking,
-    getConfirmedBookingOneDoctor,
-    getPatientExaminedV2,
-} from '~/service/booking';
+import { getAllExaminedOnePatient, getBookingOnePatient } from '~/service/booking';
 import LoadingIcon from '~/components/LoadingIcon';
-import HeaderDoctor from '~/components/SystemComponent/HeaderSystem/HeaderDoctor';
-import Button from '~/components/Button';
-import { FaUpload } from 'react-icons/fa';
 import ModalResultExamined from '~/components/SystemComponent/ModalResultExamined';
-import ModalResult from '../ModalResult';
-import { FiExternalLink } from 'react-icons/fi';
+import ModalResult from '~/pages/DoctorPages/ModalResult';
 const cx = classNames.bind(styles);
-function PatientExamined() {
+function ExaminedPatient() {
     let currentDate = new Date();
-    const [date, setDate] = useState(new Date().setHours(0, 0, 0, 0));
 
     const user = useSelector((state) => state.auth.login.currentUser);
     const dispatch = useDispatch();
@@ -45,11 +30,6 @@ function PatientExamined() {
     const { SearchBar } = Search;
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
-
-    const handleOnChangeDate = async (dateSelect) => {
-        setDate(new Date(dateSelect).getTime());
-        getData(new Date(dateSelect).getTime());
-    };
 
     const resultFomatter = (cell, row) => {
         return (
@@ -77,26 +57,10 @@ function PatientExamined() {
             />
         );
     };
-    const patientFomatter = (cell, row) => {
-        return (
-            <div className={cx('patient-name-col')}>
-                <span style={{ 'margin-right': '10px' }}>
-                    {
-                        products.find((item, index) => {
-                            return item.id === row.id;
-                        }).namePatient
-                    }
-                </span>
-                <a href={`/patient-detail/${row.id}`} target="_blank">
-                    <FiExternalLink></FiExternalLink>
-                </a>
-            </div>
-        );
-    };
-    const getData = async (datepara) => {
+    const getData = async () => {
         try {
             setLoading(true);
-            const data = await getPatientExaminedV2(axiosJWT, user, datepara);
+            const data = await getAllExaminedOnePatient(user.id);
             setProducts(data);
             setLoading(false);
         } catch (error) {
@@ -114,11 +78,19 @@ function PatientExamined() {
             headerClasses: cx('id-col'),
         },
         {
-            dataField: 'Xóa',
-            text: 'Bệnh nhân',
-            formatter: patientFomatter,
-            headerClasses: cx('info-col'),
-            align: 'center',
+            dataField: 'nameDoctor',
+            text: 'Bác sĩ',
+            headerClasses: cx('name-col'),
+        },
+        {
+            dataField: 'clinic',
+            text: 'Phòng khám',
+            headerClasses: cx('name-col'),
+        },
+        {
+            dataField: 'nameDoctor',
+            text: 'Bác sĩ',
+            headerClasses: cx('name-col'),
         },
         {
             dataField: 'time',
@@ -130,12 +102,6 @@ function PatientExamined() {
             text: 'Ngày',
             headerClasses: cx('time-col'),
         },
-
-        {
-            dataField: 'phoneNumberPatient',
-            text: 'Số điện thoại',
-            headerClasses: cx('time-col'),
-        },
         {
             dataField: 'Xóa',
             text: 'Thông tin chi tiết',
@@ -145,16 +111,15 @@ function PatientExamined() {
         },
         {
             dataField: 'Xoa',
-            text: 'Hồ sơ khám bệnh, đơn thuốc, ...',
+            text: 'Kết quả',
             formatter: resultFomatter,
             headerClasses: cx('action-col'),
             align: 'center',
         },
     ];
     return (
-        <ProtectedRoute isAllowed={!!user && user.roleId === 'R2'} redirectPath="/login">
+        <ProtectedRoute isAllowed={!!user} redirectPath="/login">
             <div>
-                <HeaderDoctor booking />
                 {loading ? (
                     <div className={cx('loading-container')}>
                         {' '}
@@ -165,26 +130,7 @@ function PatientExamined() {
                         <ToolkitProvider bootstrap4 keyField="id" data={products} columns={columns} search>
                             {(props) => (
                                 <div>
-                                    <h2 className={cx('title')}>Bệnh nhân đã khám</h2>
-                                    <div className={cx('wrapper-input', 'row')}>
-                                        <div className={cx('wrapper-date', 'col-6')}>
-                                            <div className={cx('date-container')}>
-                                                <label>Chọn ngày</label>
-                                                <Flatpickr
-                                                    value={date} // giá trị ngày tháng
-                                                    // các option thêm cho thư viện
-                                                    options={{
-                                                        dateFormat: 'd-m-Y', // format ngày giờ
-                                                        minDate: `${currentDate.getDate()}-${
-                                                            currentDate.getMonth() + 1
-                                                        }-${currentDate.getFullYear()}`,
-                                                    }}
-                                                    // event
-                                                    onChange={(dateSelect) => handleOnChangeDate(dateSelect)}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <h2 className={cx('title')}>Lịch sử khám bệnh</h2>
                                     <div className={cx('wrapper-search', 'mx-5')}>
                                         <h4>Tìm kiếm</h4>
                                         <SearchBar
@@ -213,4 +159,4 @@ function PatientExamined() {
     );
 }
 
-export default PatientExamined;
+export default ExaminedPatient;

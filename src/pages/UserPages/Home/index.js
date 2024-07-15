@@ -70,7 +70,7 @@ function Home() {
                 textMoreButton="Xem thêm"
                 white
                 data={dataTopSpecialist}
-                linkMoreBtn="/xemthem"
+                linkMoreBtn="/all-specialist"
             />
             <SliderSimple
                 clinicSlider
@@ -79,7 +79,7 @@ function Home() {
                 textMoreButton="Tìm kiếm"
                 grey
                 data={dataTopClinic}
-                linkMoreBtn="/xemthem"
+                linkMoreBtn="/all-clinic"
             />
 
             <SliderSimple
@@ -88,7 +88,7 @@ function Home() {
                 white
                 data={dataTopDoctor}
                 docterSlider
-                linkMoreBtn="/xemthem"
+                linkMoreBtn="/all-doctor"
             />
             <SliderSimple
                 title="Cẩm nang"

@@ -39,7 +39,6 @@ function DoctorDetail() {
         <div>
             <HeaderLite title="Thông tin bác sỹ chi tiết"></HeaderLite>
             <div className={cx('content', 'container')}>
-                <SiteMap />
                 <div className={cx('intro-container')}>
                     <div className={cx('intro-avatar')}>
                         <Image src={CommonUtils.toFileFromBase64(img)} />

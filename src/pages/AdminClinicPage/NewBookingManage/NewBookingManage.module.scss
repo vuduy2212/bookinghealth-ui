@@ -1,7 +1,17 @@
-.hospital-management {
+.booking-management {
     padding: 20px;
     font-family: Arial, sans-serif;
     padding-top: 100px;
+
+    .column-name {
+        min-width: 200px;
+    }
+    .column-time {
+        min-width: 130px;
+    }
+    .column-date {
+        min-width: 150px;
+    }
 
     .header {
         display: flex;
@@ -11,7 +21,7 @@
 
         h1 {
             margin-left: 4px;
-            font-size: 28px;
+            font-size: 24px;
             color: #333;
             font-weight: 600;
         }
@@ -51,7 +61,7 @@
         }
     }
 
-    .hospital-table {
+    .booking-table {
         width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
@@ -70,7 +80,6 @@
 
         td {
             font-size: 16px;
-            font-weight: 500;
         }
 
         tr:nth-child(even) {
@@ -117,19 +126,19 @@
             }
         }
         .column-action {
-            width: 360px;
+            width: 300px;
             display: flex;
             justify-content: space-around;
         }
         .header-column-action {
-            width: 360px;
+            width: 300px;
         }
         .column-phone {
             width: 180px;
         }
     }
 
-    .add-hospital-form {
+    .add-booking-form {
         background-color: #f9f9f9;
         padding: 20px;
         border: 1px solid #ddd;

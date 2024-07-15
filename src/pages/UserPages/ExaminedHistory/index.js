@@ -71,8 +71,18 @@ function ExaminedHistory() {
             headerClasses: cx('id-col'),
         },
         {
-            dataField: 'namePatient',
-            text: 'Họ và tên',
+            dataField: 'nameDoctor',
+            text: 'Bác sĩ',
+            headerClasses: cx('name-col'),
+        },
+        {
+            dataField: 'clinic',
+            text: 'Phòng khám',
+            headerClasses: cx('name-col'),
+        },
+        {
+            dataField: 'nameDoctor',
+            text: 'Bác sĩ',
             headerClasses: cx('name-col'),
         },
         {
@@ -98,13 +108,6 @@ function ExaminedHistory() {
             headerClasses: cx('info-col'),
             align: 'center',
         },
-        {
-            dataField: 'Xoa',
-            text: 'Hồ sơ khám bệnh, đơn thuốc, ...',
-            formatter: resultFomatter,
-            headerClasses: cx('action-col'),
-            align: 'center',
-        },
     ];
     return (
         <ProtectedRoute isAllowed={!!user} redirectPath="/login">
@@ -119,7 +122,7 @@ function ExaminedHistory() {
                         <ToolkitProvider bootstrap4 keyField="id" data={products} columns={columns} search>
                             {(props) => (
                                 <div>
-                                    <h2 className={cx('title')}>Lịch sử khám bệnh</h2>
+                                    <h2 className={cx('title')}>Lịch sử đặt lịch</h2>
                                     <div className={cx('wrapper-search', 'mx-5')}>
                                         <h4>Tìm kiếm</h4>
                                         <SearchBar
